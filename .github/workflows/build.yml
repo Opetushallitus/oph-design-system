@@ -1,0 +1,32 @@
+name: oph-design-system
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '**.md'
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --prefer-offline
+
+      - name: Publish storybook
+        run: |
+          git clone https://github.com/Opetushallitus/ci-tools.git
+          source ci-tools/common/setup-tools.sh
+          npm run build-storybook
+          sh scripts/deploy-storybook.sh
