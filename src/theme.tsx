@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { ButtonOwnProps } from '@mui/material';
-import { ThemeOptions, createTheme } from '@mui/material/styles';
+import { Theme, ThemeOptions, createTheme } from '@mui/material/styles';
 import NextLink, { LinkProps } from 'next/link';
 
 const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
@@ -80,7 +80,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             '&:hover': {
               backgroundColor: getColorByName(ownerState.color, theme, 'light'),
             },
-            '&:active': {
+            '&:active, &.Mui-focusVisible': {
               backgroundColor: getColorByName(ownerState.color, theme, 'dark'),
             },
           };
@@ -101,7 +101,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               color: getColorByName(ownerState.color, theme, 'light'),
               borderColor: getColorByName(ownerState.color, theme, 'light'),
             },
-            '&:active': {
+            '&:active, &.Mui-focusVisible': {
               borderWidth: '2px',
               backgroundColor: colors.white,
               color: getColorByName(ownerState.color, theme, 'dark'),
@@ -120,7 +120,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               color: getColorByName(ownerState.color, theme, 'light'),
               background: 'none',
             },
-            '&:active': {
+            '&:active, &.Mui-focusVisible': {
               color: getColorByName(ownerState.color, theme, 'dark'),
               background: 'none',
             },
@@ -230,7 +230,7 @@ export const oppijaTheme = createTheme({
 
 function getColorByName(
   colorName: ButtonOwnProps['color'],
-  customTheme: typeof virkailijaTheme,
+  customTheme: Theme,
   mode: 'main' | 'light' | 'dark',
 ) {
   return colorName === 'inherit'
