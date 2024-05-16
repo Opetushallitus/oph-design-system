@@ -1,6 +1,12 @@
-import React from "react";
-import { ButtonProps, Button as MuiButton } from "@mui/material";
+import {
+  ButtonProps as MuiButtonProps,
+  Button as MuiButton,
+} from '@mui/material';
 
-export const Button = (props: ButtonProps) => {
-  return <MuiButton {...props} />;
+type ButtonProps = Omit<MuiButtonProps, 'endIcon' | 'startIcon'> & {
+  icon?: MuiButtonProps['startIcon'];
+};
+
+export const Button = ({ icon, ...rest }: ButtonProps) => {
+  return <MuiButton {...rest} startIcon={icon} />;
 };
