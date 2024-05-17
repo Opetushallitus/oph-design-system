@@ -1,7 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import { Box } from '@mui/material';
 import { OpenInNew } from '@mui/icons-material';
+import { Box } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Button,

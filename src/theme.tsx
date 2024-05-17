@@ -1,8 +1,9 @@
 'use client';
-import * as React from 'react';
+
 import { ButtonOwnProps } from '@mui/material';
 import { Theme, ThemeOptions, createTheme } from '@mui/material/styles';
 import NextLink, { LinkProps } from 'next/link';
+import * as React from 'react';
 
 const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
   function LinkBehaviour(props, ref) {
@@ -68,7 +69,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           },
           '& .MuiButton-startIcon svg': {
             width: '24px',
-            height: '24px'
+            height: '24px',
           },
         },
         contained: ({ ownerState, theme }) => {

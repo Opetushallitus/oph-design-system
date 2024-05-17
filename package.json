@@ -2,10 +2,16 @@
   "name": "oph-design-system",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint .",
+    "lint:fix": "eslint .",
+    "prettier": "prettier . -c",
+    "prettier:fix": "prettier . --write",
+    "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +19,10 @@
   "devDependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.18",
-    "@mui/material": "^5.15.18",
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.2.0",
+    "@mui/icons-material": "^5",
+    "@mui/material": "^5",
     "@storybook/addon-essentials": "^8.1.1",
     "@storybook/addon-interactions": "^8.1.1",
     "@storybook/addon-links": "^8.1.1",
@@ -22,7 +30,26 @@
     "@storybook/nextjs": "^8.1.1",
     "@storybook/react": "^8.1.1",
     "@storybook/test": "^8.1.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import-x": "^0.5.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-storybook": "^0.8.0",
+    "prettier": "^3.2.5",
     "storybook": "^8.1.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.9.0"
+  },
+  "peerDependencies": {
+    "@mui/material": "^5",
+    "next": "^14",
+    "react": "^18"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   }
 }

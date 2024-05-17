@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src", "./.storybook"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*", ".storybook/**/*"],
+  "exclude": ["node_modules", "storybook-static", ".next"]
 }

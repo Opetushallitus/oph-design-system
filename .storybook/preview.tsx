@@ -1,8 +1,7 @@
-import React from 'react';
 import { virkailijaTheme, oppijaTheme } from '../src/theme';
+import { CssBaseline } from '@mui/material';
 import { ThemeProvider, styled } from '@mui/material/styles';
 import type { Preview } from '@storybook/react';
-import { CssBaseline } from '@mui/material';
 
 const ThemeBlock = styled('div')<{ left?: boolean; fill?: boolean }>(({
   left,
@@ -11,7 +10,7 @@ const ThemeBlock = styled('div')<{ left?: boolean; fill?: boolean }>(({
   return {
     position: 'absolute',
     top: 0,
-    left: left || fill ? 0 : '50%',
+    left: left ?? fill ? 0 : '50%',
     borderRight: left ? '1px solid grey' : 'none',
     right: left ? '50%' : 0,
     width: fill ? '100%' : '50%',
