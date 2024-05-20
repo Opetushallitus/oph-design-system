@@ -18,7 +18,8 @@
     /* Linting */
     "strict": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src/**/*", ".storybook/**/*", "./*.ts"],
   "exclude": ["node_modules", "storybook-static", ".next"]

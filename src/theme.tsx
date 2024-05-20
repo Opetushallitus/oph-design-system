@@ -1,8 +1,8 @@
 'use client';
 
-import { ButtonOwnProps } from '@mui/material';
-import { Theme, ThemeOptions, createTheme } from '@mui/material/styles';
-import NextLink, { LinkProps } from 'next/link';
+import type { ButtonOwnProps } from '@mui/material';
+import { type Theme, type ThemeOptions, createTheme } from '@mui/material/styles';
+import NextLink, { type LinkProps } from 'next/link';
 import * as React from 'react';
 
 const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(

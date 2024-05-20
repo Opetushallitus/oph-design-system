@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "dist",
+      "declaration": true,
+      "noEmit": false,
+      "allowImportingTsExtensions": false
+    },
+    "include": ["src/**/*.tsx?", "./index.ts"],
+    "exclude": ["node_modules", "storybook-static", ".next", "**/*.stories.tsx"],
+  }
+  

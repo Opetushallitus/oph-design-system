@@ -1,17 +1,21 @@
 {
   "name": "oph-design-system",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build": "npm run clean; tsc --project tsconfig.build.json",
+    "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint .",
     "prettier": "prettier . -c",
     "prettier:fix": "prettier . --write",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

@@ -6,7 +6,7 @@ const compat = new FlatCompat();
 
 export default tsEslint.config(
   {
-    ignores: ['!.storybook', 'storybook-static', '.next', '*.mjs'],
+    ignores: ['!.storybook', 'storybook-static', '.next', '*.mjs', 'dist'],
   },
   js.configs.recommended,
   ...compat.extends(
@@ -68,6 +68,12 @@ export default tsEslint.config(
       'react/display-name': 'off',
       'react/jsx-uses-react': 'error',
       'react/prop-types': 'off',
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": ["@mui/*/*/*"]
+        }
+      ]
     },
   },
 );

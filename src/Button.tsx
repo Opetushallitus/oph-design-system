@@ -1,9 +1,7 @@
-import {
-  ButtonProps as MuiButtonProps,
-  Button as MuiButton,
-} from '@mui/material';
+import type { ButtonProps as MuiButtonProps } from '@mui/material';
+import MuiButton from '@mui/material/Button';
 
-type ButtonProps = Omit<MuiButtonProps, 'endIcon' | 'startIcon'> & {
+type ButtonProps = Omit<MuiButtonProps, 'endIcon' | 'startIcon' | 'size'> & {
   icon?: MuiButtonProps['startIcon'];
 };
 
