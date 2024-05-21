@@ -1,9 +1,47 @@
 'use client';
 
 import type { ButtonOwnProps } from '@mui/material';
-import { type Theme, type ThemeOptions, createTheme } from '@mui/material/styles';
+import {
+  type Theme,
+  type ThemeOptions,
+  createTheme,
+} from '@mui/material/styles';
 import NextLink, { type LinkProps } from 'next/link';
-import * as React from 'react';
+import React from 'react';
+
+declare module '@mui/material/styles' {
+  interface CustomTypographyVariants {
+    label: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface CustomTypographyVariantsOptions {
+    label?: React.CSSProperties;
+  }
+
+  /*eslint-disable-next-line @typescript-eslint/no-empty-interface */
+  interface TypographyVariants extends CustomTypographyVariants {}
+  /*eslint-disable-next-line @typescript-eslint/no-empty-interface */
+  interface TypographyVariantsOptions extends CustomTypographyVariants {}
+
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+    xxl: true;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    label: true;
+    h6: false;
+    overline: false;
+  }
+}
 
 const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
   function LinkBehaviour(props, ref) {
@@ -36,17 +74,118 @@ export const colors = {
   lightBlue2: '#C1EAFF',
 
   green1: '#254905',
-  green2: '#378703',
+  green2: '#378703', // Success
   green3: '#5BCA13',
   green4: '#9CFF5A',
   green5: '#CCFFCC',
+
+  red1: '#990066',
+  red2: '#E60895',
+  
+  orange1: '#663300',
+  orange2: '#993300',
+  orange3: '#CC3300', // Error
+  orange4: '#FF5500',
+
+  yellow1: '#FFCC33',
+  yellow2: '#FFD900',
+  yellow3: '#FFFF33',
+
+  pink1: '#FF66CC',
+  pink2: '#FFCCFF',
+
+  purple1: '#660066',
+  purple2: '#660099',
+  purple3: '#C227B9',
+  purple4: '#CC99FF',
 };
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1600,
+      xxl: 1920,
+    },
+  },
+});
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
   typography: {
     fontFamily: 'Open Sans',
+    h1: {
+      fontSize: '34px',
+      fontWeight: 700,
+      lineHeight: '42px',
+      color: colors.grey900,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '26px',
+        lineHeight: '34px',
+      },
+    },
+    h2: {
+      fontSize: '24px',
+      fontWeight: 700,
+      lineHeight: '30px',
+      color: colors.grey900,
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '22px',
+        lineHeight: '28px',
+      },
+    },
+    h3: {
+      fontSize: '20px',
+      fontWeight: 700,
+      lineHeight: '26px',
+      color: colors.grey900,
+    },
+    h4: {
+      fontSize: '18px',
+      fontWeight: 700,
+      lineHeight: '24px',
+      color: colors.grey900,
+    },
+    h5: {
+      fontSize: '16px',
+      fontWeight: 700,
+      lineHeight: '24px',
+      color: colors.grey900,
+    },
+    h6: undefined,
+    body1: {
+      fontSize: '16px',
+      lineHeight: '24px',
+      color: colors.grey900,
+    },
+    body2: {
+      fontSize: '13px',
+      lineHeight: '16px',
+      color: colors.grey900,
+    },
+    button: {
+      fontSize: '16px',
+      fontWeight: 600,
+      textTransform: 'none',
+    },
+    label: {
+      fontSize: '16px',
+      lineHeight: '24px',
+      fontWeight: 600,
+      color: colors.grey900,
+    },
   },
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          subtitle1: 'body1',
+          subtitle2: 'body2',
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         component: LinkBehaviour,
@@ -59,9 +198,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
       styleOverrides: {
         root: {
-          fontSize: '16px',
-          textTransform: 'none',
-          fontWeight: '600',
           borderRadius: '2px',
           padding: '6px 18px',
           '&.Mui-disabled': {
