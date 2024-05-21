@@ -1,7 +1,8 @@
 import { Button } from './Button';
 import { OpenInNew } from '@mui/icons-material';
 import { Box } from '@mui/material';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, fn, within } from '@storybook/test';
 
 const meta = {
   component: Button,
@@ -15,15 +16,18 @@ export const Primary: Story = {
   args: {
     variant: 'contained',
     children: 'Painike',
+    onClick: fn(),
   },
-  render({ variant, children }) {
+  render({ variant, children, onClick }) {
     return (
       <Box display="flex" gap={2}>
-        <Button variant={variant}>{children}</Button>
+        <Button variant={variant} onClick={onClick}>
+          {children}
+        </Button>
         <Button variant={variant} disabled>
           {children}
         </Button>
-        <Button variant={variant} icon={<OpenInNew />}>
+        <Button variant={variant} icon={<OpenInNew />} onClick={onClick}>
           {children}
         </Button>
         <Button variant={variant} icon={<OpenInNew />} disabled>
@@ -32,6 +36,21 @@ export const Primary: Story = {
       </Box>
     );
   },
+
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const buttons = await canvas.getAllByRole('button');
+
+    await expect(buttons).toHaveLength(8);
+
+    for (const button of buttons) {
+      if (!(button as HTMLButtonElement).disabled) {
+        await userEvent.hover(button);
+        await userEvent.click(button);
+      }
+    }
+    await expect(args.onClick).toBeCalledTimes(4);
+  },
 };
 
 export const Secondary: Story = {
@@ -39,6 +58,7 @@ export const Secondary: Story = {
   args: {
     variant: 'outlined',
     children: 'Painike',
+    onClick: fn(),
   },
 };
 
@@ -47,5 +67,6 @@ export const Text: Story = {
   args: {
     variant: 'text',
     children: 'Painike',
+    onClick: fn(),
   },
 };

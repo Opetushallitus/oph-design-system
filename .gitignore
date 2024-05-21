@@ -2,3 +2,5 @@ node_modules
 .next
 storybook-static
 dist
+lcov-report
+coverage

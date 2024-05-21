@@ -9,7 +9,6 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -19,7 +18,7 @@
     "strict": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
   },
   "include": ["src/**/*", ".storybook/**/*", "./*.ts"],
   "exclude": ["node_modules", "storybook-static", ".next"]
