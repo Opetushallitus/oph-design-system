@@ -6,7 +6,7 @@ const compat = new FlatCompat();
 
 export default tsEslint.config(
   {
-    ignores: ['!.storybook', 'storybook-static', '.next', '*.mjs', 'dist'],
+    ignores: ['storybook-static', '.next', '*.mjs', 'dist', 'lcov', 'coverage'],
   },
   js.configs.recommended,
   ...compat.extends(
@@ -33,7 +33,7 @@ export default tsEslint.config(
     },
   },
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts?x'],
     rules: {
       '@typescript-eslint/array-type': [
         'error',
@@ -68,12 +68,12 @@ export default tsEslint.config(
       'react/display-name': 'off',
       'react/jsx-uses-react': 'error',
       'react/prop-types': 'off',
-      "no-restricted-imports": [
-        "error",
+      'no-restricted-imports': [
+        'error',
         {
-          "patterns": ["@mui/*/*/*"]
-        }
-      ]
+          patterns: ['@mui/*/*/*'],
+        },
+      ],
     },
   },
 );

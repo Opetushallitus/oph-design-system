@@ -16,17 +16,17 @@ const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
 );
 
 const MUI_NEXTJS_OVERRIDES = {
-    typography: {
-      fontFamily: openSans.style.fontFamily,
-    },
-    components: {
-      MuiLink: {
-        defaultProps: {
-          component: LinkBehaviour,
-        },
+  typography: {
+    fontFamily: openSans.style.fontFamily,
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehaviour,
       },
     },
-  }
+  },
+};
 
 export const virkailijaTheme = createODSTheme({
   variant: 'oph',

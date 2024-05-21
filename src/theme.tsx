@@ -44,7 +44,7 @@ declare module '@mui/material/Typography' {
   }
 }
 
-const theme = createTheme({
+const themeBase = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -77,7 +77,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontWeight: 700,
       lineHeight: '42px',
       color: colors.grey900,
-      [theme.breakpoints.down('sm')]: {
+      [themeBase.breakpoints.down('sm')]: {
         fontSize: '26px',
         lineHeight: '34px',
       },
@@ -87,7 +87,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontWeight: 700,
       lineHeight: '30px',
       color: colors.grey900,
-      [theme.breakpoints.down('sm')]: {
+      [themeBase.breakpoints.down('sm')]: {
         fontSize: '22px',
         lineHeight: '28px',
       },
@@ -316,10 +316,10 @@ const OPPIJA_THEME_OPTIONS = {
   },
 };
 
-type CreateOPHThemeParams = {
+interface CreateOPHThemeParams {
   variant: 'oph' | 'opintopolku';
   overrides?: DeepPartial<ThemeOptions>;
-};
+}
 
 export function createODSTheme({
   variant,

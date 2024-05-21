@@ -39,7 +39,7 @@ export const Primary: Story = {
 
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    const buttons = await canvas.getAllByRole('button');
+    const buttons = canvas.getAllByRole('button');
 
     await expect(buttons).toHaveLength(8);
 

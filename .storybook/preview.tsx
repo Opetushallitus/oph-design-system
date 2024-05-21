@@ -1,6 +1,6 @@
 import { virkailijaTheme, oppijaTheme } from '../src/theme';
 import { CssBaseline } from '@mui/material';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -54,11 +54,11 @@ const preview: Preview = {
             <>
               <CssBaseline />
               <ThemeProvider theme={virkailijaTheme}>
-                  <Story />
+                <Story />
               </ThemeProvider>
-              <hr style={{margin : '1rem 0'}}/>
+              <hr style={{ margin: '1rem 0' }} />
               <ThemeProvider theme={oppijaTheme}>
-                  <Story />
+                <Story />
               </ThemeProvider>
             </>
           );
