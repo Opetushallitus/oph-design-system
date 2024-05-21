@@ -24,11 +24,30 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --prefer-offline
 
-      - name: Lint and test
+      - name: Lint
         run: |
           npm run typecheck
           npm run lint
-          npm run test-storybook
+
+      - name: Build storybook
+        run: npm run build-storybook
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run storybook
+        run: npm run storybook &
+
+      - name: Test Storybook
+        run: npm run test-storybook
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshot-diffs
+          path: __snapshots__/__diff_output__/
+          retention-days: 10
+          if-no-files-found: ignore
 
       - name: Publish storybook
         run: |
@@ -36,3 +55,4 @@ jobs:
           source ci-tools/common/setup-tools.sh
           npm run build-storybook
           sh scripts/deploy-storybook.sh
+
