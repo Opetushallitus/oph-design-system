@@ -22,24 +22,24 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --no-audit --prefer-offline
+        run: npm ci --no-audit --prefer-offline --ignore-scripts
 
       - name: Lint
         run: |
           npm run typecheck
           npm run lint
 
-      - name: Build storybook
-        run: npm run build-storybook
-
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
+
+      - name: Build storybook
+        run: npm run build-storybook -- --quiet
 
       - name: Run storybook
-        run: npm run storybook:ci &
+        run: npx http-server ./storybook-static -p 6006 &
 
       - name: Test Storybook
-        run: npm run test-storybook
+        run: npm run test-storybook:coverage
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -53,6 +53,4 @@ jobs:
         run: |
           git clone https://github.com/Opetushallitus/ci-tools.git
           source ci-tools/common/setup-tools.sh
-          npm run build-storybook
           sh scripts/deploy-storybook.sh
-
