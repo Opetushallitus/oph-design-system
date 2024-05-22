@@ -1,4 +1,5 @@
-import { createODSTheme } from './theme';
+"use client";
+import { createODSTheme } from '../../theme';
 import { Open_Sans } from 'next/font/google';
 import NextLink, { type LinkProps } from 'next/link';
 import React from 'react';

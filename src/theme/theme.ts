@@ -1,7 +1,6 @@
 'use client';
-
-import { colors } from './colors';
-import type { DeepPartial } from './util';
+import { colors } from '../colors';
+import type { DeepPartial } from '../util';
 import type { ButtonOwnProps } from '@mui/material';
 import {
   type Theme,

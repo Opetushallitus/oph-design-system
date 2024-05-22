@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
-
     "baseUrl": ".",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
 
@@ -18,8 +17,9 @@
     "strict": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*", ".storybook/**/*", "./*.ts"],
+  "include": ["src/**/*", ".storybook/**/*", "./*.ts", "*.config.mjs"],
   "exclude": ["node_modules", "storybook-static", ".next"]
 }
