@@ -10,6 +10,7 @@
     "test-storybook": "test-storybook --coverage",
     "test-storybook-update-snapshots": "test-storybook --updateSnapshot",
     "storybook": "storybook dev -p 6006",
+    "storybook:ci": "npm run storybook -- --ci --quiet",
     "build-storybook": "storybook build",
     "build": "npm run clean; tsc --project tsconfig.build.json",
     "clean": "rm -rf dist",
