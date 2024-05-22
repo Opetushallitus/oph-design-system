@@ -11,6 +11,8 @@ declare global {
   }
 }
 
+const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
+
 const customSnapshotsDir = `${process.cwd()}/__snapshots__`;
 
 const config: TestRunnerConfig = {
@@ -35,11 +37,44 @@ const config: TestRunnerConfig = {
     const root = page.locator('#storybook-root');
 
     const image = await root.screenshot({ animations: 'disabled' });
-    expect(image).toMatchImageSnapshot({
-      customSnapshotsDir,
-      customSnapshotIdentifier: context.id,
-      diffDirection: 'vertical',
+
+    const imageMatchPromise = new Promise<void>((resolve, reject) => {
+      try {
+        expect(image).toMatchImageSnapshot({
+          customSnapshotsDir,
+          customSnapshotIdentifier: context.id,
+          diffDirection: 'vertical',
+        });
+        resolve();
+      } catch (e: unknown) {
+        reject(e as Error);
+      }
     });
+
+    await Promise.allSettled([imageMatchPromise]);
+
+    const oldViewportSize = page.viewportSize() ?? DEFAULT_VIEWPORT_SIZE;
+    await page.setViewportSize({ width: 414, height: 896 });
+    const mobileImage = await root.screenshot({ animations: 'disabled' });
+
+    const mobileImageMatchPromise = new Promise<void>((resolve, reject) => {
+      try {
+        expect(mobileImage).toMatchImageSnapshot({
+          customSnapshotsDir,
+          customSnapshotIdentifier: context.id + '_mobile',
+          diffDirection: 'vertical',
+        });
+        resolve();
+      } catch (e: unknown) {
+        reject(e as Error);
+      }
+    });
+
+    await Promise.allSettled([mobileImageMatchPromise]);
+
+    await page.setViewportSize(oldViewportSize);
+
+    await Promise.all([imageMatchPromise, mobileImageMatchPromise])
   },
 };
 

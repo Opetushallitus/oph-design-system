@@ -15,7 +15,17 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     variant: 'contained',
-    children: 'Painike',
+    children: (
+      <span
+        style={{
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        Painike
+      </span>
+    ),
     onClick: fn(),
   },
   render({ variant, children, onClick }) {
@@ -49,6 +59,8 @@ export const Primary: Story = {
         await userEvent.click(button);
       }
     }
+    // Siirretään fokus pois viimeisestä napista
+    await userEvent.tab();
     await expect(args.onClick).toBeCalledTimes(4);
   },
 };
@@ -56,8 +68,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   ...Primary,
   args: {
-    variant: 'outlined',
-    children: 'Painike',
+    ...Primary.args,
     onClick: fn(),
   },
 };
@@ -65,8 +76,7 @@ export const Secondary: Story = {
 export const Text: Story = {
   ...Primary,
   args: {
-    variant: 'text',
-    children: 'Painike',
+    ...Primary.args,
     onClick: fn(),
   },
 };
