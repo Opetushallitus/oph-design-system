@@ -10,8 +10,8 @@ export const colors = {
   grey100: '#EDEDED',
   grey50: '#F6F6F6',
 
-  white: '#FFFFFF',
   black: '#000000',
+  white: '#FFFFFF',
 
   blue1: '#000066',
   blue2: '#0033CC',
