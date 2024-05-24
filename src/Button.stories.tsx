@@ -69,6 +69,7 @@ export const Secondary: Story = {
   ...Primary,
   args: {
     ...Primary.args,
+    variant: 'outlined',
     onClick: fn(),
   },
 };
@@ -77,6 +78,7 @@ export const Text: Story = {
   ...Primary,
   args: {
     ...Primary.args,
+    variant: 'text',
     onClick: fn(),
   },
 };
