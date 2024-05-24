@@ -2,7 +2,6 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig([
   {
-    // These are client components. They will get the 'use client' at the top.
     entry: ['src/index.ts', 'src/theme/index.ts', 'src/next/theme/index.ts'],
     clean: true,
     dts: true,
@@ -13,7 +12,6 @@ export default defineConfig([
     target: 'es2022',
     treeshake: false,
     bundle: true,
-    // However you like this.
     external: ['@mui/utils'],
     outDir: 'dist',
     plugins: [

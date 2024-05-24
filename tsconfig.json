@@ -6,14 +6,12 @@
     "skipLibCheck": true,
     "baseUrl": ".",
 
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
     "strict": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
