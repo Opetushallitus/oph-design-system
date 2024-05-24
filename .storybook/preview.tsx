@@ -11,6 +11,11 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      controls: {
+        sort: 'requiredFirst',
+      },
+    },
   },
   globalTypes: {
     theme: {
