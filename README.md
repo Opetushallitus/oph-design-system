@@ -64,7 +64,7 @@ import { Button } from '@opetushallitus/oph-design-system';
 export const OmaKomponentti = () => {
   return (
     <div>
-      <Button icon={<OpenInNew />}>>Klikkaa tästä!</Button>
+      <Button startIcon={<OpenInNew />}>>Klikkaa tästä!</Button>
     </div>
   );
 };

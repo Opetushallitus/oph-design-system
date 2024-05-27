@@ -37,10 +37,10 @@ export const Primary: Story = {
         <Button variant={variant} disabled>
           {children}
         </Button>
-        <Button variant={variant} icon={<OpenInNew />} onClick={onClick}>
+        <Button variant={variant} startIcon={<OpenInNew />} onClick={onClick}>
           {children}
         </Button>
-        <Button variant={variant} icon={<OpenInNew />} disabled>
+        <Button variant={variant} startIcon={<OpenInNew />} disabled>
           {children}
         </Button>
       </Box>
