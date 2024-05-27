@@ -149,7 +149,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: '2px',
-          padding: '6px 18px',
+          padding: '4px 16px',
           '&.Mui-disabled': {
             cursor: 'not-allowed',
           },
@@ -160,6 +160,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
         contained: ({ ownerState, theme }) => {
           return {
+            border: '2px solid transparent', 
             '&.Mui-disabled': {
               backgroundColor: colors.grey400,
               color: colors.white,
@@ -198,6 +199,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
         text: ({ ownerState, theme }) => {
           return {
+            border: '2px solid transparent', 
             color: getColorByName(ownerState.color, theme, 'main'),
             background: 'none',
             '&.Mui-disabled': {
