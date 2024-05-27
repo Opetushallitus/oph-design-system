@@ -12,73 +12,132 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const Filled: Story = {
   args: {
     variant: 'contained',
-    children: (
-      <span
-        style={{
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}
-      >
-        Painike
-      </span>
-    ),
-    onClick: fn(),
+    children: 'Painike',
+    onClick: fn()
   },
-  render({ variant, children, onClick }) {
+  render({ variant, children, onClick, startIcon, disabled }) {
     return (
-      <Box display="flex" gap={2}>
-        <Button variant={variant} onClick={onClick}>
-          {children}
-        </Button>
-        <Button variant={variant} disabled>
-          {children}
-        </Button>
-        <Button variant={variant} startIcon={<OpenInNew />} onClick={onClick}>
-          {children}
-        </Button>
-        <Button variant={variant} startIcon={<OpenInNew />} disabled>
-          {children}
-        </Button>
-      </Box>
+      <Button
+        variant={variant}
+        onClick={onClick}
+        disabled={disabled}
+        startIcon={startIcon}
+      >
+        {children}
+      </Button>
     );
   },
 
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole('button');
-
-    await expect(buttons).toHaveLength(8);
+    const buttons = canvas.getAllByRole('button', { name: 'Painike' });
 
     for (const button of buttons) {
-      if (!(button as HTMLButtonElement).disabled) {
-        await userEvent.hover(button);
-        await userEvent.click(button);
-      }
+      await userEvent.click(button);
     }
+
     // Siirretään fokus pois viimeisestä napista
     await userEvent.tab();
-    await expect(args.onClick).toBeCalledTimes(4);
+    await expect(args.onClick).toHaveBeenCalledTimes(buttons.length);
   },
 };
 
-export const Secondary: Story = {
-  ...Primary,
+export const FilledDisabled: Story = {
+  ...Filled,
   args: {
-    ...Primary.args,
+    ...Filled.args,
+    disabled: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole('button', { name: 'Painike' });
+
+    for (const button of buttons) {
+      await expect(button).toBeDisabled();
+    }
+  },
+};
+
+export const FilledWithIcon: Story = {
+  ...Filled,
+  args: {
+    ...Filled.args,
+    startIcon: <OpenInNew />,
+  },
+};
+
+export const FilledWithIconDisabled: Story = {
+  ...FilledDisabled,
+  args: {
+    ...FilledWithIcon.args,
+    disabled: true,
+  },
+};
+
+export const Outlined: Story = {
+  ...Filled,
+  args: {
+    ...Filled.args,
     variant: 'outlined',
-    onClick: fn(),
+  },
+};
+
+export const OutlinedDisabled: Story = {
+  ...FilledDisabled,
+  args: {
+    ...Outlined.args,
+    disabled: true,
+  },
+};
+
+export const OutlinedWithIcon: Story = {
+  ...Outlined,
+  args: {
+    ...Outlined.args,
+    startIcon: <OpenInNew />,
+  },
+};
+
+export const OutlinedWithIconDisabled: Story = {
+  ...FilledDisabled,
+  args: {
+    ...OutlinedWithIcon.args,
+    startIcon: <OpenInNew />,
+    disabled: true,
   },
 };
 
 export const Text: Story = {
-  ...Primary,
+  ...Filled,
   args: {
-    ...Primary.args,
+    ...Filled.args,
     variant: 'text',
-    onClick: fn(),
+  },
+};
+
+export const TextDisabled: Story = {
+  ...FilledDisabled,
+  args: {
+    ...Text.args,
+    disabled: true,
+  },
+};
+
+export const TextWithIcon: Story = {
+  ...Text,
+  args: {
+    ...Text.args,
+    startIcon: <OpenInNew />,
+  },
+};
+
+export const TextWithIconDisabled: Story = {
+  ...FilledDisabled,
+  args: {
+    ...TextWithIcon.args,
+    disabled: true,
   },
 };

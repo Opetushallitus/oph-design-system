@@ -27,9 +27,9 @@ const preview: Preview = {
         icon: 'circlehollow',
         // Array of plain string values or MenuItem shape (see below)
         items: [
-          { value: 'oph', right: '🔵', title: 'OPH' },
-          { value: 'opintopolku', right: '🟢', title: 'Opintopolku' },
-          { value: 'both', right: '🔵🟢', title: 'Molemmat' },
+          { value: 'oph', title: 'OPH' },
+          { value: 'opintopolku', title: 'Opintopolku' },
+          { value: 'both', title: 'Molemmat' },
         ],
         // Change title based on selected value
         dynamicTitle: true,
@@ -40,32 +40,27 @@ const preview: Preview = {
     (Story, { globals }) => {
       const { theme } = globals;
       switch (theme) {
-        case 'oph':
-          return (
-            <ThemeProvider theme={virkailijaTheme}>
-              <CssBaseline />
-              <Story />
-            </ThemeProvider>
-          );
-        case 'opintopolku':
-          return (
-            <ThemeProvider theme={oppijaTheme}>
-              <CssBaseline />
-              <Story />
-            </ThemeProvider>
-          );
-        default:
+        case 'both':
           return (
             <>
               <CssBaseline />
               <ThemeProvider theme={virkailijaTheme}>
                 <Story />
               </ThemeProvider>
-              <Box m={2}></Box>
+              <Box margin={2}></Box>
               <ThemeProvider theme={oppijaTheme}>
                 <Story />
               </ThemeProvider>
             </>
+          );
+        default:
+          return (
+            <ThemeProvider
+              theme={theme === 'opintopolku' ? oppijaTheme : virkailijaTheme}
+            >
+              <CssBaseline />
+              <Story />
+            </ThemeProvider>
           );
       }
     },
