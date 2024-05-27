@@ -15,7 +15,7 @@ export const Filled: Story = {
   args: {
     variant: 'contained',
     children: 'Painike',
-    onClick: fn()
+    onClick: fn(),
   },
   render({ variant, children, onClick, startIcon, disabled }) {
     return (

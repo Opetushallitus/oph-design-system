@@ -53,7 +53,7 @@ export function App() {
 }
 ```
 
-Muissa tapauksissa voit luoda oman teemasi `createODSTheme`-funktiolla, joka löytyy moduulista `@opetushallitus/oph-design-system/theme`. 
+Muissa tapauksissa voit luoda oman teemasi `createODSTheme`-funktiolla, joka löytyy moduulista `@opetushallitus/oph-design-system/theme`.
 Kustomointi onnistuu ylikirjoittamalla Material-UI:n teemalle annettuja asetuksia. Next.js teemaan on lisätty kyseisellä funktiolla muutama Next.js-spesifi asetus.
 Voit katsoa mallia oman teeman luomiseen tiedostosta [./src/next/theme/theme-nextjs.tsx](./src/next/theme/theme-nextjs.tsx).
 
