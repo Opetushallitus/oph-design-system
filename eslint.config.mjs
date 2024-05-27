@@ -6,7 +6,15 @@ const compat = new FlatCompat();
 
 export default tsEslint.config(
   {
-    ignores: ['storybook-static', '.next', '*.mjs', 'dist', 'lcov', 'coverage'],
+    ignores: [
+      '**/.next',
+      '**/*.mjs',
+      'coverage',
+      'dist',
+      'example',
+      'lcov',
+      'storybook-static',
+    ],
   },
   js.configs.recommended,
   ...compat.extends(
