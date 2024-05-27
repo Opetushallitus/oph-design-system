@@ -20,7 +20,7 @@ const preview: Preview = {
   globalTypes: {
     theme: {
       description: 'Theme',
-      defaultValue: 'side-by-side',
+      defaultValue: 'both',
       toolbar: {
         // The label to show for this toolbar item
         title: 'Theme',
