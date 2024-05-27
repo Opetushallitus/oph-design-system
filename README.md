@@ -1,3 +1,5 @@
+[![Build](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml/badge.svg)](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml)
+
 # OPH Design System
 
 OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä.
@@ -64,7 +66,7 @@ import { Button } from '@opetushallitus/oph-design-system';
 export const OmaKomponentti = () => {
   return (
     <div>
-      <Button startIcon={<OpenInNew />}>>Klikkaa tästä!</Button>
+      <Button startIcon={<OpenInNew />}>Klikkaa tästä!</Button>
     </div>
   );
 };
@@ -108,5 +110,5 @@ npm run test-storybook
 Kun komento ajetaan, tehdään seuraavat tarkistukset:
 
 - **Saavutettavuusvirheet** tarkistetaan jokaiselle "Storylle" [axe-playwright](https://github.com/abhinaba-ghosh/axe-playwright)-työkalulla.
-- **Komponenttien toiminnallisuus** testataan `@storybook/addon-interactions`-lisäosalla, jolloin testit kirjoitetaan kompnoentin "Story":n `play`-funktioilla. https://storybook.js.org/docs/writing-tests/interaction-testing
+- **Komponenttien toiminnallisuus** testataan `@storybook/addon-interactions`-lisäosalla, jolloin testit kirjoitetaan komponentin "Story":n `play`-funktioilla. https://storybook.js.org/docs/writing-tests/interaction-testing
 - **Visuaalinen testaus** tehdään jokaiselle storylle `test-runner.ts`-tiedostossa. Screenshotit tallennetaan `jest-image-snapshot`-työkalulla hakemistoon `__snapshots__`. Jos komponenttien ulkoasu on muuttunut, testi feilaa ja tallentaa kuvien diffit hakemistoon `__snapshots__/__diff_output__`.
