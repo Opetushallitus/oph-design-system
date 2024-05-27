@@ -1,5 +1,7 @@
-import type { ButtonProps as MuiButtonProps } from '@mui/material';
-import MuiButton from '@mui/material/Button';
+import {
+  Button as MuiButton,
+  type ButtonProps as MuiButtonProps,
+} from '@mui/material';
 import { forwardRef } from 'react';
 
 const PROPS_FROM_MUI_BUTTON = [
