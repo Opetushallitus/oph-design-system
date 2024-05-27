@@ -1,6 +1,5 @@
 import { Button } from './Button';
 import { OpenInNew } from '@mui/icons-material';
-import { Box } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, fn, within } from '@storybook/test';
 
