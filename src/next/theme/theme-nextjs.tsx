@@ -5,19 +5,19 @@ import { Open_Sans } from 'next/font/google';
 import NextLink, { type LinkProps } from 'next/link';
 import React from 'react';
 
-const openSans = Open_Sans({
+export const openSans = Open_Sans({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
 });
 
-const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
+export const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
   function LinkBehaviour(props, ref) {
     return <NextLink ref={ref} {...props} />;
   },
 );
 
-const MUI_NEXTJS_OVERRIDES = {
+export const MUI_NEXTJS_OVERRIDES = {
   typography: {
     fontFamily: openSans.style.fontFamily,
   },

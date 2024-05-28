@@ -1,1 +1,1 @@
-export { virkailijaTheme, oppijaTheme } from './theme-nextjs';
+export { virkailijaTheme, oppijaTheme, MUI_NEXTJS_OVERRIDES, openSans, LinkBehaviour } from './theme-nextjs';
