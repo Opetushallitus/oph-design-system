@@ -16,6 +16,9 @@ const preview: Preview = {
         sort: 'requiredFirst',
       },
     },
+    viewport: {
+      defaultViewport: 'responsive',
+    }
   },
   globalTypes: {
     theme: {

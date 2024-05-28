@@ -69,9 +69,11 @@ function getColorByName(
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
   typography: {
-    allVariants: {
-      fontFamily: 'Open Sans, sans-serif',
-    },
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeightLight: 400,
+    fontWeightRegular: 400,
+    fontWeightMedium: 600,  
+    fontWeightBold: 700,
     h1: {
       fontSize: '34px',
       fontWeight: 700,
@@ -113,11 +115,13 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     h6: undefined,
     body1: {
       fontSize: '16px',
+      fontWeight: 400,
       lineHeight: '24px',
       color: colors.grey900,
     },
     body2: {
       fontSize: '13px',
+      fontWeight: 400,
       lineHeight: '16px',
       color: colors.grey900,
     },
@@ -128,8 +132,8 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
     label: {
       fontSize: '16px',
-      lineHeight: '24px',
       fontWeight: 600,
+      lineHeight: '24px',
       color: colors.grey900,
     },
   },
