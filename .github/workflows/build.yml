@@ -32,6 +32,9 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Test running example project with library import
+        run: npm run start-and-test-example
+
       - name: Build storybook
         run: npm run build-storybook -- --quiet
 
