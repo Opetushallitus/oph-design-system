@@ -38,8 +38,8 @@ Käytä sovelluksessasi Material-UI:n ThemeProvider-käärettä, jolle annat kom
 Next.js:ää käytettäessä voit importoida teeman suoraan seuraavasti:
 
 ```js
-import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import {
   virkailijaTheme,
   oppijaTheme,
@@ -48,7 +48,8 @@ import {
 export function App() {
   return (
     <ThemeProvider theme={virkailijaTheme /*... tai oppijaTheme */}>
-      <CssBaseline /> {/* Suositeltu, että css-tyylit asetetaan järkeviin oletusarvoihin teeman mukaisesti */}
+      {/* Suositeltu, että css-tyylit asetetaan järkeviin oletusarvoihin teeman mukaisesti */}
+      <CssBaseline />
       {/*Tähän teemaa käyttävät komponentit*/}
     </ThemeProvider>
   );

@@ -72,7 +72,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     fontFamily: 'Open Sans, sans-serif',
     fontWeightLight: 400,
     fontWeightRegular: 400,
-    fontWeightMedium: 600,  
+    fontWeightMedium: 600,
     fontWeightBold: 700,
     h1: {
       fontSize: '34px',

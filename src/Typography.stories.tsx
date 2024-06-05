@@ -6,8 +6,8 @@ const meta = {
   parameters: {
     viewport: {
       defaultViewport: 'responsive',
-    }
-  }
+    },
+  },
 } satisfies Meta<typeof Typography>;
 
 export default meta;
@@ -17,8 +17,7 @@ type Story = StoryObj<typeof Typography>;
 export const Heading1: Story = {
   args: {
     variant: 'h1',
-    children:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
 };
 
@@ -27,7 +26,7 @@ export const Heading1_mobile: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'mobile2',
-    }
+    },
   },
 };
 
@@ -43,7 +42,7 @@ export const Heading2_mobile: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'mobile2',
-    }
+    },
   },
 };
 

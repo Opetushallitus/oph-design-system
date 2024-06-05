@@ -18,7 +18,7 @@ const preview: Preview = {
     },
     viewport: {
       defaultViewport: 'responsive',
-    }
+    },
   },
   globalTypes: {
     theme: {
