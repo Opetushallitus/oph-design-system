@@ -1,3 +1,4 @@
+import { toCompactArray } from './util';
 import {
   Button as MuiButton,
   type ButtonProps as MuiButtonProps,
@@ -32,6 +33,31 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const filteredProps = Object.fromEntries(
       PROPS_FROM_MUI_BUTTON.map((propName) => [propName, props[propName]]),
     );
-    return <MuiButton {...filteredProps} ref={ref} />;
+
+    const { sx } = filteredProps;
+
+    return (
+      <MuiButton
+        {...props}
+        ref={ref}
+        sx={[
+          filteredProps.children
+            ? {}
+            : {
+                //Jos ei lapsia, pienennetään marginaaleja, jotta pelkkä ikoni näkyy hyvin
+                '&.MuiButton-root': {
+                  padding: 0.5,
+                  margin: 0,
+                  minWidth: 0,
+                  flexShrink: 0,
+                },
+                '& .MuiButton-startIcon': {
+                  margin: 0,
+                },
+              },
+          ...toCompactArray(sx),
+        ]}
+      />
+    );
   },
 );

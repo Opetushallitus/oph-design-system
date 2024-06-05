@@ -20,6 +20,7 @@ export const Filled: Story = {
   render({ variant, children, onClick, startIcon, disabled }) {
     return (
       <Button
+        aria-label="Painike"
         variant={variant}
         onClick={onClick}
         disabled={disabled}
@@ -68,6 +69,15 @@ export const FilledWithIcon: Story = {
   },
 };
 
+export const FilledIconOnly: Story = {
+  ...Filled,
+  args: {
+    ...Filled.args,
+    children: undefined,
+    startIcon: <OpenInNew />,
+  },
+};
+
 export const FilledWithIconDisabled: Story = {
   ...FilledDisabled,
   args: {
@@ -96,6 +106,15 @@ export const OutlinedWithIcon: Story = {
   ...Outlined,
   args: {
     ...Outlined.args,
+    startIcon: <OpenInNew />,
+  },
+};
+
+export const OutlinedIconOnly: Story = {
+  ...Outlined,
+  args: {
+    ...Outlined.args,
+    children: undefined,
     startIcon: <OpenInNew />,
   },
 };
@@ -129,6 +148,15 @@ export const TextWithIcon: Story = {
   ...Text,
   args: {
     ...Text.args,
+    startIcon: <OpenInNew />,
+  },
+};
+
+export const TextIconOnly: Story = {
+  ...Text,
+  args: {
+    ...Text.args,
+    children: undefined,
     startIcon: <OpenInNew />,
   },
 };
