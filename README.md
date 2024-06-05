@@ -39,6 +39,7 @@ Next.js:ää käytettäessä voit importoida teeman suoraan seuraavasti:
 
 ```js
 import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 import {
   virkailijaTheme,
   oppijaTheme,
@@ -47,6 +48,7 @@ import {
 export function App() {
   return (
     <ThemeProvider theme={virkailijaTheme /*... tai oppijaTheme */}>
+      <CssBaseline /> {/* Suositeltu, että css-tyylit asetetaan järkeviin oletusarvoihin teeman mukaisesti */}
       {/*Tähän teemaa käyttävät komponentit*/}
     </ThemeProvider>
   );
