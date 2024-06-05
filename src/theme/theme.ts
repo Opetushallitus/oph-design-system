@@ -297,6 +297,9 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
 const VIRKAILIJA_THEME_OPTIONS = {
   ...COMMON_THEME_OPTIONS,
   palette: {
+    background: {
+      default: colors.grey50,
+    },
     primary: {
       main: colors.blue2,
       light: colors.blue3,
