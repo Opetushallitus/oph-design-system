@@ -27,6 +27,11 @@ export const MUI_NEXTJS_OVERRIDES = {
         component: LinkBehaviour,
       },
     },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehaviour,
+      }
+    }
   },
 };
 
