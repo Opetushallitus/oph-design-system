@@ -1,0 +1,11 @@
+name: Deploy storybook
+description: Deploy prebuilt storybook
+runs:
+  using: 'composite'
+  steps:
+    - name: Deploy storybook
+      shell: bash
+      run: |
+        git clone https://github.com/Opetushallitus/ci-tools.git
+        source ci-tools/common/setup-tools.sh
+        sh scripts/deploy-storybook.sh

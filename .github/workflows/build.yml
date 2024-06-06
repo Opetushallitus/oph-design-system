@@ -1,28 +1,27 @@
 name: oph-design-system
-
 on:
   workflow_dispatch:
   push:
     paths-ignore:
       - '**.md'
-
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+      - uses: ./.github/actions/build-storybook
 
       - name: Install dependencies
         run: npm ci --no-audit --prefer-offline --ignore-scripts
+
+      - uses: actions/cache/restore@v4
+        id: storybook
+        with:
+          path: storybook-static
+          key: ${{ github.sha }}
 
       - name: Lint
         run: |
@@ -35,14 +34,8 @@ jobs:
       - name: Test running example project with library import
         run: npm run start-and-test-example
 
-      - name: Build storybook
-        run: npm run build-storybook -- --quiet
-
-      - name: Run storybook
-        run: npx http-server ./storybook-static -p 6006 &
-
-      - name: Test Storybook
-        run: npm run test-storybook:coverage
+      - name: Start and test storybook
+        run: npm run start-built-storybook-and-test
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -51,9 +44,5 @@ jobs:
           path: __snapshots__/__diff_output__/
           retention-days: 10
           if-no-files-found: ignore
-
-      - name: Publish storybook
-        run: |
-          git clone https://github.com/Opetushallitus/ci-tools.git
-          source ci-tools/common/setup-tools.sh
-          sh scripts/deploy-storybook.sh
+      - uses: ./.github/actions/deploy-storybook
+        if: github.ref == 'refs/heads/main'
