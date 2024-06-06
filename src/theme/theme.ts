@@ -131,6 +131,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       textTransform: 'none',
     },
     label: {
+      fontFamily: 'Open Sans, sans-serif',
       fontSize: '16px',
       fontWeight: 600,
       lineHeight: '24px',

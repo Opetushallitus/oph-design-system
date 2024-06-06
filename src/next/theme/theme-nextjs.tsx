@@ -20,6 +20,9 @@ export const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
 export const MUI_NEXTJS_OVERRIDES = {
   typography: {
     fontFamily: openSans.style.fontFamily,
+    label: {
+      fontFamily: openSans.style.fontFamily,
+    }
   },
   components: {
     MuiLink: {
