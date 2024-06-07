@@ -32,7 +32,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Test running example project with library import
-        run: npm run start-and-test-example
+        run: cd example; npm run start-and-test
 
       - name: Start and test storybook
         run: npm run start-built-storybook-and-test

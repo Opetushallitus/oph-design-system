@@ -6,3 +6,4 @@ lcov-report
 coverage
 __snapshots__/__diff_output__
 .swc
+.last-run.json
