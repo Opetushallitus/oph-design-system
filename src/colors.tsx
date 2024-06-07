@@ -1,3 +1,4 @@
+// Kaikki ODS:n värit. Sama väri vain kerran. Ei aliaksia!
 export const colors = {
   grey900: '#1D1D1D',
   grey800: '#454545',
@@ -23,7 +24,7 @@ export const colors = {
   lightBlue2: '#C1EAFF',
 
   green1: '#254905',
-  green2: '#378703', // Success
+  green2: '#378703',
   green3: '#5BCA13',
   green4: '#9CFF5A',
   green5: '#CCFFCC',
@@ -33,7 +34,7 @@ export const colors = {
 
   orange1: '#663300',
   orange2: '#993300',
-  orange3: '#CC3300', // Error
+  orange3: '#CC3300',
   orange4: '#FF5500',
 
   yellow1: '#FFCC33',
@@ -47,4 +48,10 @@ export const colors = {
   purple2: '#660099',
   purple3: '#C227B9',
   purple4: '#CC99FF',
+};
+
+// Kuvaavampia nimiä väreille
+export const aliasColors = {
+  success: colors.green2,
+  error: colors.orange3,
 };
