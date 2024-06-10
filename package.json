@@ -1,0 +1,76 @@
+{
+  "name": "@opetushallitus/oph-design-system",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./theme": "./dist/theme/index.js",
+    "./next/theme": "./dist/next/theme/index.js"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-storybook": "test-storybook",
+    "test-storybook:coverage": "test-storybook --coverage",
+    "test-storybook:update-snapshots": "test-storybook --updateSnapshot",
+    "start-built-storybook": "npx http-server ./storybook-static -p 6006",
+    "start-built-storybook-and-test": "start-server-and-test start-built-storybook 6006 test-storybook:coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "tsup",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier . -c",
+    "prettier:fix": "prettier . --write",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "EUPL-1.2",
+  "devDependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.3.0",
+    "@mui/icons-material": "^5",
+    "@mui/material": "^5",
+    "@storybook/addon-a11y": "^8.1.2",
+    "@storybook/addon-coverage": "^1.0.3",
+    "@storybook/addon-essentials": "^8.1.2",
+    "@storybook/addon-interactions": "^8.1.2",
+    "@storybook/addon-links": "^8.1.2",
+    "@storybook/blocks": "^8.1.2",
+    "@storybook/nextjs": "^8.1.2",
+    "@storybook/react": "^8.1.2",
+    "@storybook/test": "^8.1.2",
+    "@storybook/test-runner": "^0.18.1",
+    "@swc/plugin-transform-imports": "^2.0.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/jest-image-snapshot": "^6.4.0",
+    "axe-playwright": "^2.0.1",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import-x": "^0.5.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-storybook": "^0.8.0",
+    "jest-image-snapshot": "^6.4.0",
+    "prettier": "^3.2.5",
+    "start-server-and-test": "^2.0.3",
+    "storybook": "^8.1.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.10.0"
+  },
+  "peerDependencies": {
+    "@mui/material": "^5",
+    "next": "^14",
+    "react": "^18"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  }
+}

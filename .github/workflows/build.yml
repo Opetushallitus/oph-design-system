@@ -1,0 +1,48 @@
+name: oph-design-system
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '**.md'
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-storybook
+
+      - name: Install dependencies
+        run: npm ci --no-audit --prefer-offline --ignore-scripts
+
+      - uses: actions/cache/restore@v4
+        id: storybook
+        with:
+          path: storybook-static
+          key: ${{ github.sha }}
+
+      - name: Lint
+        run: |
+          npm run typecheck
+          npm run lint
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Test running example project with library import
+        run: cd example; npm run start-and-test
+
+      - name: Start and test storybook
+        run: npm run start-built-storybook-and-test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshot-diffs
+          path: __snapshots__/__diff_output__/
+          retention-days: 10
+          if-no-files-found: ignore
+      - uses: ./.github/actions/deploy-storybook
+        if: github.ref == 'refs/heads/main'

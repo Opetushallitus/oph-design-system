@@ -1,0 +1,7 @@
+.next
+.eslintignore
+package-lock.json
+storybook-static
+node_modules
+lcov
+coverage
