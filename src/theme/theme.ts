@@ -147,6 +147,11 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true
+      }
+    },
     MuiButton: {
       defaultProps: {
         disableRipple: true,
