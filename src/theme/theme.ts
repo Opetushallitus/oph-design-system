@@ -139,6 +139,16 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
   },
   components: {
+    MuiAccordion: {
+      defaultProps: {
+        disableGutters: true,
+      },
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
