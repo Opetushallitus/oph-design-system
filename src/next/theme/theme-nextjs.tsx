@@ -4,6 +4,7 @@ import { createODSTheme } from '../../theme';
 import { Open_Sans } from 'next/font/google';
 import NextLink, { type LinkProps } from 'next/link';
 import React from 'react';
+import { isString } from 'src/util';
 
 export const openSans = Open_Sans({
   weight: ['400', '600', '700'],
@@ -12,8 +13,14 @@ export const openSans = Open_Sans({
 });
 
 export const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  function LinkBehaviour(props, ref) {
-    return <NextLink ref={ref} {...props} />;
+  function LinkBehaviour({ href, ...props }, ref) {
+    const externalLinkHref =
+      isString(href) && href.match(/^https?:\/\//) ? href : undefined;
+    return externalLinkHref ? (
+      <a ref={ref} {...props} href={externalLinkHref} />
+    ) : (
+      <NextLink ref={ref} {...props} href={href} />
+    );
   },
 );
 
@@ -22,7 +29,7 @@ export const MUI_NEXTJS_OVERRIDES = {
     fontFamily: openSans.style.fontFamily,
     label: {
       fontFamily: openSans.style.fontFamily,
-    }
+    },
   },
   components: {
     MuiLink: {
