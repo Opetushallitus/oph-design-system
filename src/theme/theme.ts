@@ -159,8 +159,8 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true
-      }
+        disableRipple: true,
+      },
     },
     MuiButton: {
       defaultProps: {
@@ -308,6 +308,15 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               color: theme.palette.primary.main,
             },
           };
+        },
+      },
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          '& .MuiTableCell-root': {
+            fontSize: 'inherit',
+          },
         },
       },
     },
