@@ -11,6 +11,7 @@
   "scripts": {
     "prepare": "npm run build",
     "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "test-storybook": "test-storybook",
     "test-storybook:coverage": "test-storybook --coverage",
     "test-storybook:update-snapshots": "test-storybook --updateSnapshot",

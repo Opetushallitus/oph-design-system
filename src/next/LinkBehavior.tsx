@@ -7,7 +7,7 @@ const EXTERNAL_LINK_REGEX = /^https?:\/\//;
 export const LinkBehavior = React.forwardRef<
   HTMLAnchorElement,
   React.PropsWithChildren<LinkProps>
->(function LinkBehavior({ href, children, ...props }, ref) {
+>(function renderLinkBehavior({ href, children, ...props }, ref) {
   const externalLinkHref =
     isString(href) && EXTERNAL_LINK_REGEX.test(href) ? href : undefined;
   return externalLinkHref ? (
