@@ -2,27 +2,15 @@
 
 import { createODSTheme } from '../../theme';
 import { Open_Sans } from 'next/font/google';
-import NextLink, { type LinkProps } from 'next/link';
-import React from 'react';
-import { isString } from 'src/util';
+import { LinkBehavior as LB } from '../LinkBehavior';
+
+export const LinkBehavior = LB;
 
 export const openSans = Open_Sans({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
 });
-
-export const LinkBehaviour = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  function LinkBehaviour({ href, ...props }, ref) {
-    const externalLinkHref =
-      isString(href) && href.match(/^https?:\/\//) ? href : undefined;
-    return externalLinkHref ? (
-      <a ref={ref} {...props} href={externalLinkHref} />
-    ) : (
-      <NextLink ref={ref} {...props} href={href} />
-    );
-  },
-);
 
 export const MUI_NEXTJS_OVERRIDES = {
   typography: {
@@ -34,12 +22,12 @@ export const MUI_NEXTJS_OVERRIDES = {
   components: {
     MuiLink: {
       defaultProps: {
-        component: LinkBehaviour,
+        component: LinkBehavior,
       },
     },
     MuiButtonBase: {
       defaultProps: {
-        LinkComponent: LinkBehaviour,
+        LinkComponent: LinkBehavior,
       },
     },
   },

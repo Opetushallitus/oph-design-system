@@ -3,5 +3,5 @@ export {
   oppijaTheme,
   MUI_NEXTJS_OVERRIDES,
   openSans,
-  LinkBehaviour,
+  LinkBehavior,
 } from './theme-nextjs';

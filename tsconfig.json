@@ -11,12 +11,14 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     "strict": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "verbatimModuleSyntax": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src/**/*", ".storybook/**/*", "./*.ts", "*.config.mjs"],
   "exclude": ["node_modules", "storybook-static", ".next"]
