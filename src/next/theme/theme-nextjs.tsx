@@ -1,8 +1,8 @@
 'use client';
 
 import { createODSTheme } from '../../theme';
-import { Open_Sans } from 'next/font/google';
 import { LinkBehavior as LB } from '../LinkBehavior';
+import { Open_Sans } from 'next/font/google';
 
 export const LinkBehavior = LB;
 

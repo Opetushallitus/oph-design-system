@@ -11,7 +11,7 @@ export default defineConfig({
       include: ['src/**/*.ts?(x)'],
       reporter: ['text'],
       exclude: ['**/*.{test,stories}.ts?(x)'],
-    }
+    },
   },
   resolve: {
     alias: {
