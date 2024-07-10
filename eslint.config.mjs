@@ -47,6 +47,7 @@ export default tsEslint.config(
         'error',
         {
           default: 'generic',
+          readOnly: 'generic',
         },
       ],
       '@typescript-eslint/ban-types': [

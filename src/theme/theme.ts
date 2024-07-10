@@ -139,12 +139,27 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
   },
   components: {
+    MuiAccordion: {
+      defaultProps: {
+        disableGutters: true,
+      },
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
           subtitle1: 'body1',
           subtitle2: 'body2',
         },
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
       },
     },
     MuiButton: {
@@ -293,6 +308,15 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               color: theme.palette.primary.main,
             },
           };
+        },
+      },
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          '& .MuiTableCell-root': {
+            fontSize: 'inherit',
+          },
         },
       },
     },

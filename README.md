@@ -1,8 +1,10 @@
 [![Build](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml/badge.svg)](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Opetushallitus_oph-design-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Opetushallitus_oph-design-system)
+
 # OPH Design System
 
-OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä. 
+OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä.
 Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-komponenttikirjaston.
 
 **Huom! Tällä hetkellä komponenttikirjasto on vielä varhaisella kehitysasteella. Käyttöönottoa ei suositella ennen versiota 1.0.0!**
@@ -17,11 +19,13 @@ Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-ko
 ## Komponenttikirjaston käyttöönotto
 
 Asenna komponenttikirjasto riippuvuutena suoraan Githubista:
+
 ```
 npm i "github:opetushallitus/oph-design-system"
 ```
 
 Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
+
 ```json
 {
   "peerDependencies": {
@@ -103,7 +107,20 @@ npm run build-storybook
 
 ## Testaus
 
-UI-komponenttien testit ajetaan Storybookin testaustyökalulla:
+[Vitest](https://vitest.dev):llä toteutetut yksikkötestit voi ajaa komennolla:
+
+```
+npm run test
+```
+
+UI-komponenttien testejä on toteutettu myös Storybookin testaustyökaluilla.
+Käynnistä ensin storybook komennolla:
+
+```
+  npm run storybook
+```
+
+ja sitten aja toisessa terminaalissa
 
 ```
 npm run test-storybook
@@ -116,12 +133,14 @@ Kun komento ajetaan, tehdään seuraavat tarkistukset:
 - **Visuaalinen testaus** tehdään jokaiselle storylle `test-runner.ts`-tiedostossa. Screenshotit tallennetaan `jest-image-snapshot`-työkalulla hakemistoon `__snapshots__`. Jos komponenttien ulkoasu on muuttunut, testi feilaa ja tallentaa kuvien diffit hakemistoon `__snapshots__/__diff_output__`.
 
 ## Jakeluversion muodostaminen
+
 Komponenttikirjaston jakeluversio muodostetaan komennolla:
+
 ```
 npm run build
 ```
 
-Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). Kyseinen komento ajetaan myös aina kun tämän projektin riippuvuudet asennetaan (prepare-skripti package.json-tiedostossa). Tämä on välttämätöntä, että komponenttikirjastoa voi käyttää riippuvuutena. [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa. 
+Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). Kyseinen komento ajetaan myös aina kun tämän projektin riippuvuudet asennetaan (prepare-skripti package.json-tiedostossa). Tämä on välttämätöntä, että komponenttikirjastoa voi käyttää riippuvuutena. [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa.
 
 ## Esimerkkiprojekti
 

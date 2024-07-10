@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "deps-and-dev": "npm ci --no-audit --prefer-offline; npm run dev",
-    "test": "npx playwright test ./test/smoke-test.spec.ts",
+    "test": "npx playwright test ./e2e/example.spec.ts",
     "start-and-test": "start-server-and-test deps-and-dev 3000 test"
   },
   "dependencies": {
