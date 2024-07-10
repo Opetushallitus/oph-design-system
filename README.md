@@ -1,5 +1,7 @@
 [![Build](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml/badge.svg)](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Opetushallitus_oph-design-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Opetushallitus_oph-design-system)
+
 # OPH Design System
 
 OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä. 
