@@ -1,8 +1,11 @@
 'use client';
 
-import { createODSTheme } from '../../theme';
+import { useOphTheme, type CreateOPHThemeParams } from '../../theme';
 import { LinkBehavior as LB } from '../LinkBehavior';
+import { ThemeProvider } from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
 import { Open_Sans } from 'next/font/google';
+import { useMemo } from 'react';
 
 export const LinkBehavior = LB;
 
@@ -31,14 +34,34 @@ export const MUI_NEXTJS_OVERRIDES = {
       },
     },
   },
+} as const;
+
+export const useOphNextJsTheme = ({
+  variant,
+  lang,
+  overrides,
+}: CreateOPHThemeParams) => {
+  const nextOverrides = useMemo(
+    () => deepmerge(MUI_NEXTJS_OVERRIDES, overrides, { clone: true }),
+    [overrides],
+  );
+  return useOphTheme({
+    lang,
+    variant,
+    overrides: nextOverrides,
+  });
 };
 
-export const virkailijaTheme = createODSTheme({
-  variant: 'oph',
-  overrides: MUI_NEXTJS_OVERRIDES,
-});
-
-export const oppijaTheme = createODSTheme({
-  variant: 'opintopolku',
-  overrides: MUI_NEXTJS_OVERRIDES,
-});
+export function OphNextJsThemeProvider({
+  lang,
+  variant,
+  overrides,
+  children,
+}: CreateOPHThemeParams & { children: React.ReactNode }) {
+  const theme = useOphNextJsTheme({
+    variant,
+    lang,
+    overrides,
+  });
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}

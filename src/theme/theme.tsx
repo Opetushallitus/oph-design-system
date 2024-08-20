@@ -3,12 +3,15 @@
 import { colors } from '../colors';
 import type { DeepPartial } from '../util';
 import type { ButtonOwnProps } from '@mui/material';
+import { fiFI, svSE, enUS } from '@mui/material/locale';
 import {
   type Theme,
   type ThemeOptions,
   createTheme,
+  ThemeProvider,
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
+import { useMemo, type ReactNode } from 'react';
 
 declare module '@mui/material/styles' {
   interface CustomTypographyVariants {
@@ -20,9 +23,9 @@ declare module '@mui/material/styles' {
     label?: React.CSSProperties;
   }
 
-  /*eslint-disable-next-line @typescript-eslint/no-empty-interface */
+  /* eslint-disable-next-line @typescript-eslint/no-empty-interface */
   interface TypographyVariants extends CustomTypographyVariants {}
-  /*eslint-disable-next-line @typescript-eslint/no-empty-interface */
+  /* eslint-disable-next-line @typescript-eslint/no-empty-interface */
   interface TypographyVariantsOptions extends CustomTypographyVariants {}
 
   interface BreakpointOverrides {
@@ -323,7 +326,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
   },
 };
 
-const VIRKAILIJA_THEME_OPTIONS = {
+const VIRKAILIJA_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     background: {
@@ -336,9 +339,9 @@ const VIRKAILIJA_THEME_OPTIONS = {
       contrastText: colors.white,
     },
   },
-};
+} as const);
 
-const OPPIJA_THEME_OPTIONS = {
+const OPPIJA_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     primary: {
@@ -348,26 +351,66 @@ const OPPIJA_THEME_OPTIONS = {
       contrastText: colors.white,
     },
   },
-};
+} as const);
 
-interface CreateOPHThemeParams {
+type Language = 'fi' | 'sv' | 'en';
+
+export interface CreateOPHThemeParams {
   variant: 'oph' | 'opintopolku';
+  lang?: Language;
   overrides?: DeepPartial<ThemeOptions>;
 }
 
-export function createODSTheme({
+function getLocale(lang?: Language) {
+  switch (lang) {
+    case 'fi':
+      return fiFI;
+    case 'sv':
+      return svSE;
+    case 'en':
+      return enUS;
+    default:
+      return fiFI;
+  }
+}
+
+export function createOphTheme({
   variant,
   overrides = {},
+  lang,
 }: CreateOPHThemeParams) {
   switch (variant) {
     case 'oph':
-      return createTheme(deepmerge(VIRKAILIJA_THEME_OPTIONS, overrides));
+      return createTheme(
+        deepmerge(VIRKAILIJA_THEME_OPTIONS, overrides, { clone: true }),
+        getLocale(lang),
+      );
     case 'opintopolku':
-      return createTheme(deepmerge(OPPIJA_THEME_OPTIONS, overrides));
+      return createTheme(
+        deepmerge(OPPIJA_THEME_OPTIONS, overrides, { clone: true }),
+        getLocale(lang),
+      );
     default:
       throw Error('Theme variant must be "oph" or "opintopolku"!');
   }
 }
 
-export const virkailijaTheme = createODSTheme({ variant: 'oph' });
-export const oppijaTheme = createODSTheme({ variant: 'opintopolku' });
+export const useOphTheme = ({
+  variant,
+  lang,
+  overrides,
+}: CreateOPHThemeParams) =>
+  useMemo(
+    () => createOphTheme({ variant, lang, overrides }),
+    [variant, lang, overrides],
+  );
+
+export const OphThemeProvider = ({
+  variant,
+  lang,
+  overrides,
+  children,
+}: CreateOPHThemeParams & { children: ReactNode }) => {
+  const theme = useOphTheme({ variant, lang, overrides });
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};

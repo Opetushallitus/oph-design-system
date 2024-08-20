@@ -1,6 +1,5 @@
 import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import { virkailijaTheme } from '@opetushallitus/oph-design-system/next/theme';
+import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/theme';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,10 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider theme={virkailijaTheme}>
+        <OphNextJsThemeProvider variant="oph" lang="en">
           <CssBaseline />
           {children}
-        </ThemeProvider>
+        </OphNextJsThemeProvider>
       </body>
     </html>
   );

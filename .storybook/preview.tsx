@@ -1,6 +1,5 @@
-import { virkailijaTheme, oppijaTheme } from '@/src/next/theme';
+import { OphNextJsThemeProvider } from '@/src/next/theme';
 import { Box, CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -47,23 +46,21 @@ const preview: Preview = {
           return (
             <>
               <CssBaseline />
-              <ThemeProvider theme={virkailijaTheme}>
+              <OphNextJsThemeProvider variant="oph" lang="fi">
                 <Story />
-              </ThemeProvider>
+              </OphNextJsThemeProvider>
               <Box margin={2}></Box>
-              <ThemeProvider theme={oppijaTheme}>
+              <OphNextJsThemeProvider variant="opintopolku" lang="fi">
                 <Story />
-              </ThemeProvider>
+              </OphNextJsThemeProvider>
             </>
           );
         default:
           return (
-            <ThemeProvider
-              theme={theme === 'opintopolku' ? oppijaTheme : virkailijaTheme}
-            >
+            <OphNextJsThemeProvider variant={theme as 'oph' | 'opintopolku'}>
               <CssBaseline />
               <Story />
-            </ThemeProvider>
+            </OphNextJsThemeProvider>
           );
       }
     },
