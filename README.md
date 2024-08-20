@@ -88,7 +88,7 @@ https://dev-files.ops.opintopolku.fi/storybooks/oph-design-system/main/index.htm
 Jos haluat kehittää ODS:ää tai ajaa Storybookia lokaalisti, sinun täytyy asentaa ensin riippuvuudet:
 
 ```
-npm run ci
+npm ci
 ```
 
 Tämän jälkeen voi käynnistää storybookin lokaalisti kehitys-moodissa:
