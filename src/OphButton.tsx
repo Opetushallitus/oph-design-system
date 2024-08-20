@@ -41,7 +41,7 @@ const StyledButton = styled(MuiButton)(({ theme, children }) => {
       };
 });
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const OphButton = forwardRef<HTMLButtonElement, ButtonProps>(
   function renderButton(props, ref) {
     return <StyledButton {...props} ref={ref} />;
   },

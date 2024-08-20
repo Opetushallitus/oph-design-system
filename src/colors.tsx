@@ -1,5 +1,5 @@
-// Kaikki ODS:n värit. Sama väri vain kerran. Ei aliaksia!
-export const colors = {
+// Kaikki OPH-DS:n värit. Sama väri vain kerran. Ei aliaksia!
+export const ophColors = {
   grey900: '#1D1D1D',
   grey800: '#454545',
   grey700: '#4C4C4C',
@@ -52,6 +52,6 @@ export const colors = {
 
 // Kuvaavampia nimiä väreille
 export const aliasColors = {
-  success: colors.green2,
-  error: colors.orange3,
+  success: ophColors.green2,
+  error: ophColors.orange3,
 };

@@ -1,4 +1,4 @@
-export { Button } from './Button';
-export { Typography } from './Typography';
+export { OphButton } from './OphButton';
+export { OphTypography } from './OphTypography';
 
-export { colors, aliasColors } from './colors';
+export { ophColors, aliasColors } from './colors';

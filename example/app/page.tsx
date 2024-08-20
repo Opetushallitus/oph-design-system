@@ -1,13 +1,13 @@
-import { Box, Typography } from '@mui/material';
-import { Button } from '@opetushallitus/oph-design-system';
+import { Box } from '@mui/material';
+import { OphButton, OphTypography } from '@opetushallitus/oph-design-system';
 
 export default function Home() {
   return (
     <main>
       <Box margin={1}>
-        <Typography variant="h1">Otsikko</Typography>
+        <OphTypography variant="h1">Otsikko</OphTypography>
         <Box component="p">
-          <Button variant="contained">Painike</Button>
+          <OphButton variant="contained">Painike</OphButton>
         </Box>
       </Box>
     </main>

@@ -1,15 +1,15 @@
-import { Button } from './Button';
+import { OphButton } from './OphButton';
 import { OpenInNew } from '@mui/icons-material';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, fn, within } from '@storybook/test';
 
 const meta = {
-  component: Button,
-} satisfies Meta<typeof Button>;
+  component: OphButton,
+} satisfies Meta<typeof OphButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof OphButton>;
 
 export const Filled: Story = {
   args: {
@@ -19,7 +19,7 @@ export const Filled: Story = {
   },
   render({ variant, children, onClick, startIcon, disabled }) {
     return (
-      <Button
+      <OphButton
         aria-label="Painike"
         variant={variant}
         onClick={onClick}
@@ -27,7 +27,7 @@ export const Filled: Story = {
         startIcon={startIcon}
       >
         {children}
-      </Button>
+      </OphButton>
     );
   },
 

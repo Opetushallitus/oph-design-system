@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { ophColors, aliasColors } from './colors';
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 
 <Meta title="Colors" />
@@ -7,13 +7,13 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Harmaa"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) => name.startsWith('grey')),
+      Object.entries(ophColors).filter(([name, color]) => name.startsWith('grey')),
     )}
   />
   <ColorItem
     title="Neutraali"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.match(/black|white/),
       ),
     )}
@@ -21,7 +21,7 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Sininen"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.match(/blue|cyan/i),
       ),
     )}
@@ -29,7 +29,7 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Vihreä"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.startsWith('green'),
       ),
     )}
@@ -37,13 +37,13 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Punainen"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) => name.startsWith('red')),
+      Object.entries(ophColors).filter(([name, color]) => name.startsWith('red')),
     )}
   />
   <ColorItem
     title="Oranssi"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.startsWith('orange'),
       ),
     )}
@@ -51,7 +51,7 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Keltainen"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.startsWith('yellow'),
       ),
     )}
@@ -59,13 +59,13 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Pinkki"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) => name.startsWith('pink')),
+      Object.entries(ophColors).filter(([name, color]) => name.startsWith('pink')),
     )}
   />
   <ColorItem
     title="Purppura"
     colors={Object.fromEntries(
-      Object.entries(colors).filter(([name, color]) =>
+      Object.entries(ophColors).filter(([name, color]) =>
         name.startsWith('purple'),
       ),
     )}
@@ -73,8 +73,8 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Semanttinen"
     colors={{
-      success: colors.green2,
-      error: colors.orange3,
+      success: aliasColors.success,
+      error: aliasColors.error,
     }}
   />
 </ColorPalette>

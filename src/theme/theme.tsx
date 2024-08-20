@@ -1,6 +1,6 @@
 'use client';
 
-import { colors } from '../colors';
+import { ophColors } from '../colors';
 import type { DeepPartial } from '../util';
 import type { ButtonOwnProps } from '@mui/material';
 import { fiFI, svSE, enUS } from '@mui/material/locale';
@@ -81,7 +81,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontSize: '34px',
       fontWeight: 700,
       lineHeight: '42px',
-      color: colors.grey900,
+      color: ophColors.grey900,
       [themeBase.breakpoints.down('sm')]: {
         fontSize: '26px',
         lineHeight: '34px',
@@ -91,7 +91,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontSize: '24px',
       fontWeight: 700,
       lineHeight: '30px',
-      color: colors.grey900,
+      color: ophColors.grey900,
       [themeBase.breakpoints.down('sm')]: {
         fontSize: '22px',
         lineHeight: '28px',
@@ -101,32 +101,32 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontSize: '20px',
       fontWeight: 700,
       lineHeight: '26px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
     h4: {
       fontSize: '18px',
       fontWeight: 700,
       lineHeight: '24px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
     h5: {
       fontSize: '16px',
       fontWeight: 700,
       lineHeight: '24px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
     h6: undefined,
     body1: {
       fontSize: '16px',
       fontWeight: 400,
       lineHeight: '24px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
     body2: {
       fontSize: '13px',
       fontWeight: 400,
       lineHeight: '16px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
     button: {
       fontSize: '16px',
@@ -138,7 +138,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       fontSize: '16px',
       fontWeight: 600,
       lineHeight: '24px',
-      color: colors.grey900,
+      color: ophColors.grey900,
     },
   },
   components: {
@@ -186,8 +186,8 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           return {
             border: '2px solid transparent',
             '&.Mui-disabled': {
-              backgroundColor: colors.grey400,
-              color: colors.white,
+              backgroundColor: ophColors.grey400,
+              color: ophColors.white,
             },
             '&:hover': {
               backgroundColor: getColorByName(ownerState.color, theme, 'light'),
@@ -204,18 +204,18 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             borderColor: getColorByName(ownerState.color, theme, 'main'),
             '&.Mui-disabled': {
               borderWidth: '2px',
-              color: colors.grey400,
-              borderColor: colors.grey400,
+              color: ophColors.grey400,
+              borderColor: ophColors.grey400,
             },
             '&:hover': {
               borderWidth: '2px',
-              backgroundColor: colors.white,
+              backgroundColor: ophColors.white,
               color: getColorByName(ownerState.color, theme, 'light'),
               borderColor: getColorByName(ownerState.color, theme, 'light'),
             },
             '&:active, &.Mui-focusVisible': {
               borderWidth: '2px',
-              backgroundColor: colors.white,
+              backgroundColor: ophColors.white,
               color: getColorByName(ownerState.color, theme, 'dark'),
               borderColor: getColorByName(ownerState.color, theme, 'dark'),
             },
@@ -227,7 +227,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             color: getColorByName(ownerState.color, theme, 'main'),
             background: 'none',
             '&.Mui-disabled': {
-              color: colors.grey400,
+              color: ophColors.grey400,
             },
             '&:hover': {
               color: getColorByName(ownerState.color, theme, 'light'),
@@ -244,9 +244,9 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          color: colors.black,
+          color: ophColors.black,
           '&.Mui-focused': {
-            color: colors.black,
+            color: ophColors.black,
           },
         },
       },
@@ -254,9 +254,9 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: colors.black,
+          color: ophColors.black,
           '&.Mui-focused': {
-            color: colors.black,
+            color: ophColors.black,
           },
         },
       },
@@ -300,14 +300,14 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         root: ({ theme }) => {
           return {
             '&.Mui-selected': {
-              backgroundColor: colors.grey50,
+              backgroundColor: ophColors.grey50,
               color: theme.palette.primary.main,
               '&:hover': {
-                backgroundColor: colors.grey50,
+                backgroundColor: ophColors.grey50,
               },
             },
             '&.Mui-selected.Mui-focusVisible': {
-              backgroundColor: colors.grey50,
+              backgroundColor: ophColors.grey50,
               color: theme.palette.primary.main,
             },
           };
@@ -330,13 +330,13 @@ const VIRKAILIJA_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     background: {
-      default: colors.grey50,
+      default: ophColors.grey50,
     },
     primary: {
-      main: colors.blue2,
-      light: colors.blue3,
-      dark: colors.blue1,
-      contrastText: colors.white,
+      main: ophColors.blue2,
+      light: ophColors.blue3,
+      dark: ophColors.blue1,
+      contrastText: ophColors.white,
     },
   },
 } as const);
@@ -345,10 +345,10 @@ const OPPIJA_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     primary: {
-      main: colors.green2,
-      light: colors.green3,
-      dark: colors.green1,
-      contrastText: colors.white,
+      main: ophColors.green2,
+      light: ophColors.green3,
+      dark: ophColors.green1,
+      contrastText: ophColors.white,
     },
   },
 } as const);

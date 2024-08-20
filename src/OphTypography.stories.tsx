@@ -1,18 +1,18 @@
-import { Typography } from '.';
+import { OphTypography } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  component: Typography,
+  component: OphTypography,
   parameters: {
     viewport: {
       defaultViewport: 'responsive',
     },
   },
-} satisfies Meta<typeof Typography>;
+} satisfies Meta<typeof OphTypography>;
 
 export default meta;
 
-type Story = StoryObj<typeof Typography>;
+type Story = StoryObj<typeof OphTypography>;
 
 export const Heading1: Story = {
   args: {
