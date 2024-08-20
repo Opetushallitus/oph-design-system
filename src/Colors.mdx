@@ -7,7 +7,9 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Harmaa"
     colors={Object.fromEntries(
-      Object.entries(ophColors).filter(([name, color]) => name.startsWith('grey')),
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('grey'),
+      ),
     )}
   />
   <ColorItem
@@ -37,7 +39,9 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Punainen"
     colors={Object.fromEntries(
-      Object.entries(ophColors).filter(([name, color]) => name.startsWith('red')),
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('red'),
+      ),
     )}
   />
   <ColorItem
@@ -59,7 +63,9 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Pinkki"
     colors={Object.fromEntries(
-      Object.entries(ophColors).filter(([name, color]) => name.startsWith('pink')),
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('pink'),
+      ),
     )}
   />
   <ColorItem

@@ -13,9 +13,6 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
