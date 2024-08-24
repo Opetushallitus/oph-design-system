@@ -8,3 +8,4 @@ __snapshots__/__diff_output__
 .swc
 .last-run.json
 .nyc_output
+test-results
