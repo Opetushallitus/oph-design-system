@@ -353,10 +353,12 @@ const OPPIJA_THEME_OPTIONS = Object.freeze({
   },
 } as const);
 
-type Language = 'fi' | 'sv' | 'en';
+export type Language = 'fi' | 'sv' | 'en';
+
+export type ThemeVariant = 'oph' | 'opintopolku';
 
 export interface CreateOPHThemeParams {
-  variant: 'oph' | 'opintopolku';
+  variant: ThemeVariant;
   lang?: Language;
   overrides?: DeepPartial<ThemeOptions>;
 }

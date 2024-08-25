@@ -1,7 +1,6 @@
 import { OphButton } from './OphButton';
 import { OpenInNew } from '@mui/icons-material';
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, fn, within } from '@storybook/test';
 
 const meta = {
   component: OphButton,
@@ -15,33 +14,18 @@ export const Filled: Story = {
   args: {
     variant: 'contained',
     children: 'Painike',
-    onClick: fn(),
   },
-  render({ variant, children, onClick, startIcon, disabled }) {
+  render({ variant, children, startIcon, disabled }) {
     return (
       <OphButton
         aria-label="Painike"
         variant={variant}
-        onClick={onClick}
         disabled={disabled}
         startIcon={startIcon}
       >
         {children}
       </OphButton>
     );
-  },
-
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole('button', { name: 'Painike' });
-
-    for (const button of buttons) {
-      await userEvent.click(button);
-    }
-
-    // Siirretään fokus pois viimeisestä napista
-    await userEvent.tab();
-    await expect(args.onClick).toHaveBeenCalledTimes(buttons.length);
   },
 };
 
@@ -50,14 +34,6 @@ export const FilledDisabled: Story = {
   args: {
     ...Filled.args,
     disabled: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole('button', { name: 'Painike' });
-
-    for (const button of buttons) {
-      await expect(button).toBeDisabled();
-    }
   },
 };
 

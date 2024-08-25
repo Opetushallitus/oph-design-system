@@ -1,3 +1,4 @@
+import type { ThemeVariant } from '@/src/theme';
 import AxeBuilder from '@axe-core/playwright';
 import { type Page, expect } from '@playwright/test';
 import { type StoryContext } from '@storybook/react';
@@ -13,9 +14,8 @@ export const filterStories = (
   stories: Array<StoryContext>,
 ): Array<StoryContext> => stories.filter((story) => !story.id.includes('docs'));
 
-export type Theme = 'oph' | 'opintopolku';
 
-export function getStoryUrl(id: string, theme: Theme): string {
+export function getStoryUrl(id: string, theme: ThemeVariant): string {
   const params = new URLSearchParams({
     id,
     viewMode: 'story',
@@ -29,7 +29,7 @@ export function getStoryUrl(id: string, theme: Theme): string {
 export async function navigate(
   page: Page,
   id: string,
-  theme: Theme,
+  theme: ThemeVariant,
 ): Promise<void> {
   try {
     const url = getStoryUrl(id, theme);
