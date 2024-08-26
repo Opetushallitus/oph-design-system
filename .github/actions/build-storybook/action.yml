@@ -1,5 +1,11 @@
 name: Build storybook
 description: Install dependencies and build Storybook
+inputs:
+  params:
+    description: 'Additional CLI params'
+    required: false
+    type: string
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -12,4 +18,4 @@ runs:
       run: npm ci --no-audit --prefer-offline --ignore-scripts
     - name: Build storybook
       shell: bash
-      run: npm run build-storybook -- --quiet
+      run: npm run build-storybook -- --quiet ${{ inputs.params }}

@@ -14,7 +14,7 @@
     "test:coverage": "vitest --coverage",
     "start-built-storybook": "npx http-server ./storybook-static -p 6006 --silent",
     "test-storybook": "npx playwright test",
-    "start-built-storybook-and-test": "start-server-and-test start-built-storybook 6006 test-storybook",
+    "start-and-test-storybook": "start-server-and-test start-built-storybook 6006 test-storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "tsup",
@@ -22,7 +22,9 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier . -c",
     "prettier:fix": "prettier . --write",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test-storybook-docker": "./scripts/run-playwright-tests-in-docker.sh",
+    "start-and-test-storybook-docker": "start-server-and-test start-built-storybook 6006 test-storybook-docker"
   },
   "keywords": [],
   "author": "",
