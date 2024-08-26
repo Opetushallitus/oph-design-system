@@ -14,7 +14,6 @@ export const filterStories = (
   stories: Array<StoryContext>,
 ): Array<StoryContext> => stories.filter((story) => !story.id.includes('docs'));
 
-
 export function getStoryUrl(id: string, theme: ThemeVariant): string {
   const params = new URLSearchParams({
     id,

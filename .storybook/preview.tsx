@@ -1,5 +1,5 @@
 import { OphNextJsThemeProvider } from '@/src/next/theme';
-import { Box, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -47,7 +47,6 @@ const preview: Preview = {
         case 'both':
           return (
             <>
-              <CssBaseline />
               <OphNextJsThemeProvider variant="oph" lang="fi">
                 <Story />
               </OphNextJsThemeProvider>
@@ -60,7 +59,6 @@ const preview: Preview = {
         default:
           return (
             <OphNextJsThemeProvider variant={theme as 'oph' | 'opintopolku'}>
-              <CssBaseline />
               <Story />
             </OphNextJsThemeProvider>
           );

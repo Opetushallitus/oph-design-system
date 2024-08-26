@@ -1,4 +1,3 @@
-import { CssBaseline } from '@mui/material';
 import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/theme';
 import type { Metadata } from 'next';
 
@@ -16,7 +15,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <OphNextJsThemeProvider variant="oph" lang="en">
-          <CssBaseline />
           {children}
         </OphNextJsThemeProvider>
       </body>

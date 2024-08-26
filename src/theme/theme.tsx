@@ -2,7 +2,7 @@
 
 import { ophColors } from '../colors';
 import type { DeepPartial } from '../util';
-import type { ButtonOwnProps } from '@mui/material';
+import { CssBaseline, type ButtonOwnProps } from '@mui/material';
 import { fiFI, svSE, enUS } from '@mui/material/locale';
 import {
   type Theme,
@@ -414,5 +414,10 @@ export const OphThemeProvider = ({
   children,
 }: CreateOPHThemeParams & { children: ReactNode }) => {
   const theme = useOphTheme({ variant, lang, overrides });
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
 };

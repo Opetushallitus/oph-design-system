@@ -1,8 +1,11 @@
 'use client';
 
-import { useOphTheme, type CreateOPHThemeParams } from '../../theme';
+import {
+  OphThemeProvider,
+  useOphTheme,
+  type CreateOPHThemeParams,
+} from '../../theme';
 import { LinkBehavior as LB } from '../LinkBehavior';
-import { ThemeProvider } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import { Open_Sans } from 'next/font/google';
 import { useMemo } from 'react';
@@ -58,10 +61,9 @@ export function OphNextJsThemeProvider({
   overrides,
   children,
 }: CreateOPHThemeParams & { children: React.ReactNode }) {
-  const theme = useOphNextJsTheme({
-    variant,
-    lang,
-    overrides,
-  });
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <OphThemeProvider variant={variant} lang={lang} overrides={overrides}>
+      {children}
+    </OphThemeProvider>
+  );
 }
