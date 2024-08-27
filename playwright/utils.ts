@@ -1,38 +1,60 @@
 import type { ThemeVariant } from '@/src/theme';
 import AxeBuilder from '@axe-core/playwright';
 import { type Page, expect } from '@playwright/test';
-import { type StoryContext } from '@storybook/react';
+import type { StoryContext as CsfStoryContext } from '@storybook/csf';
+import { viewport as storybookViewport } from '@/.storybook/viewport';
+import type { IndexEntry } from 'storybook/internal/types';
 
-export const expectAccessibilityOk = async (page: Page, selector: string) => {
-  const accessibilityScanResults = await new AxeBuilder({ page })
-    .include(selector)
-    .analyze();
+const storybookViewports = storybookViewport.viewports;
+
+export const expectAccessibilityOk = async (page: Page, selector?: string) => {
+  let analyzer = new AxeBuilder({ page });
+  if (selector) {
+    analyzer = analyzer.include(selector)
+  }
+
+  const accessibilityScanResults = await analyzer.analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
 };
 
-export const filterStories = (
-  stories: Array<StoryContext>,
-): Array<StoryContext> => stories.filter((story) => !story.id.includes('docs'));
+async function getStoryContext(page: Page, id: string): Promise<CsfStoryContext> {
+  if (!page.url().includes('iframe.html')) {
+    await page.goto('/iframe.html');
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+  return page.evaluate(({ storyId }) => (globalThis as any).__STORYBOOK_PREVIEW__.storyStore.loadStory({ storyId }) as CsfStoryContext, { storyId: id });
+}
 
-export function getStoryUrl(id: string, theme: ThemeVariant): string {
+export const filterStories = (
+  stories: Array<IndexEntry>,
+): Array<IndexEntry> => stories.filter((story) => !story.id.includes('docs'));
+
+export function getStoryUrl(theme: ThemeVariant, id: string): string {
   const params = new URLSearchParams({
     id,
     viewMode: 'story',
-    nav: '0',
     globals: `theme:${theme}`,
   });
 
   return `/iframe.html?${params.toString()}`;
 }
 
-export async function navigate(
+const setStorybookViewportSize = async (page: Page, styles: { width: string, height: string }) => {
+  await page.setViewportSize({ width: parseInt(styles.width, 10), height: parseInt(styles.height, 10) });
+}
+
+export async function gotoStory(
   page: Page,
-  id: string,
   theme: ThemeVariant,
+  story: IndexEntry,
 ): Promise<void> {
   try {
-    const url = getStoryUrl(id, theme);
-
+    const storyContext = await getStoryContext(page, story.id);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const selectedViewportId = storyContext.parameters.viewport?.defaultViewport as string;
+    const selectedViewport = storybookViewports[selectedViewportId]
+    await setStorybookViewportSize(page, selectedViewport.styles)
+    const url = getStoryUrl(theme, story.id);
     await page.goto(url);
     await Promise.all([
       page.waitForLoadState('domcontentloaded'),
@@ -40,7 +62,6 @@ export async function navigate(
       page.evaluate(() => document.fonts.ready),
     ]);
   } catch (error) {
-    console.error(error);
-    // Handle error here in cases where the above times out due to 404's and other factors.
+    return Promise.reject(error as Error);
   }
 }

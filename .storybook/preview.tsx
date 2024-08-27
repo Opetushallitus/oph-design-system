@@ -1,6 +1,7 @@
 import { OphNextJsThemeProvider } from '@/src/next/theme';
 import { Box } from '@mui/material';
 import type { Preview } from '@storybook/react';
+import { viewport } from './viewport';
 
 const preview: Preview = {
   parameters: {
@@ -15,11 +16,8 @@ const preview: Preview = {
         sort: 'requiredFirst',
       },
     },
-    viewport: {
-      defaultViewport: 'responsive',
-    },
+    viewport,
   },
-
   globalTypes: {
     theme: {
       description: 'Theme',

@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   snapshotDir: './playwright/snapshots',
+  globalSetup: './playwright/global-setup.ts',
   reporter: 'list',
   testDir: './playwright/tests',
   fullyParallel: true,

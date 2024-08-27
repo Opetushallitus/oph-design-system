@@ -5,7 +5,7 @@ const meta = {
   component: OphTypography,
   parameters: {
     viewport: {
-      defaultViewport: 'responsive',
+      defaultViewport: 'desktop1',
     },
   },
 } satisfies Meta<typeof OphTypography>;
