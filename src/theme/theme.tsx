@@ -282,7 +282,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               borderRadius: '2px',
               borderWidth: '1px',
             },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
+            '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
               borderWidth: '2px',
               borderColor: theme.palette.primary.main,
             },
