@@ -1,4 +1,4 @@
-import { OphTypography } from '.';
+import { OphTypography } from './OphTypography';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

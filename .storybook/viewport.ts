@@ -2,7 +2,10 @@ import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 interface Viewport {
   defaultViewport: string;
-  viewports: Record<string, { name: string; styles: { width: string; height: string } }>
+  viewports: Record<
+    string,
+    { name: string; styles: { width: string; height: string } }
+  >;
 }
 
 export const viewport: Viewport = {
@@ -16,5 +19,5 @@ export const viewport: Viewport = {
       },
     },
     ...MINIMAL_VIEWPORTS,
-  }
-}
+  },
+};

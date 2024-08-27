@@ -9,7 +9,7 @@ import type { IndexEntry } from 'storybook/internal/types';
 
 const testableStories = filterStories(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-  Object.values(manifest.entries) as Array<IndexEntry>
+  Object.values(manifest.entries) as Array<IndexEntry>,
 );
 
 const THEMES = ['oph', 'opintopolku'] as const;
@@ -28,5 +28,5 @@ for (const theme of THEMES) {
         }),
       ]);
     });
-  };
+  }
 }
