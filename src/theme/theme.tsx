@@ -378,8 +378,8 @@ function getLocale(lang?: Language) {
 
 export function createOphTheme({
   variant,
-  overrides = {},
   lang,
+  overrides = {},
 }: CreateOPHThemeParams) {
   switch (variant) {
     case 'oph':
