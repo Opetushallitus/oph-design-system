@@ -7,6 +7,8 @@ import type { IndexEntry } from 'storybook/internal/types';
 
 const storybookViewports = storybookViewport.viewports;
 
+export const STORYBOOK_ROOT_SELECTOR = '#storybook-root';
+
 export const expectAccessibilityOk = async (page: Page, selector?: string) => {
   let analyzer = new AxeBuilder({ page });
   if (selector) {
@@ -17,16 +19,33 @@ export const expectAccessibilityOk = async (page: Page, selector?: string) => {
   expect(accessibilityScanResults.violations).toEqual([]);
 };
 
+async function waitForStoryStoreInit(page: Page) {
+  let tries = 10;
+  while (tries > 0) {
+    try {
+      await page.evaluate(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+        () => (globalThis as any).__STORYBOOK_PREVIEW__.storyStore,
+      );
+      return;
+    } catch (e) {
+      tries -= 1;
+      if (tries === 0) {
+        throw e;
+      }
+      await page.waitForTimeout(300);
+    }
+  }
+}
+
 async function getStoryContext(
   page: Page,
   id: string,
 ): Promise<CsfStoryContext> {
-  if (!page.url().includes('iframe.html')) {
-    await page.goto('/iframe.html');
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+  await waitForStoryStoreInit(page);
   return page.evaluate(
     ({ storyId }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
       (globalThis as any).__STORYBOOK_PREVIEW__.storyStore.loadStory({
         storyId,
       }) as CsfStoryContext,
@@ -60,21 +79,21 @@ const setStorybookViewportSize = async (
 export async function gotoStory(
   page: Page,
   theme: ThemeVariant,
-  story: IndexEntry,
+  id: string,
 ): Promise<void> {
   try {
-    const storyContext = await getStoryContext(page, story.id);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const selectedViewportId = storyContext.parameters.viewport
-      ?.defaultViewport as string;
+    const url = getStoryUrl(theme, id);
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    const storyContext = await getStoryContext(page, id);
+    const selectedViewportId =
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      storyContext.parameters.viewport?.defaultViewport as string;
     const selectedViewport = storybookViewports[selectedViewportId];
-    await setStorybookViewportSize(page, selectedViewport.styles);
-    const url = getStoryUrl(theme, story.id);
-    await page.goto(url);
     await Promise.all([
-      page.waitForLoadState('domcontentloaded'),
+      setStorybookViewportSize(page, selectedViewport.styles),
       page.waitForLoadState('load'),
       page.evaluate(() => document.fonts.ready),
+      expect(page.locator(STORYBOOK_ROOT_SELECTOR)).toBeVisible(),
     ]);
   } catch (error) {
     return Promise.reject(error as Error);
