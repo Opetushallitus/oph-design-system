@@ -36,43 +36,56 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 }
 ```
 
-Kirjasto sisältää kaksi teemaa: `virkailijaTheme` (sininen) ja `oppijaTheme` (vihreä).
-Käytä sovelluksessasi Material-UI:n ThemeProvider-käärettä, jolle annat komponenttikirjastosta löytyvän teeman.
-Next.js:ää käytettäessä voit importoida teeman suoraan seuraavasti:
+Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
+Next.js:ää käytettäessä voit ottaa teeman käyttöön seuraavasti:
 
 ```js
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import {
-  virkailijaTheme,
-  oppijaTheme,
-} from '@opetushallitus/oph-design-system/next/theme';
+import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/theme';
 
 export function App() {
   return (
-    <ThemeProvider theme={virkailijaTheme /*... tai oppijaTheme */}>
-      {/* Suositeltu, että css-tyylit asetetaan järkeviin oletusarvoihin teeman mukaisesti */}
-      <CssBaseline />
+    <OphNextJsThemeProvider
+      variant="oph" /* tai "opintopolku" */
+      lang="fi" /* tai "fi" tai "en"*/
+    >
       {/*Tähän teemaa käyttävät komponentit*/}
-    </ThemeProvider>
+    </OphNextJsThemeProvider>
   );
 }
 ```
 
-Muissa tapauksissa voit luoda oman teemasi `createODSTheme`-funktiolla, joka löytyy moduulista `@opetushallitus/oph-design-system/theme`.
-Kustomointi onnistuu ylikirjoittamalla Material-UI:n teemalle annettuja asetuksia. Next.js teemaan on lisätty kyseisellä funktiolla muutama Next.js-spesifi asetus.
-Voit katsoa mallia oman teeman luomiseen tiedostosta [./src/next/theme/theme-nextjs.tsx](./src/next/theme/theme-nextjs.tsx).
+...tai ilman NextJs:ää, pelkällä Reactilla:
+
+```js
+import { OphThemeProvider } from '@opetushallitus/oph-design-system/theme';
+
+export function App() {
+  return (
+    <OphThemeProvider
+      variant="oph" /* tai "opintopolku" */
+      lang="fi" /* tai "fi" tai "en"*/
+    >
+      {/*Tähän teemaa käyttävät komponentit*/}
+    </OphThemeProvider>
+  );
+}
+```
+
+Jos haluat kustomoida teemaa, voit antaa ThemeProviderille Material-UI:n teeman konfiguraatio-objektin osan `overrides`-parametrina, joka ylikirjoittaa teeman asetuksia.
+Teeman initialisointia voi kustomoida luomalla teeman `createOPhTheme`-funktiolla tai `useOphTheme`-hookilla, joka löytyvät moduulista `@opetushallitus/oph-design-system/theme` ([./src/next/theme/theme.tsx](./src/next/theme/theme.tsx)).
 
 Kun teema on otettu käyttöön, voit käyttää ODS:n komponentteja omassa koodissasi:
 
 ```js
 import { OpenInNew } from '@mui/icons-material';
-import { Button } from '@opetushallitus/oph-design-system';
+import { OphButton } from '@opetushallitus/oph-design-system';
 
 export const OmaKomponentti = () => {
   return (
     <div>
-      <Button startIcon={<OpenInNew />}>Klikkaa tästä!</Button>
+      <OphButton startIcon={<OpenInNew />} href="https://opintopolku.fi">
+        Opintopolku
+      </OphButton>
     </div>
   );
 };
@@ -105,7 +118,9 @@ Voit myös tehdä tuotanto-buildin komennolla (oletuksena hakemistoon `storybook
 npm run build-storybook
 ```
 
-## Testaus
+## Yksikkötestaus
+
+Moduulin yksikkötestit ovat moduulin kanssa samassa hakemistossa vastaavalla nimellä, mutta tiedostopäätteellä `.test.ts(x)`.
 
 [Vitest](https://vitest.dev):llä toteutetut yksikkötestit voi ajaa komennolla:
 
@@ -113,24 +128,34 @@ npm run build-storybook
 npm run test
 ```
 
-UI-komponenttien testejä on toteutettu myös Storybookin testaustyökaluilla.
-Käynnistä ensin storybook komennolla:
+## Storybook-testit (Playwright)
 
-```
-  npm run storybook
-```
+Storybookin visualiset ja saavutettavuustestit on toteutettu [Playwright:lla](https://playwright.dev). Jokaiselle storylle tehdään seuraavat tarkistukset:
 
-ja sitten aja toisessa terminaalissa
+- **Saavutettavuusongelmat** [@axe-core/playwright](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md)-työkalulla.
+- **Visuaalinen testaus** eli kuvakaappausten vertailu, jolla varmistutaan että komponenttien visuaalinen ilme säilyy.
 
-```
-npm run test-storybook
-```
+Jotta testit voi suorittaa, täytyy Storybook-palvelimen olla käynnissä osoitteessa http://localhost:6006.
 
-Kun komento ajetaan, tehdään seuraavat tarkistukset:
+### Testien ajaminen kehityspalvelinta vasten
 
-- **Saavutettavuusvirheet** tarkistetaan jokaiselle "Storylle" [axe-playwright](https://github.com/abhinaba-ghosh/axe-playwright)-työkalulla.
-- **Komponenttien toiminnallisuus** testataan `@storybook/addon-interactions`-lisäosalla, jolloin testit kirjoitetaan komponentin "Story":n `play`-funktioilla. https://storybook.js.org/docs/writing-tests/interaction-testing
-- **Visuaalinen testaus** tehdään jokaiselle storylle `test-runner.ts`-tiedostossa. Screenshotit tallennetaan `jest-image-snapshot`-työkalulla hakemistoon `__snapshots__`. Jos komponenttien ulkoasu on muuttunut, testi feilaa ja tallentaa kuvien diffit hakemistoon `__snapshots__/__diff_output__`.
+Helpoin tapa ajaa testit on käynnistää Storybookin kehityspalvelin. Tässä on myös se etu, että koodimuutokset ladataan automaattisesti (hot reload).
+
+1. Käynnistä storybook-kehityspalvelin: `npm run storybook`
+2. Aja testit toisessa terminaalissa joko
+
+- Oman koneen ympäristössä: `npm run test-storybook` tai...
+- Docker-kontissa Ubuntulla: `npm run test-storybook-docker`
+
+### Testien ajaminen muodostettua tuotantoversiota vasten
+
+Testit voi ajaa myös dev-palvelimen sijaan Storybookin tuotantoversiota vasten. Tätä tapaa käytetään CI:ssä, koska testien ajaminen on nopeampaa.
+
+1. Muodosta tuotantoversio `--test`-optiolla (optio ei pakollinen, mutta nopeuttaa testejä): `npm run build-storybook -- --test`
+2. Käynnistä muodostettu versio ja aja testit joko
+
+- Oman koneen ympräristössä `npm run start-and-test-storybook` tai...
+- Docker-kontissa Ubuntulla: `npm run start-and-test-storybook-docker`
 
 ## Jakeluversion muodostaminen
 
