@@ -71,76 +71,6 @@ function getColorByName(
 }
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
-  typography: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeightLight: 400,
-    fontWeightRegular: 400,
-    fontWeightMedium: 600,
-    fontWeightBold: 700,
-    h1: {
-      fontSize: '34px',
-      fontWeight: 700,
-      lineHeight: '42px',
-      color: ophColors.grey900,
-      [themeBase.breakpoints.down('sm')]: {
-        fontSize: '26px',
-        lineHeight: '34px',
-      },
-    },
-    h2: {
-      fontSize: '24px',
-      fontWeight: 700,
-      lineHeight: '30px',
-      color: ophColors.grey900,
-      [themeBase.breakpoints.down('sm')]: {
-        fontSize: '22px',
-        lineHeight: '28px',
-      },
-    },
-    h3: {
-      fontSize: '20px',
-      fontWeight: 700,
-      lineHeight: '26px',
-      color: ophColors.grey900,
-    },
-    h4: {
-      fontSize: '18px',
-      fontWeight: 700,
-      lineHeight: '24px',
-      color: ophColors.grey900,
-    },
-    h5: {
-      fontSize: '16px',
-      fontWeight: 700,
-      lineHeight: '24px',
-      color: ophColors.grey900,
-    },
-    h6: undefined,
-    body1: {
-      fontSize: '16px',
-      fontWeight: 400,
-      lineHeight: '24px',
-      color: ophColors.grey900,
-    },
-    body2: {
-      fontSize: '13px',
-      fontWeight: 400,
-      lineHeight: '16px',
-      color: ophColors.grey900,
-    },
-    button: {
-      fontSize: '16px',
-      fontWeight: 600,
-      textTransform: 'none',
-    },
-    label: {
-      fontFamily: 'Open Sans, sans-serif',
-      fontSize: '16px',
-      fontWeight: 600,
-      lineHeight: '24px',
-      color: ophColors.grey900,
-    },
-  },
   components: {
     MuiAccordion: {
       defaultProps: {
@@ -150,19 +80,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         root: {
           boxShadow: 'none',
         },
-      },
-    },
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          subtitle1: 'body1',
-          subtitle2: 'body2',
-        },
-      },
-    },
-    MuiButtonBase: {
-      defaultProps: {
-        disableRipple: true,
       },
     },
     MuiButton: {
@@ -241,14 +158,30 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+    MuiCheckbox: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+    MuiFormControl: {
+      defaultProps: {
+        size: 'small',
+      },
+    },
     MuiFormLabel: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
+          ...theme.typography.label,
           color: ophColors.black,
           '&.Mui-focused': {
             color: ophColors.black,
           },
-        },
+        }),
       },
     },
     MuiInputLabel: {
@@ -259,40 +192,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             color: ophColors.black,
           },
         },
-      },
-    },
-    MuiPagination: {
-      defaultProps: {
-        variant: 'text',
-        shape: 'rounded',
-      },
-    },
-    MuiPaginationItem: {
-      styleOverrides: {
-        root: {
-          borderRadius: '2px',
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: ({ theme }) => {
-          return {
-            '.MuiOutlinedInput-notchedOutline': {
-              borderRadius: '2px',
-              borderWidth: '1px',
-            },
-            '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
-              borderWidth: '2px',
-              borderColor: theme.palette.primary.main,
-            },
-          };
-        },
-      },
-    },
-    MuiFormControl: {
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiMenuItem: {
@@ -314,6 +213,35 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            '.MuiOutlinedInput-notchedOutline': {
+              borderRadius: '2px',
+              borderWidth: '1px',
+            },
+            '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
+              borderWidth: '2px',
+              borderColor: theme.palette.primary.main,
+            },
+          };
+        },
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        variant: 'text',
+        shape: 'rounded',
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          borderRadius: '2px',
+        },
+      },
+    },
     MuiTable: {
       styleOverrides: {
         root: {
@@ -322,6 +250,116 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           },
         },
       },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        disableRipple: true,
+      },
+      styleOverrides: {
+        root: ({ theme }: { theme: Theme }) => ({
+          paddingTop: 0,
+          paddingBottom: 0,
+          color: ophColors.grey900,
+          borderColor: theme.palette.primary.main,
+          borderWidth: '2px',
+          borderRadius: '2px',
+          '&.Mui-selected': {
+            backgroundColor: theme.palette.primary.main,
+            color: ophColors.white,
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+              color: ophColors.white,
+            },
+            '&:active, &.Mui-focusVisible': {
+              backgroundColor: theme.palette.primary.dark,
+            },
+          },
+          '&:hover': {
+            backgroundColor: ophColors.white,
+            borderColor: theme.palette.primary.light,
+            color: theme.palette.primary.main,
+          },
+          '&.Mui-disabled': {},
+        }),
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          subtitle1: 'body1',
+          subtitle2: 'body2',
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeightLight: 400,
+    fontWeightRegular: 400,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
+    h1: {
+      fontSize: '34px',
+      fontWeight: 700,
+      lineHeight: '42px',
+      color: ophColors.grey900,
+      [themeBase.breakpoints.down('sm')]: {
+        fontSize: '26px',
+        lineHeight: '34px',
+      },
+    },
+    h2: {
+      fontSize: '24px',
+      fontWeight: 700,
+      lineHeight: '30px',
+      color: ophColors.grey900,
+      [themeBase.breakpoints.down('sm')]: {
+        fontSize: '22px',
+        lineHeight: '28px',
+      },
+    },
+    h3: {
+      fontSize: '20px',
+      fontWeight: 700,
+      lineHeight: '26px',
+      color: ophColors.grey900,
+    },
+    h4: {
+      fontSize: '18px',
+      fontWeight: 700,
+      lineHeight: '24px',
+      color: ophColors.grey900,
+    },
+    h5: {
+      fontSize: '16px',
+      fontWeight: 700,
+      lineHeight: '24px',
+      color: ophColors.grey900,
+    },
+    h6: undefined,
+    body1: {
+      fontSize: '16px',
+      fontWeight: 400,
+      lineHeight: '24px',
+      color: ophColors.grey900,
+    },
+    body2: {
+      fontSize: '13px',
+      fontWeight: 400,
+      lineHeight: '16px',
+      color: ophColors.grey900,
+    },
+    button: {
+      fontSize: '16px',
+      fontWeight: 600,
+      textTransform: 'none',
+    },
+    label: {
+      fontFamily: 'Open Sans, sans-serif',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: '24px',
+      color: ophColors.grey900,
     },
   },
 };
