@@ -1,4 +1,4 @@
-import type { ThemeVariant } from '@/src/theme';
+import type { OphThemeVariant } from '@/src/types';
 import AxeBuilder from '@axe-core/playwright';
 import { type Page, expect } from '@playwright/test';
 import type { StoryContext as CsfStoryContext } from '@storybook/csf';
@@ -56,7 +56,7 @@ async function getStoryContext(
 export const filterStories = (stories: Array<IndexEntry>): Array<IndexEntry> =>
   stories.filter((story) => !story.id.includes('docs'));
 
-export function getStoryUrl(theme: ThemeVariant, id: string): string {
+export function getStoryUrl(theme: OphThemeVariant, id: string): string {
   const params = new URLSearchParams({
     id,
     viewMode: 'story',
@@ -78,7 +78,7 @@ const setStorybookViewportSize = async (
 
 export async function gotoStory(
   page: Page,
-  theme: ThemeVariant,
+  theme: OphThemeVariant,
   id: string,
 ): Promise<void> {
   try {

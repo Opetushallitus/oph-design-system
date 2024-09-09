@@ -1,10 +1,11 @@
 'use client';
 
 import { useMemo } from 'react';
-import { OphThemeProvider, type CreateOPHThemeParams } from '../../theme';
-import { LinkBehavior as LB } from '../LinkBehavior';
+import { OphThemeProvider } from '@/src/theme/theme';
+import { LinkBehavior as LB } from '@/src/next/LinkBehavior';
 import { Open_Sans } from 'next/font/google';
 import { deepmerge } from '@mui/utils';
+import type { OphThemeParams } from '@/src/types';
 
 export const LinkBehavior = LB;
 
@@ -40,7 +41,7 @@ export function OphNextJsThemeProvider({
   variant,
   overrides,
   children,
-}: CreateOPHThemeParams & { children: React.ReactNode }) {
+}: OphThemeParams & { children: React.ReactNode }) {
   const mergedOverrides = useMemo(
     () => deepmerge(MUI_NEXTJS_OVERRIDES, overrides, { clone: true }),
     [overrides],

@@ -31,7 +31,7 @@ jobs:
         with:
           params: --test
       - name: Test running example project with library import
-        run: cd example; npm run start-and-test
+        run: cd example; npm run start-and-test-docker
       - name: Start and test storybook
         run: npm run start-and-test-storybook-docker
       - uses: actions/upload-artifact@v4

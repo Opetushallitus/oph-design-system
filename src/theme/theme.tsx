@@ -1,7 +1,6 @@
 'use client';
 
 import { ophColors } from '../colors';
-import type { DeepPartial } from '../util';
 import { CssBaseline, type ButtonOwnProps } from '@mui/material';
 import { fiFI, svSE, enUS } from '@mui/material/locale';
 import {
@@ -12,40 +11,7 @@ import {
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import { useMemo, type ReactNode } from 'react';
-
-declare module '@mui/material/styles' {
-  interface CustomTypographyVariants {
-    label: React.CSSProperties;
-  }
-
-  // allow configuration using `createTheme`
-  interface CustomTypographyVariantsOptions {
-    label?: React.CSSProperties;
-  }
-
-  /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-  interface TypographyVariants extends CustomTypographyVariants {}
-  /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-  interface TypographyVariantsOptions extends CustomTypographyVariants {}
-
-  interface BreakpointOverrides {
-    xs: true;
-    sm: true;
-    md: true;
-    lg: true;
-    xl: true;
-    xxl: true;
-  }
-}
-
-// Update the Typography's variant prop options
-declare module '@mui/material/Typography' {
-  interface TypographyPropsVariantOverrides {
-    label: true;
-    h6: false;
-    overline: false;
-  }
-}
+import type { OphLanguage, OphThemeParams } from '../types';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -364,7 +330,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
   },
 };
 
-const VIRKAILIJA_THEME_OPTIONS = Object.freeze({
+const OPH_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     background: {
@@ -379,7 +345,7 @@ const VIRKAILIJA_THEME_OPTIONS = Object.freeze({
   },
 } as const);
 
-const OPPIJA_THEME_OPTIONS = Object.freeze({
+const OPINTOPOLKU_THEME_OPTIONS = Object.freeze({
   ...COMMON_THEME_OPTIONS,
   palette: {
     primary: {
@@ -391,17 +357,7 @@ const OPPIJA_THEME_OPTIONS = Object.freeze({
   },
 } as const);
 
-export type Language = 'fi' | 'sv' | 'en';
-
-export type ThemeVariant = 'oph' | 'opintopolku';
-
-export interface CreateOPHThemeParams {
-  variant: ThemeVariant;
-  lang?: Language;
-  overrides?: DeepPartial<ThemeOptions>;
-}
-
-function getLocale(lang?: Language) {
+function getLocale(lang?: OphLanguage) {
   switch (lang) {
     case 'fi':
       return fiFI;
@@ -414,20 +370,22 @@ function getLocale(lang?: Language) {
   }
 }
 
+const EMPTY_OBJECT = {} as const;
+
 export function createOphTheme({
   variant,
   lang,
-  overrides = {},
-}: CreateOPHThemeParams) {
+  overrides = EMPTY_OBJECT,
+}: OphThemeParams) {
   switch (variant) {
     case 'oph':
       return createTheme(
-        deepmerge(VIRKAILIJA_THEME_OPTIONS, overrides, { clone: true }),
+        deepmerge(OPH_THEME_OPTIONS, overrides, { clone: true }),
         getLocale(lang),
       );
     case 'opintopolku':
       return createTheme(
-        deepmerge(OPPIJA_THEME_OPTIONS, overrides, { clone: true }),
+        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides, { clone: true }),
         getLocale(lang),
       );
     default:
@@ -435,11 +393,7 @@ export function createOphTheme({
   }
 }
 
-export const useOphTheme = ({
-  variant,
-  lang,
-  overrides,
-}: CreateOPHThemeParams) =>
+export const useOphTheme = ({ variant, lang, overrides }: OphThemeParams) =>
   useMemo(
     () => createOphTheme({ variant, lang, overrides }),
     [variant, lang, overrides],
@@ -450,7 +404,7 @@ export const OphThemeProvider = ({
   lang,
   overrides,
   children,
-}: CreateOPHThemeParams & { children: ReactNode }) => {
+}: OphThemeParams & { children: ReactNode }) => {
   const theme = useOphTheme({ variant, lang, overrides });
   return (
     <ThemeProvider theme={theme}>

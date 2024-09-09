@@ -1,7 +1,8 @@
 import { Alert } from '@mui/material';
-import { OphThemeProvider, type Language } from './theme';
+import { OphThemeProvider } from './theme';
 import { render, screen } from '@testing-library/react';
 import { expect, test, describe } from 'vitest';
+import type { OphLanguage } from '../types';
 
 describe('Theme renders Alert with localized text', () => {
   test.each([
@@ -10,7 +11,7 @@ describe('Theme renders Alert with localized text', () => {
     ['en', 'Close'],
   ])('%s', (lang, closeText) => {
     render(
-      <OphThemeProvider variant="oph" lang={lang as Language}>
+      <OphThemeProvider variant="oph" lang={lang as OphLanguage}>
         <Alert onClose={() => {}}></Alert>
       </OphThemeProvider>,
     );

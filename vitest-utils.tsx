@@ -1,14 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import {
-  OphThemeProvider,
-  type Language,
-  type ThemeVariant,
-} from './src/theme';
+import { OphThemeProvider } from './src/theme';
+import type { OphLanguage, OphThemeVariant } from './src/types';
 
 export const createThemeRenderer = (
-  themeVariant: ThemeVariant,
-  lang: Language,
+  themeVariant: OphThemeVariant,
+  lang: OphLanguage,
 ) => {
   return (ui: React.ReactNode) =>
     render(
