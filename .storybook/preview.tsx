@@ -1,5 +1,5 @@
 import { OphNextJsThemeProvider } from '@/src/next/theme';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import type { Preview } from '@storybook/react';
 import { viewport } from './viewport';
 
@@ -44,15 +44,18 @@ const preview: Preview = {
       switch (theme) {
         case 'both':
           return (
-            <>
-              <OphNextJsThemeProvider variant="oph" lang="fi">
-                <Story />
-              </OphNextJsThemeProvider>
-              <Box margin={2}></Box>
-              <OphNextJsThemeProvider variant="opintopolku" lang="fi">
-                <Story />
-              </OphNextJsThemeProvider>
-            </>
+            <Stack direction="row" gap={4} flexWrap="wrap">
+              <Box>
+                <OphNextJsThemeProvider variant="oph" lang="fi">
+                  <Story />
+                </OphNextJsThemeProvider>
+              </Box>
+              <Box>
+                <OphNextJsThemeProvider variant="opintopolku" lang="fi">
+                  <Story />
+                </OphNextJsThemeProvider>
+              </Box>
+            </Stack>
           );
         default:
           return (
