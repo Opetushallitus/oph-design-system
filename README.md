@@ -37,34 +37,42 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 ```
 
 Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
-Next.js:ää käytettäessä voit ottaa teeman käyttöön seuraavasti:
+Next.js:ää käytettäessä voit ottaa teeman käyttöön juuritason layoutissa seuraavasti:
 
 ```js
 import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/theme';
+import { getLocale } from 'next-intl/server';
 
-export function App() {
+export async function RootLayout() {
+
+  // Voit noutaa käyttäjän kielen millä tavalla haluat, esim. next-intl-kirjastolla
+  const locale = await getLocale();
   return (
-    <OphNextJsThemeProvider
-      variant="oph" /* tai "opintopolku" */
-      lang="fi" /* tai "fi" tai "en"*/
-    >
-      {/*Tähän teemaa käyttävät komponentit*/}
-    </OphNextJsThemeProvider>
-  );
+    <html lang={locale}>
+      <body>
+        <OphNextJsThemeProvider variant="oph" lang={locale}>
+          {children}
+        </OphNextJsThemeProvider>
+      </body>
+    </html>
 }
 ```
 
-...tai ilman NextJs:ää, pelkällä Reactilla:
+Voit noutaa kielen millä tavalla haluat, esimerkiksi [next-intl](https://next-intl-docs.vercel.app/docs/getting-started/app-router/without-i18n-routing)-kirjastolla, kunhan sen arvo on "fi", "sv" tai "en".
+
+Voit myös käyttää teemaa ilman NextJs:ää, pelkällä Reactilla:
 
 ```js
 import { OphThemeProvider } from '@opetushallitus/oph-design-system/theme';
 
 export function App() {
+  // Hae käyttäjän kieli esim. selaimen asetuksista, URL:stä tai keksistä
+  const lang = ['fi', 'sv', 'en'].includes(navigator.language)
+    ? navigator.language
+    : 'fi';
+
   return (
-    <OphThemeProvider
-      variant="oph" /* tai "opintopolku" */
-      lang="fi" /* tai "fi" tai "en"*/
-    >
+    <OphThemeProvider variant="oph" /* tai "opintopolku" */ lang={lang}>
       {/*Tähän teemaa käyttävät komponentit*/}
     </OphThemeProvider>
   );
@@ -72,7 +80,7 @@ export function App() {
 ```
 
 Jos haluat kustomoida teemaa, voit antaa ThemeProviderille Material-UI:n teeman konfiguraatio-objektin osan `overrides`-parametrina, joka ylikirjoittaa teeman asetuksia.
-Teeman initialisointia voi kustomoida luomalla teeman `createOPhTheme`-funktiolla tai `useOphTheme`-hookilla, joka löytyvät moduulista `@opetushallitus/oph-design-system/theme` ([./src/next/theme/theme.tsx](./src/next/theme/theme.tsx)).
+Teeman initialisointia voi kustomoida luomalla teeman `createOphTheme`-funktiolla tai `useOphTheme`-hookilla, joka löytyvät moduulista `@opetushallitus/oph-design-system/theme` ([./src/next/theme/theme.tsx](./src/next/theme/theme.tsx)).
 
 Kun teema on otettu käyttöön, voit käyttää ODS:n komponentteja omassa koodissasi:
 

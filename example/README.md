@@ -31,5 +31,5 @@ Testin voi suorittaa komennolla:
 npm run start-and-test
 ```
 
-Kyseinen komento asentaa riippuvuudet, käynnistää esimerkkiprojektin ja suorittaa esimerkkiprojektille [yksinkertaisen Playwright-testin](./test/smoke-test.spec.ts).
+Kyseinen komento asentaa riippuvuudet, käynnistää esimerkkiprojektin ja suorittaa esimerkkiprojektille [yksinkertaisen Playwright-testin](./playwright/example.spec.ts).
 Testi ajetaan myös komponenttikirjaston CI-putkessa.
