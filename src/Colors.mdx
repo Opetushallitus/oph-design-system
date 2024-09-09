@@ -1,4 +1,4 @@
-import { ophColors, aliasColors } from './colors';
+import { ophColors } from './colors';
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 
 <Meta title="Colors" />
@@ -79,8 +79,8 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Semanttinen"
     colors={{
-      success: aliasColors.success,
-      error: aliasColors.error,
+      success: ophColors.alias.success,
+      error: ophColors.alias.success,
     }}
   />
 </ColorPalette>
