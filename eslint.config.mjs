@@ -17,6 +17,9 @@ export default tsEslint.config(
     ],
   },
   js.configs.recommended,
+  ...tsEslint.configs.recommendedTypeChecked,
+  ...tsEslint.configs.strictTypeChecked,
+  ...tsEslint.configs.stylisticTypeChecked,
   ...compat.extends(
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
@@ -24,13 +27,10 @@ export default tsEslint.config(
     'plugin:storybook/recommended',
     'prettier',
   ),
-  ...tsEslint.configs.recommendedTypeChecked,
-  ...tsEslint.configs.strictTypeChecked,
-  ...tsEslint.configs.stylisticTypeChecked,
   {
     languageOptions: {
       parserOptions: {
-        project: true,
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -41,36 +41,16 @@ export default tsEslint.config(
     },
   },
   {
-    files: ['**/*.ts?x'],
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/array-type': [
         'error',
         {
           default: 'generic',
-          readOnly: 'generic',
         },
       ],
-      '@typescript-eslint/ban-types': [
-        'error',
-        {
-          types: {
-            object: false,
-          },
-          extendDefaults: true,
-        },
-      ],
-
       '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-inferrable-types': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-shadow': 'error',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-        },
-      ],
       'no-negated-condition': 'error',
       'no-implicit-coercion': 'error',
       'no-var': 'error',

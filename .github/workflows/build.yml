@@ -8,21 +8,13 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 jobs:
-  ci:
+  check-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/build-storybook
-
-      - name: Install dependencies
-        run: npm ci --no-audit --prefer-offline --ignore-scripts
-
-      - uses: actions/cache/restore@v4
-        id: storybook
         with:
-          path: storybook-static
-          key: ${{ github.sha }}
-
+          params: --test
       - name: Lint
         run: |
           npm run typecheck
@@ -31,22 +23,33 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:coverage
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-
+  test-playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-storybook
+        with:
+          params: --test
       - name: Test running example project with library import
-        run: cd example; npm run start-and-test
-
+        run: cd example; npm run start-and-test-docker
       - name: Start and test storybook
-        run: npm run start-built-storybook-and-test
-
+        run: npm run start-and-test-storybook-docker
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: screenshot-diffs
-          path: __snapshots__/__diff_output__/
+          name: test-results
+          path: |
+            test-results
+            !test-results/.last-run.json
           retention-days: 10
           if-no-files-found: ignore
+
+  build:
+    needs: [check-and-test, test-playwright]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-storybook
+        if: github.ref == 'refs/heads/main'
       - uses: ./.github/actions/deploy-storybook
         if: github.ref == 'refs/heads/main'

@@ -1,1 +1,1 @@
-export * from './theme';
+export { createOphTheme, useOphTheme, OphThemeProvider } from './theme';

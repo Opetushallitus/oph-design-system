@@ -21,15 +21,15 @@ Esimerkkiprojektia pääsee katselemaan selaimella osoitteessa http://localhost:
 
 ## Testaus
 
-Tämä esimerkkiprojekti käyttää `@opetushallitus/oph-design-system`-riippuvuutta ylätason hakemistosta. Riippuvuutta ei kohdisteta Github-sailöön, jotta käytetään tämän kehityshaaran versiota komponenttikirjastosta.
-NPM-pakettienhallinalla riippuvuuden asetaminen toimii kuitenkin samalla tavalla olipa riippuvuutena polku tai github-säilö.
+Tämä esimerkkiprojekti käyttää `@opetushallitus/oph-design-system`-kirjastosta luotua tar-pakettia.
+Riippuvuutta ei kohdisteta Github-sailöön, jotta käytetään nykyisen kehityshaaran versiota komponenttikirjastosta.
 Tämän ansiosta esimerkkiprojektia voidaan käyttää myös komponenttikirjaston jakeluversion E2E-testaukseen. Tällä voidaan siis varmistua että komponenttikirjaston jakeluversio ei ole rikkoutunut muutosten seurauksena.
 
-Testin voi suorittaa komennolla:
+Testit voi suorittaa komennolla:
 
 ```
 npm run start-and-test
 ```
 
-Kyseinen komento asentaa riippuvuudet, käynnistää esimerkkiprojektin ja suorittaa esimerkkiprojektille [yksinkertaisen Playwright-testin](./test/smoke-test.spec.ts).
-Testi ajetaan myös komponenttikirjaston CI-putkessa.
+Kyseinen komento luo kirjastosta tar-paketin, asentaa riippuvuudet, käynnistää esimerkkiprojektin ja suorittaa esimerkkiprojektille [Playwright-testejä](./playwright/example.spec.ts).
+Testit ajetaan myös komponenttikirjaston CI-putkessa.

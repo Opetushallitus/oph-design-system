@@ -1,4 +1,6 @@
-export { Button } from './Button';
-export { Typography } from './Typography';
+export { OphButton } from './OphButton';
+export { OphTypography } from './OphTypography';
+export { OphSelect } from './OphSelect';
+export { ophColors } from './colors';
 
-export { colors, aliasColors } from './colors';
+export type { OphThemeParams, OphThemeVariant, OphLanguage } from './types';

@@ -1,7 +1,7 @@
-import { virkailijaTheme, oppijaTheme } from '@/src/next/theme';
-import { Box, CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
+import { OphNextJsThemeProvider } from '@/src/next/theme';
+import { Box, Stack } from '@mui/material';
 import type { Preview } from '@storybook/react';
+import { viewport } from './viewport';
 
 const preview: Preview = {
   parameters: {
@@ -16,9 +16,7 @@ const preview: Preview = {
         sort: 'requiredFirst',
       },
     },
-    viewport: {
-      defaultViewport: 'responsive',
-    },
+    viewport,
   },
   globalTypes: {
     theme: {
@@ -39,35 +37,37 @@ const preview: Preview = {
       },
     },
   },
+
   decorators: [
     (Story, { globals }) => {
       const { theme } = globals;
       switch (theme) {
         case 'both':
           return (
-            <>
-              <CssBaseline />
-              <ThemeProvider theme={virkailijaTheme}>
-                <Story />
-              </ThemeProvider>
-              <Box margin={2}></Box>
-              <ThemeProvider theme={oppijaTheme}>
-                <Story />
-              </ThemeProvider>
-            </>
+            <Stack direction="row" gap={4} flexWrap="wrap">
+              <Box>
+                <OphNextJsThemeProvider variant="oph" lang="fi">
+                  <Story />
+                </OphNextJsThemeProvider>
+              </Box>
+              <Box>
+                <OphNextJsThemeProvider variant="opintopolku" lang="fi">
+                  <Story />
+                </OphNextJsThemeProvider>
+              </Box>
+            </Stack>
           );
         default:
           return (
-            <ThemeProvider
-              theme={theme === 'opintopolku' ? oppijaTheme : virkailijaTheme}
-            >
-              <CssBaseline />
+            <OphNextJsThemeProvider variant={theme as 'oph' | 'opintopolku'}>
               <Story />
-            </ThemeProvider>
+            </OphNextJsThemeProvider>
           );
       }
     },
   ],
+
+  tags: ['autodocs'],
 };
 
 export default preview;
