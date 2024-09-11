@@ -1,5 +1,5 @@
 import { OphSelect } from './OphSelect';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
