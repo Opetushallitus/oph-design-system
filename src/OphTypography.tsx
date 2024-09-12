@@ -1,11 +1,32 @@
-import {
-  Typography as MuiTypography,
-  type TypographyProps as MuiTypographyProps,
-} from '@mui/material';
-import type { FunctionComponent } from 'react';
+import { Typography, type TypographyProps } from '@mui/material';
+import { forwardRef } from 'react';
 
-export type OphTypographyProps = Omit<MuiTypographyProps, 'variantMapping'>;
-
-export const OphTypography: FunctionComponent<OphTypographyProps> = (props) => {
-  return <MuiTypography {...props} />;
+export type OphTypographyProps = Pick<
+  TypographyProps,
+  | 'align'
+  | 'children'
+  | 'classes'
+  | 'color'
+  | 'component'
+  | 'gutterBottom'
+  | 'noWrap'
+  | 'sx'
+  | 'variant'
+> & {
+  variant:
+    | 'button'
+    | 'body1'
+    | 'body2'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'label';
 };
+
+export const OphTypography = forwardRef<HTMLElement, OphTypographyProps>(
+  function renderTypography(props, ref) {
+    return <Typography {...props} ref={ref} />;
+  },
+);
