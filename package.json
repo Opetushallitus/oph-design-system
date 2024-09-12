@@ -25,7 +25,8 @@
     "typecheck": "tsc --noEmit",
     "test-storybook-docker": "./scripts/run-playwright-tests-in-docker.sh",
     "start-and-test-storybook-docker": "start-server-and-test start-built-storybook 6006 test-storybook-docker",
-    "pack": "mkdir -p pkg && npm pack --pack-destination=pkg"
+    "pack": "mkdir -p pkg && npm pack --pack-destination=pkg",
+    "bump-version": "./scripts/bump-version.sh"
   },
   "keywords": [],
   "author": "",
