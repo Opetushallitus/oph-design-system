@@ -1,7 +1,7 @@
 'use client';
 
 import { ophColors } from '../colors';
-import { CssBaseline, type ButtonOwnProps } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { fiFI, svSE, enUS } from '@mui/material/locale';
 import {
   type Theme,
@@ -25,16 +25,6 @@ const themeBase = createTheme({
     },
   },
 });
-
-function getColorByName(
-  colorName: ButtonOwnProps['color'],
-  customTheme: Theme,
-  mode: 'main' | 'light' | 'dark',
-) {
-  return colorName === 'inherit'
-    ? 'inherit'
-    : customTheme.palette[colorName ?? 'primary'][mode];
-}
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
   components: {
@@ -64,63 +54,74 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             width: '24px',
             height: '24px',
           },
-        },
-        contained: ({ ownerState, theme }) => {
-          return {
-            border: '2px solid transparent',
-            '&.Mui-disabled': {
-              backgroundColor: ophColors.grey400,
-              color: ophColors.white,
+          variants: [
+            {
+              props: { variant: 'contained', color: 'primary' },
+              style: ({ theme }) => {
+                return {
+                  border: '2px solid transparent',
+                  '&.Mui-disabled': {
+                    backgroundColor: ophColors.grey400,
+                    color: ophColors.white,
+                  },
+                  '&:hover': {
+                    backgroundColor: theme.palette.primary.light,
+                  },
+                  '&:active, &.Mui-focusVisible': {
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                };
+              },
             },
-            '&:hover': {
-              backgroundColor: getColorByName(ownerState.color, theme, 'light'),
+            {
+              props: { variant: 'outlined', color: 'primary' },
+              style: ({ theme }) => {
+                return {
+                  color: theme.palette.primary.main,
+                  borderWidth: '2px',
+                  borderColor: theme.palette.primary.main,
+                  '&.Mui-disabled': {
+                    borderWidth: '2px',
+                    color: ophColors.grey400,
+                    borderColor: ophColors.grey400,
+                  },
+                  '&:hover': {
+                    borderWidth: '2px',
+                    backgroundColor: ophColors.white,
+                    color: theme.palette.primary.light,
+                    borderColor: theme.palette.primary.light,
+                  },
+                  '&:active, &.Mui-focusVisible': {
+                    borderWidth: '2px',
+                    backgroundColor: ophColors.white,
+                    color: theme.palette.primary.dark,
+                    borderColor: theme.palette.primary.dark,
+                  },
+                };
+              },
             },
-            '&:active, &.Mui-focusVisible': {
-              backgroundColor: getColorByName(ownerState.color, theme, 'dark'),
+            {
+              props: { variant: 'text', color: 'primary' },
+              style: ({ theme }) => {
+                return {
+                  border: '2px solid transparent',
+                  color: theme.palette.primary.main,
+                  background: 'none',
+                  '&.Mui-disabled': {
+                    color: ophColors.grey400,
+                  },
+                  '&:hover': {
+                    color: theme.palette.primary.light,
+                    background: 'none',
+                  },
+                  '&:active, &.Mui-focusVisible': {
+                    color: theme.palette.primary.dark,
+                    background: 'none',
+                  },
+                };
+              },
             },
-          };
-        },
-        outlined: ({ ownerState, theme }) => {
-          return {
-            color: getColorByName(ownerState.color, theme, 'main'),
-            borderWidth: '2px',
-            borderColor: getColorByName(ownerState.color, theme, 'main'),
-            '&.Mui-disabled': {
-              borderWidth: '2px',
-              color: ophColors.grey400,
-              borderColor: ophColors.grey400,
-            },
-            '&:hover': {
-              borderWidth: '2px',
-              backgroundColor: ophColors.white,
-              color: getColorByName(ownerState.color, theme, 'light'),
-              borderColor: getColorByName(ownerState.color, theme, 'light'),
-            },
-            '&:active, &.Mui-focusVisible': {
-              borderWidth: '2px',
-              backgroundColor: ophColors.white,
-              color: getColorByName(ownerState.color, theme, 'dark'),
-              borderColor: getColorByName(ownerState.color, theme, 'dark'),
-            },
-          };
-        },
-        text: ({ ownerState, theme }) => {
-          return {
-            border: '2px solid transparent',
-            color: getColorByName(ownerState.color, theme, 'main'),
-            background: 'none',
-            '&.Mui-disabled': {
-              color: ophColors.grey400,
-            },
-            '&:hover': {
-              color: getColorByName(ownerState.color, theme, 'light'),
-              background: 'none',
-            },
-            '&:active, &.Mui-focusVisible': {
-              color: getColorByName(ownerState.color, theme, 'dark'),
-              background: 'none',
-            },
-          };
+          ],
         },
       },
     },
