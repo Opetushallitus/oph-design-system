@@ -9,7 +9,7 @@ export interface OphSelectOption<T> {
 }
 
 export interface OphSelectProps<T>
-  extends Omit<SelectProps<T>, 'children' | 'label'> {
+  extends Omit<SelectProps<T>, 'children' | 'label' | 'variant'> {
   options: Array<OphSelectOption<T>>;
   clearable?: boolean;
 }
