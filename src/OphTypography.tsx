@@ -13,7 +13,7 @@ export type OphTypographyProps = Pick<
   | 'sx'
   | 'variant'
 > & {
-  variant:
+  variant?:
     | 'button'
     | 'body1'
     | 'body2'
