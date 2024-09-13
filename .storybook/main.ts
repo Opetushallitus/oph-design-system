@@ -2,16 +2,19 @@ import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
   ],
+
   framework: {
     name: '@storybook/nextjs',
     options: {},
   },
+
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
@@ -30,6 +33,8 @@ const config: StorybookConfig = {
           : true,
     }, // Available only when reactDocgen is set to 'react-docgen-typescript'
   },
+
+  docs: {},
 };
 
 export default config;

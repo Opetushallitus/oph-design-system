@@ -12,7 +12,7 @@ Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-ko
 ## Käytetyt teknologiat
 
 - [React](https://react.dev/) v18
-- [Material-UI](https://mui.com/material-ui/getting-started/) v5
+- [Material-UI](https://mui.com/material-ui/getting-started/) v6
 - [Next.js](https://nextjs.org/) v14 (App router)
 - [Storybook](https://storybook.js.org/) v8
 
@@ -29,7 +29,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 ```json
 {
   "peerDependencies": {
-    "@mui/material": "^5",
+    "@mui/material": "^6",
     "next": "^14", // Pakollinen vain, jos käytät Next.js:ää
     "react": "^18"
   }

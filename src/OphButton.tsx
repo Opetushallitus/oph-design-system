@@ -9,18 +9,13 @@ export type ButtonProps = Pick<
   MuiButtonProps,
   | 'action'
   | 'classes'
-  | 'className'
   | 'children'
   | 'disabled'
-  | 'focusVisibleClassName'
   | 'href'
   | 'onClick'
   | 'onFocusVisible'
-  | 'ref'
   | 'startIcon'
-  | 'style'
   | 'sx'
-  | 'tabIndex'
   | 'variant'
 >;
 
