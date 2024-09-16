@@ -1,25 +1,10 @@
-import {
-  Button as MuiButton,
-  type ButtonProps as MuiButtonProps,
-} from '@mui/material';
+import { Button, type ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { forwardRef } from 'react';
 
-export type ButtonProps = Pick<
-  MuiButtonProps,
-  | 'action'
-  | 'classes'
-  | 'children'
-  | 'disabled'
-  | 'href'
-  | 'onClick'
-  | 'onFocusVisible'
-  | 'startIcon'
-  | 'sx'
-  | 'variant'
->;
+export type OphButtonProps = Omit<ButtonProps, 'endIcon'>;
 
-const StyledButton = styled(MuiButton)(({ theme, children }) => {
+const StyledButton = styled(Button)(({ theme, children }) => {
   return children
     ? {}
     : {
