@@ -31,6 +31,11 @@ const themeBase = createTheme({
 });
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
+  palette: {
+    error: {
+      main: ophColors.alias.error,
+    },
+  },
   components: {
     MuiAccordion: {
       defaultProps: {
@@ -170,12 +175,12 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             },
             {
               props: { color: 'error' },
-              style: {
-                color: ophColors.alias.error,
+              style: ({ theme }) => ({
+                color: theme.palette.error.main,
                 '&.Mui-focusVisible:not(.Mui-disabled), &:hover': {
-                  color: ophColors.alias.error,
+                  color: theme.palette.error.main,
                 },
-              },
+              }),
             },
           ],
         },
@@ -384,32 +389,42 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
   },
 };
 
-const OPH_THEME_OPTIONS = Object.freeze({
-  ...COMMON_THEME_OPTIONS,
-  palette: {
-    background: {
-      default: ophColors.grey50,
+const OPH_THEME_OPTIONS = Object.freeze(
+  deepmerge(
+    COMMON_THEME_OPTIONS,
+    {
+      palette: {
+        background: {
+          default: ophColors.grey50,
+        },
+        primary: {
+          main: ophColors.blue2,
+          light: ophColors.blue3,
+          dark: ophColors.blue1,
+          contrastText: ophColors.white,
+        },
+      },
     },
-    primary: {
-      main: ophColors.blue2,
-      light: ophColors.blue3,
-      dark: ophColors.blue1,
-      contrastText: ophColors.white,
-    },
-  },
-} as const);
+    { clone: true },
+  ),
+);
 
-const OPINTOPOLKU_THEME_OPTIONS = Object.freeze({
-  ...COMMON_THEME_OPTIONS,
-  palette: {
-    primary: {
-      main: ophColors.green2,
-      light: ophColors.green3,
-      dark: ophColors.green1,
-      contrastText: ophColors.white,
+const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
+  deepmerge(
+    COMMON_THEME_OPTIONS,
+    {
+      palette: {
+        primary: {
+          main: ophColors.green2,
+          light: ophColors.green3,
+          dark: ophColors.green1,
+          contrastText: ophColors.white,
+        },
+      },
     },
-  },
-} as const);
+    { clone: true },
+  ),
+);
 
 function getLocale(lang?: OphLanguage) {
   switch (lang) {
