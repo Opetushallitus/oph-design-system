@@ -209,6 +209,13 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          padding: '12px',
+        },
+      },
+    },
     MuiTable: {
       styleOverrides: {
         root: {
