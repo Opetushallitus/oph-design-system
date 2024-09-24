@@ -12,6 +12,10 @@ import {
 import { deepmerge } from '@mui/utils';
 import { useMemo, type ReactNode } from 'react';
 import type { OphLanguage, OphThemeParams } from '../types';
+import {
+  CheckBoxOutlined,
+  IndeterminateCheckBoxOutlined,
+} from '@mui/icons-material';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -130,9 +134,51 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         disableRipple: true,
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+        label: ({ theme }) => ({
+          paddingLeft: theme.spacing(1),
+        }),
+      },
+    },
     MuiCheckbox: {
       defaultProps: {
         disableRipple: true,
+        checkedIcon: <CheckBoxOutlined />,
+        indeterminateIcon: <IndeterminateCheckBoxOutlined />,
+      },
+      styleOverrides: {
+        root: {
+          padding: 0,
+          variants: [
+            {
+              props: { color: 'primary' },
+              style: ({ theme }) => ({
+                '&.Mui-focusVisible:not(.Mui-disabled)': {
+                  color: theme.palette.primary.light,
+                  '& svg > path': {
+                    filter: `drop-shadow( 0px 0px 1.5px ${theme.palette.primary.light})`,
+                  },
+                },
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                },
+              }),
+            },
+            {
+              props: { color: 'error' },
+              style: {
+                color: ophColors.alias.error,
+                '&.Mui-focusVisible:not(.Mui-disabled), &:hover': {
+                  color: ophColors.alias.error,
+                },
+              },
+            },
+          ],
+        },
       },
     },
     MuiFormControl: {
