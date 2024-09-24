@@ -1,9 +1,4 @@
 import type { ThemeOptions } from '@mui/material';
-export type DeepPartial<T> = T extends object
-  ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
-  : T;
 
 export type OphLanguage = 'fi' | 'sv' | 'en';
 
@@ -12,7 +7,7 @@ export type OphThemeVariant = 'oph' | 'opintopolku';
 export interface OphThemeParams {
   variant: OphThemeVariant;
   lang?: OphLanguage;
-  overrides?: DeepPartial<ThemeOptions>;
+  overrides?: ThemeOptions;
 }
 
 declare module '@mui/material/styles' {
