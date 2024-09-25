@@ -12,6 +12,10 @@ import {
 import { deepmerge } from '@mui/utils';
 import { useMemo, type ReactNode } from 'react';
 import type { OphLanguage, OphThemeParams } from '../types';
+import {
+  CheckBoxOutlined,
+  IndeterminateCheckBoxOutlined,
+} from '@mui/icons-material';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -27,6 +31,11 @@ const themeBase = createTheme({
 });
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
+  palette: {
+    error: {
+      main: ophColors.alias.error,
+    },
+  },
   components: {
     MuiAccordion: {
       defaultProps: {
@@ -130,9 +139,51 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         disableRipple: true,
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+        label: ({ theme }) => ({
+          paddingLeft: theme.spacing(1),
+        }),
+      },
+    },
     MuiCheckbox: {
       defaultProps: {
         disableRipple: true,
+        checkedIcon: <CheckBoxOutlined />,
+        indeterminateIcon: <IndeterminateCheckBoxOutlined />,
+      },
+      styleOverrides: {
+        root: {
+          padding: 0,
+          variants: [
+            {
+              props: { color: 'primary' },
+              style: ({ theme }) => ({
+                '&.Mui-focusVisible:not(.Mui-disabled)': {
+                  color: theme.palette.primary.light,
+                  '& svg > path': {
+                    filter: `drop-shadow( 0px 0px 1.5px ${theme.palette.primary.light})`,
+                  },
+                },
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                },
+              }),
+            },
+            {
+              props: { color: 'error' },
+              style: ({ theme }) => ({
+                color: theme.palette.error.main,
+                '&.Mui-focusVisible:not(.Mui-disabled), &:hover': {
+                  color: theme.palette.error.main,
+                },
+              }),
+            },
+          ],
+        },
       },
     },
     MuiFormControl: {
@@ -206,6 +257,13 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: '2px',
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          padding: '12px',
         },
       },
     },
@@ -331,32 +389,42 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
   },
 };
 
-const OPH_THEME_OPTIONS = Object.freeze({
-  ...COMMON_THEME_OPTIONS,
-  palette: {
-    background: {
-      default: ophColors.grey50,
+const OPH_THEME_OPTIONS = Object.freeze(
+  deepmerge(
+    COMMON_THEME_OPTIONS,
+    {
+      palette: {
+        background: {
+          default: ophColors.grey50,
+        },
+        primary: {
+          main: ophColors.blue2,
+          light: ophColors.blue3,
+          dark: ophColors.blue1,
+          contrastText: ophColors.white,
+        },
+      },
     },
-    primary: {
-      main: ophColors.blue2,
-      light: ophColors.blue3,
-      dark: ophColors.blue1,
-      contrastText: ophColors.white,
-    },
-  },
-} as const);
+    { clone: true },
+  ),
+);
 
-const OPINTOPOLKU_THEME_OPTIONS = Object.freeze({
-  ...COMMON_THEME_OPTIONS,
-  palette: {
-    primary: {
-      main: ophColors.green2,
-      light: ophColors.green3,
-      dark: ophColors.green1,
-      contrastText: ophColors.white,
+const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
+  deepmerge(
+    COMMON_THEME_OPTIONS,
+    {
+      palette: {
+        primary: {
+          main: ophColors.green2,
+          light: ophColors.green3,
+          dark: ophColors.green1,
+          contrastText: ophColors.white,
+        },
+      },
     },
-  },
-} as const);
+    { clone: true },
+  ),
+);
 
 function getLocale(lang?: OphLanguage) {
   switch (lang) {
