@@ -106,3 +106,23 @@ export const WithoutLabel: Story = {
     inputProps: { 'aria-label': 'Otsake' },
   },
 };
+
+export const WithoutLabelFocused: Story = {
+  ...DefaultFocused,
+  args: WithoutLabel.args,
+};
+
+export const WithoutLabelHovered: Story = {
+  ...DefaultHovered,
+  args: WithoutLabel.args,
+};
+
+export const WithoutLabelDisabled: Story = {
+  ...DefaultDisabled,
+  args: { ...WithoutLabel.args, disabled: true },
+};
+
+export const WithoutLabelError: Story = {
+  ...DefaultError,
+  args: { ...WithoutLabel.args, error: true },
+};
