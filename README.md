@@ -145,6 +145,8 @@ Storybookin visualiset ja saavutettavuustestit on toteutettu [Playwright:lla](ht
 
 Jotta testit voi suorittaa, täytyy Storybook-palvelimen olla käynnissä osoitteessa http://localhost:6006.
 
+Käytä nodejs-versiota 20.10.0 tai uudempaa. 
+
 ### Testien ajaminen kehityspalvelinta vasten
 
 Helpoin tapa ajaa testit on käynnistää Storybookin kehityspalvelin. Tässä on myös se etu, että koodimuutokset ladataan automaattisesti (hot reload).
