@@ -1,6 +1,7 @@
 import { OphButton } from './OphButton';
 import { OpenInNew } from '@mui/icons-material';
 import type { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/test';
 
 const meta = {
   component: OphButton,
@@ -26,6 +27,17 @@ export const Filled: Story = {
         {children}
       </OphButton>
     );
+  },
+};
+
+export const FilledFocused: Story = {
+  ...Filled,
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkboxes = canvas.getAllByRole('button');
+    for (const checkbox of checkboxes) {
+      checkbox.focus();
+    }
   },
 };
 
@@ -64,6 +76,14 @@ export const FilledWithIconDisabled: Story = {
 
 export const Outlined: Story = {
   ...Filled,
+  args: {
+    ...Filled.args,
+    variant: 'outlined',
+  },
+};
+
+export const OutlinedFocused: Story = {
+  ...FilledFocused,
   args: {
     ...Filled.args,
     variant: 'outlined',
@@ -115,6 +135,11 @@ export const Text: Story = {
     ...Filled.args,
     variant: 'text',
   },
+};
+
+export const TextFocused: Story = {
+  ...FilledFocused,
+  ...Text,
 };
 
 export const TextDisabled: Story = {

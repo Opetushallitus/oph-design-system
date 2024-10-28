@@ -63,6 +63,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             width: '24px',
             height: '24px',
           },
+          ...focusOutlineStyle(),
           variants: [
             {
               props: { variant: 'contained', color: 'primary' },
@@ -101,7 +102,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                     color: theme.palette.primary.light,
                     borderColor: theme.palette.primary.light,
                   },
-                  '&:active, &.Mui-focusVisible': {
+                  '&:active': {
                     borderWidth: '2px',
                     backgroundColor: ophColors.white,
                     color: theme.palette.primary.dark,
@@ -123,7 +124,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                     color: theme.palette.primary.light,
                     background: 'none',
                   },
-                  '&:active, &.Mui-focusVisible': {
+                  '&:active': {
                     color: theme.palette.primary.dark,
                     background: 'none',
                   },
