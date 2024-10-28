@@ -39,18 +39,22 @@ export const DefaultFocused: Story = {
 };
 
 export const DefaultDisabled: Story = {
+  ...Default,
   args: { ...Default.args, disabled: true },
 };
 
 export const DefaultError: Story = {
+  ...Default,
   args: { ...Default.args, error: true },
 };
 
 export const Indeterminate: Story = {
+  ...Default,
   args: { ...Default.args, indeterminate: true },
 };
 
 export const IndeterminateRequired: Story = {
+  ...Default,
   args: { ...Indeterminate.args, required: true },
 };
 
@@ -65,6 +69,7 @@ export const IndeterminateHovered: Story = {
 };
 
 export const IndeterminateDisabled: Story = {
+  ...Indeterminate,
   args: { ...Indeterminate.args, disabled: true },
 };
 
@@ -74,6 +79,7 @@ export const IndeterminateError: Story = {
 };
 
 export const Checked: Story = {
+  ...Default,
   args: { ...Default.args, checked: true },
 };
 
@@ -92,14 +98,17 @@ export const CheckedHovered: Story = {
 };
 
 export const CheckedDisabled: Story = {
+  ...Checked,
   args: { ...Checked.args, disabled: true },
 };
 
 export const CheckedError: Story = {
+  ...Checked,
   args: { ...Checked.args, error: true },
 };
 
 export const WithoutLabel: Story = {
+  ...Default,
   args: {
     ...Default.args,
     label: undefined,

@@ -2,7 +2,6 @@
 
 import { ophColors } from '../colors';
 import { CssBaseline } from '@mui/material';
-import { fiFI, svSE, enUS } from '@mui/material/locale';
 import {
   type Theme,
   type ThemeOptions,
@@ -11,11 +10,12 @@ import {
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import { useMemo, type ReactNode } from 'react';
-import type { OphLanguage, OphThemeParams } from '../types';
+import type { OphThemeParams } from '../types';
 import {
   CheckBoxOutlined,
   IndeterminateCheckBoxOutlined,
 } from '@mui/icons-material';
+import { focusOutlineStyle, getLocale } from './theme-utils';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -76,7 +76,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                   '&:hover': {
                     backgroundColor: theme.palette.primary.light,
                   },
-                  '&:active, &.Mui-focusVisible': {
+                  '&:active': {
                     backgroundColor: theme.palette.primary.dark,
                   },
                 };
@@ -86,6 +86,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               props: { variant: 'outlined', color: 'primary' },
               style: ({ theme }) => {
                 return {
+                  backgroundColor: ophColors.white,
                   color: theme.palette.primary.main,
                   borderWidth: '2px',
                   borderColor: theme.palette.primary.main,
@@ -115,7 +116,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                 return {
                   border: '2px solid transparent',
                   color: theme.palette.primary.main,
-                  background: 'none',
                   '&.Mui-disabled': {
                     color: ophColors.grey400,
                   },
@@ -157,16 +157,27 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
       styleOverrides: {
         root: {
+          borderRadius: '2px',
           padding: 0,
+          // Checkbox white background that doesn't overflow
+          '&:before': {
+            position: 'absolute',
+            top: '3px',
+            left: '3px',
+            backgroundColor: ophColors.white,
+            content: '""',
+            width: 'calc(100% - 6px)',
+            height: 'calc(100% - 6px)',
+            borderRadius: '2px',
+            zIndex: -1,
+          },
+          ...focusOutlineStyle('-2px'),
           variants: [
             {
               props: { color: 'primary' },
               style: ({ theme }) => ({
                 '&.Mui-focusVisible:not(.Mui-disabled)': {
                   color: theme.palette.primary.light,
-                  '& svg > path': {
-                    filter: `drop-shadow( 0px 0px 1.5px ${theme.palette.primary.light})`,
-                  },
                 },
                 '&:hover': {
                   color: theme.palette.primary.main,
@@ -235,6 +246,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       styleOverrides: {
         root: ({ theme }) => {
           return {
+            backgroundColor: ophColors.white,
             '.MuiOutlinedInput-notchedOutline': {
               borderRadius: '2px',
               borderWidth: '1px',
@@ -425,19 +437,6 @@ const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
     { clone: true },
   ),
 );
-
-function getLocale(lang?: OphLanguage) {
-  switch (lang) {
-    case 'fi':
-      return fiFI;
-    case 'sv':
-      return svSE;
-    case 'en':
-      return enUS;
-    default:
-      return fiFI;
-  }
-}
 
 const EMPTY_OBJECT = {} as const;
 

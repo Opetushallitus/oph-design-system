@@ -71,7 +71,7 @@ export const Outlined: Story = {
 };
 
 export const OutlinedDisabled: Story = {
-  ...FilledDisabled,
+  ...Outlined,
   args: {
     ...Outlined.args,
     disabled: true,
@@ -106,6 +106,11 @@ export const OutlinedWithIconDisabled: Story = {
 
 export const Text: Story = {
   ...Filled,
+  parameters: {
+    backgrounds: {
+      default: 'white',
+    },
+  },
   args: {
     ...Filled.args,
     variant: 'text',
@@ -113,7 +118,7 @@ export const Text: Story = {
 };
 
 export const TextDisabled: Story = {
-  ...FilledDisabled,
+  ...Text,
   args: {
     ...Text.args,
     disabled: true,
@@ -138,7 +143,7 @@ export const TextIconOnly: Story = {
 };
 
 export const TextWithIconDisabled: Story = {
-  ...FilledDisabled,
+  ...Text,
   args: {
     ...TextWithIcon.args,
     disabled: true,

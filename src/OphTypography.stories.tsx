@@ -4,6 +4,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: OphTypography,
   parameters: {
+    backgrounds: {
+      default: 'white',
+    },
     viewport: {
       defaultViewport: 'desktop1',
     },
