@@ -70,7 +70,7 @@
   },
   "peerDependencies": {
     "@mui/material": "^6",
-    "next": "^14",
+    "next": "^14 || ^15",
     "react": "^18"
   },
   "peerDependenciesMeta": {
