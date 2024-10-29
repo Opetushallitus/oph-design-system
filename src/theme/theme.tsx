@@ -230,6 +230,26 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: 'none',
+          '&:hover, &:active': {
+            textDecoration: 'underline',
+          },
+          ...focusOutlineStyle({
+            textDecoration: 'underline',
+            borderRadius: '1px',
+          }),
+          '& svg.OphLink-OpenInNewIcon': {
+            fontSize: '1.2em',
+            marginLeft: '0.15em',
+            verticalAlign: 'middle',
+            marginTop: '-0.15em',
+          },
+        },
+      },
+    },
     MuiMenuItem: {
       styleOverrides: {
         root: ({ theme }) => {

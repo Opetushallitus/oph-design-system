@@ -1,8 +1,7 @@
 import { isString } from '@/src/util';
 import NextLink, { type LinkProps } from 'next/link';
 import React from 'react';
-
-const EXTERNAL_LINK_REGEX = /^https?:\/\//;
+import { EXTERNAL_LINK_REGEX } from '../common';
 
 export const LinkBehavior = React.forwardRef<
   HTMLAnchorElement,
@@ -11,7 +10,13 @@ export const LinkBehavior = React.forwardRef<
   const externalLinkHref =
     isString(href) && EXTERNAL_LINK_REGEX.test(href) ? href : undefined;
   return externalLinkHref ? (
-    <a ref={ref} {...props} href={externalLinkHref}>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+      ref={ref}
+      href={externalLinkHref}
+    >
       {children}
     </a>
   ) : (
