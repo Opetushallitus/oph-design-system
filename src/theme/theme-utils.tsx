@@ -1,6 +1,7 @@
 import { enUS, fiFI, svSE } from '@mui/material/locale';
 import type { OphLanguage } from '../types';
 import { ophColors } from '../colors';
+import type { CSSProperties } from 'react';
 
 export function getLocale(lang?: OphLanguage) {
   switch (lang) {
@@ -15,10 +16,11 @@ export function getLocale(lang?: OphLanguage) {
   }
 }
 
-export const focusOutlineStyle = (offset = '1px') => ({
+export const focusOutlineStyle = (overrides: CSSProperties = {}) => ({
   '&.Mui-focusVisible': {
     outline: `2px solid ${ophColors.black}`,
-    outlineOffset: offset,
+    outlineOffset: '1px',
     zIndex: 9999,
+    ...overrides,
   },
 });

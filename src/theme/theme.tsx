@@ -160,19 +160,25 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         root: {
           borderRadius: '2px',
           padding: 0,
+          color: ophColors.grey800,
           // Checkbox white background that doesn't overflow
           '&:before': {
             position: 'absolute',
-            top: '3px',
-            left: '3px',
+            top: '4px',
+            left: '4px',
             backgroundColor: ophColors.white,
             content: '""',
-            width: 'calc(100% - 6px)',
-            height: 'calc(100% - 6px)',
-            borderRadius: '2px',
-            zIndex: -1,
+            width: 'calc(100% - 8px)',
+            height: 'calc(100% - 8px)',
+            zIndex: -10,
           },
-          ...focusOutlineStyle('-2px'),
+          '&.Mui-disabled': {
+            color: ophColors.grey400,
+            '&:before': {
+              backgroundColor: ophColors.grey100,
+            },
+          },
+          ...focusOutlineStyle({ outlineOffset: '-2px', borderRadius: '5px' }),
           variants: [
             {
               props: { color: 'primary' },
