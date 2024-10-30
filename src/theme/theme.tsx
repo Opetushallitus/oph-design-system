@@ -11,10 +11,8 @@ import {
 import { deepmerge } from '@mui/utils';
 import { useMemo, type ReactNode } from 'react';
 import type { OphThemeParams } from '../types';
-import {
-  CheckBoxOutlined,
-  IndeterminateCheckBoxOutlined,
-} from '@mui/icons-material';
+import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
+import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import { focusOutlineStyle, getLocale } from './theme-utils';
 
 const themeBase = createTheme({

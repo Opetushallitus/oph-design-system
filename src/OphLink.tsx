@@ -1,4 +1,4 @@
-import { OpenInNew } from '@mui/icons-material';
+import OpenInNew from '@mui/icons-material/OpenInNew';
 import { Link, type LinkProps, type Theme } from '@mui/material';
 import { EXTERNAL_LINK_REGEX } from './common';
 import { type SystemProps } from '@mui/system';

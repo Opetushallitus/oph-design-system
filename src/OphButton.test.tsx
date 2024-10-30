@@ -1,9 +1,7 @@
+import { renderWithOphTheme } from '@/vitest-utils';
 import { OphButton } from './OphButton';
 import { fireEvent, screen } from '@testing-library/react';
 import { vi, expect, test } from 'vitest';
-import { createThemeRenderer } from '@/vitest-utils';
-
-const renderWithOphTheme = createThemeRenderer('oph', 'fi');
 
 const onClick = vi.fn();
 
