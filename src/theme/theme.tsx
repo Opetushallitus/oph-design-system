@@ -8,7 +8,7 @@ import {
   createTheme,
   ThemeProvider,
 } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
+import { deepmerge } from "deepmerge-ts";
 import { useMemo, type ReactNode } from 'react';
 import type { OphThemeParams } from '../types';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
@@ -442,7 +442,6 @@ const OPH_THEME_OPTIONS = Object.freeze(
         },
       },
     },
-    { clone: true },
   ),
 );
 
@@ -459,7 +458,6 @@ const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
         },
       },
     },
-    { clone: true },
   ),
 );
 
@@ -473,12 +471,12 @@ export function createOphTheme({
   switch (variant) {
     case 'oph':
       return createTheme(
-        deepmerge(OPH_THEME_OPTIONS, overrides, { clone: true }),
+        deepmerge(OPH_THEME_OPTIONS, overrides),
         getLocale(lang),
       );
     case 'opintopolku':
       return createTheme(
-        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides, { clone: true }),
+        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides),
         getLocale(lang),
       );
     default:

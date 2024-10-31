@@ -4,8 +4,8 @@ import { useMemo } from 'react';
 import { OphThemeProvider } from '@/src/theme/theme';
 import { LinkBehavior as LB } from '@/src/next/LinkBehavior';
 import { Open_Sans } from 'next/font/google';
-import { deepmerge } from '@mui/utils';
 import type { OphThemeParams } from '@/src/types';
+import { deepmerge } from 'deepmerge-ts';
 
 export const LinkBehavior = LB;
 
@@ -43,7 +43,7 @@ export function OphNextJsThemeProvider({
   children,
 }: OphThemeParams & { children: React.ReactNode }) {
   const mergedOverrides = useMemo(
-    () => deepmerge(MUI_NEXTJS_OVERRIDES, overrides, { clone: true }),
+    () => deepmerge(MUI_NEXTJS_OVERRIDES, overrides),
     [overrides],
   );
 
