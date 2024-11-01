@@ -2,9 +2,17 @@ import { OphNextJsThemeProvider } from '@/src/next/theme';
 import { Box, Stack } from '@mui/material';
 import type { Preview } from '@storybook/react';
 import { viewport } from './viewport';
+import { ophColors } from '@/src';
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      values: [
+        { name: 'default', value: ophColors.grey50 },
+        { name: 'white', value: 'white' },
+      ],
+      default: 'default',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

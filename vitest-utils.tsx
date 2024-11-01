@@ -14,3 +14,8 @@ export const createThemeRenderer = (
       </OphThemeProvider>,
     );
 };
+
+export const renderWithOphTheme = createThemeRenderer('oph', 'fi');
+
+// re-export everything
+export * from '@testing-library/react';

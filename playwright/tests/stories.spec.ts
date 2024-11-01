@@ -9,7 +9,6 @@ import { test, expect } from '@playwright/test';
 import type { IndexEntry } from 'storybook/internal/types';
 
 const testableStories = filterStories(
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
   Object.values(manifest.entries) as Array<IndexEntry>,
 );
 
@@ -24,6 +23,8 @@ for (const theme of THEMES) {
         expectAccessibilityOk(page, STORYBOOK_ROOT_SELECTOR),
         expect(page).toHaveScreenshot(`${themeStoryId}.png`, {
           animations: 'disabled',
+          maxDiffPixels: 0,
+          threshold: 0.1,
         }),
       ]);
     });

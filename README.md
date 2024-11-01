@@ -30,7 +30,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 {
   "peerDependencies": {
     "@mui/material": "^6",
-    "next": "^14", // Pakollinen vain, jos käytät Next.js:ää
+    "next": "^14 || ^15", // Pakollinen vain, jos käytät Next.js:ää
     "react": "^18"
   }
 }

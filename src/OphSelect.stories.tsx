@@ -14,8 +14,8 @@ const meta = {
 export default meta;
 
 const OPTIONS = [
-  { value: '1', label: 'eka' },
-  { value: '2', label: 'toka' },
+  { value: '1', label: 'ensimmäinen vaihtoehto' },
+  { value: '2', label: 'toinen vaihtoehto' },
 ];
 
 type Story = StoryObj<typeof OphSelect>;
