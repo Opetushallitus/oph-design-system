@@ -168,13 +168,19 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             content: '""',
             width: 'calc(100% - 8px)',
             height: 'calc(100% - 8px)',
-            zIndex: -10,
+            zIndex: 1,
           },
           '&.Mui-disabled': {
             color: ophColors.grey400,
             '&:before': {
               backgroundColor: ophColors.grey100,
             },
+          },
+          '& input': {
+            zIndex: 2,
+          },
+          '& .MuiSvgIcon-root': {
+            zIndex: 1,
           },
           ...focusOutlineStyle({ outlineOffset: '-2px', borderRadius: '5px' }),
           variants: [
