@@ -158,6 +158,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         root: {
           borderRadius: '2px',
           padding: 0,
+          zIndex: 0,
           color: ophColors.grey800,
           // Checkbox white background that doesn't overflow
           '&:before': {
