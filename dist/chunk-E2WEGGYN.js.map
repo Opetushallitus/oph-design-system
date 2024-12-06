@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/util.ts"],"names":[],"mappings":";AAAO,IAAM,WAAW,CACtB,UACoB,SAAS;AAExB,IAAM,WAAW,CAAC,UACvB,OAAO,UAAU","sourcesContent":["export const isNonNil = <TValue>(\n  value: TValue | null | undefined,\n): value is TValue => value != null;\n\nexport const isString = (value: unknown): value is string =>\n  typeof value === 'string';\n"]}

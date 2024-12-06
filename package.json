@@ -9,7 +9,6 @@
     "./next/theme": "./dist/next/theme/index.js"
   },
   "scripts": {
-    "prepare": "npm run build",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "start-built-storybook": "npx http-server ./storybook-static -p 6006 --silent",
@@ -53,6 +52,7 @@
     "@trivago/prettier-plugin-sort-imports": "^5.1.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.8",
+    "esbuild-plugin-preserve-directives": "^0.0.11",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.2",
@@ -79,5 +79,8 @@
     "next": {
       "optional": true
     }
+  },
+  "overrides": {
+    "esbuild": "0.24.0"
   }
 }
