@@ -9,7 +9,6 @@
     "./next/theme": "./dist/next/theme/index.js"
   },
   "scripts": {
-    "prepare": "npm run build",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "start-built-storybook": "npx http-server ./storybook-static -p 6006 --silent",
