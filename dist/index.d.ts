@@ -23,6 +23,7 @@ interface OphSelectOption<T> {
 interface OphSelectProps<T> extends Omit<SelectProps<T>, 'children' | 'label' | 'variant'> {
     options: Array<OphSelectOption<T>>;
     clearable?: boolean;
+    placeholder?: string;
 }
 declare const OphSelect: <T extends string>({ placeholder, clearable, options, ...props }: OphSelectProps<T | "">) => react_jsx_runtime.JSX.Element;
 
