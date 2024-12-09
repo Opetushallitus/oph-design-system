@@ -12,6 +12,7 @@ export interface OphSelectProps<T>
   extends Omit<SelectProps<T>, 'children' | 'label' | 'variant'> {
   options: Array<OphSelectOption<T>>;
   clearable?: boolean;
+  placeholder?: string;
 }
 
 export const OphSelect = <T extends string>({

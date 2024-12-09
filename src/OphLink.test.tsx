@@ -1,6 +1,7 @@
 import { afterEach, expect, test } from 'vitest';
 import { cleanup, renderWithOphTheme, screen } from '@/vitest-utils';
 import { OphLink } from './OphLink';
+import Link from 'next/link';
 
 afterEach(cleanup);
 
@@ -29,3 +30,14 @@ test.each([
     }
   },
 );
+
+test('Can pass nextjs Link as component prop', () => {
+  renderWithOphTheme(
+    <OphLink href="/internal" component={Link} prefetch={false}>
+      Linkki
+    </OphLink>,
+  );
+
+  const link = screen.getByRole('link', { name: 'Linkki' });
+  expect(link).toBeVisible();
+});

@@ -47,14 +47,14 @@ const colors = {
   purple2: '#660099',
   purple3: '#C227B9',
   purple4: '#CC99FF',
-};
+} as const;
 
 const aliasColors = {
   success: colors.green2,
   error: colors.orange3,
-};
+} as const;
 
 export const ophColors = {
   ...colors,
   alias: aliasColors,
-};
+} as const;

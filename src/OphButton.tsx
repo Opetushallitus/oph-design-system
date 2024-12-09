@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, type ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { forwardRef } from 'react';
