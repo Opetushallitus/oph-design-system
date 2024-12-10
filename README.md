@@ -31,7 +31,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
   "peerDependencies": {
     "@mui/material": "^6",
     "next": "^14 || ^15", // Pakollinen vain, jos käytät Next.js:ää
-    "react": "^18"
+    "react": "^18 || ^19"
   }
 }
 ```
@@ -173,7 +173,8 @@ Komponenttikirjaston jakeluversio muodostetaan komennolla:
 npm run build
 ```
 
-Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). Kyseinen komento ajetaan myös aina kun tämän projektin riippuvuudet asennetaan (prepare-skripti package.json-tiedostossa). Tämä on välttämätöntä, että komponenttikirjastoa voi käyttää riippuvuutena. [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa.
+Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa.
+Jakeluversion tiedostot on lisätty myös Git-säilöön `/dist`-hakemistoon, jotta komentoa ei tarvitse ajaa kirjaston asennuksen yhteydessä.
 
 ## Esimerkkiprojekti
 

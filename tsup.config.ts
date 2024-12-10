@@ -1,8 +1,9 @@
 import { defineConfig } from 'tsup';
+import { preserveDirectivesPlugin } from 'esbuild-plugin-preserve-directives';
 
 export default defineConfig([
   {
-    entry: ['src/index.ts', 'src/theme/index.ts', 'src/next/theme/index.ts'],
+    entry: ['src/**/*@(ts|tsx)', '!src/**/*.@(test|stories).*'],
     clean: true,
     dts: true,
     format: ['esm'],
@@ -14,19 +15,20 @@ export default defineConfig([
     bundle: true,
     external: ['@mui/utils'],
     outDir: 'dist',
+    esbuildPlugins: [
+      preserveDirectivesPlugin({
+        directives: ['use client', 'use server'],
+        include: /\.(js|ts|jsx|tsx)$/,
+        exclude: /node_modules/,
+      }),
+    ],
     plugins: [
       {
         name: 'fix-code',
         renderChunk(_, chunk) {
-          let code = chunk.code;
-          if (chunk.entryPoint) {
-            code = `"use client";\n${code}`;
-          }
           //Fixes Next.js error "Font loaders must be called and assigned to a const in the module scope"
-          if (chunk.entryPoint?.includes('/next/theme/')) {
-            code = code.replace('var openSans', 'const openSans');
-          }
-          return { code };
+          chunk.code = chunk.code.replace('var openSans', 'const openSans');
+          return chunk;
         },
       },
     ],
