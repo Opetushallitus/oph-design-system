@@ -1,4 +1,5 @@
 'use client';
+
 import { Select, MenuItem, type SelectProps } from '@mui/material';
 
 export type OphSelectValue<T> = SelectProps<T>['value'];

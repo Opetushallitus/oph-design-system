@@ -5,9 +5,13 @@ import { vi, expect, test } from 'vitest';
 
 const onClick = vi.fn();
 
-test('OphButton', () => {
-  renderWithOphTheme(<OphButton onClick={onClick}>Click here!</OphButton>);
-  const el = screen.getByRole('button', { name: 'Click here!' });
+test('OphButton allows link props when href defined', () => {
+  renderWithOphTheme(
+    <OphButton onClick={onClick} href="https://example.com" target="_blank">
+      Click here!
+    </OphButton>,
+  );
+  const el = screen.getByRole('link', { name: 'Click here!' });
   fireEvent.click(el);
   expect(onClick).toHaveBeenCalledOnce();
 });

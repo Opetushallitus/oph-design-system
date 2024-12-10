@@ -1,12 +1,9 @@
 'use client';
 
-import { Button, type ButtonProps } from '@mui/material';
+import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { forwardRef } from 'react';
 
-export type OphButtonProps = Omit<ButtonProps, 'endIcon'>;
-
-const StyledButton = styled(Button)(({ theme, children }) => {
+export const OphButton = styled(Button)(({ theme, children }) => {
   return children
     ? {}
     : {
@@ -21,10 +18,4 @@ const StyledButton = styled(Button)(({ theme, children }) => {
           margin: 0,
         },
       };
-});
-
-export const OphButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  function renderButton(props, ref) {
-    return <StyledButton {...props} ref={ref} />;
-  },
-);
+}) as typeof Button;
