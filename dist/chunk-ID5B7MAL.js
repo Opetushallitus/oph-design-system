@@ -5,9 +5,6 @@ import {
   getLocale
 } from "./chunk-OLXJFWUE.js";
 import {
-  createSvgIcon
-} from "./chunk-NF6FGVLU.js";
-import {
   ophColors
 } from "./chunk-T2QMLCJ4.js";
 
@@ -19,20 +16,8 @@ import {
 } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import { useMemo } from "react";
-
-// node_modules/@mui/icons-material/esm/CheckBoxOutlined.js
-import { jsx as _jsx } from "react/jsx-runtime";
-var CheckBoxOutlined_default = createSvgIcon(/* @__PURE__ */ _jsx("path", {
-  d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 16H5V5h14zM17.99 9l-1.41-1.42-6.59 6.59-2.58-2.57-1.42 1.41 4 3.99z"
-}), "CheckBoxOutlined");
-
-// node_modules/@mui/icons-material/esm/IndeterminateCheckBoxOutlined.js
-import { jsx as _jsx2 } from "react/jsx-runtime";
-var IndeterminateCheckBoxOutlined_default = createSvgIcon(/* @__PURE__ */ _jsx2("path", {
-  d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 16H5V5h14zM7 11h10v2H7z"
-}), "IndeterminateCheckBoxOutlined");
-
-// src/theme/theme.tsx
+import CheckBoxOutlined from "@mui/icons-material/CheckBoxOutlined";
+import IndeterminateCheckBoxOutlined from "@mui/icons-material/IndeterminateCheckBoxOutlined";
 import { jsx, jsxs } from "react/jsx-runtime";
 var themeBase = createTheme({
   breakpoints: {
@@ -169,8 +154,8 @@ var COMMON_THEME_OPTIONS = {
     MuiCheckbox: {
       defaultProps: {
         disableRipple: true,
-        checkedIcon: /* @__PURE__ */ jsx(CheckBoxOutlined_default, {}),
-        indeterminateIcon: /* @__PURE__ */ jsx(IndeterminateCheckBoxOutlined_default, {})
+        checkedIcon: /* @__PURE__ */ jsx(CheckBoxOutlined, {}),
+        indeterminateIcon: /* @__PURE__ */ jsx(IndeterminateCheckBoxOutlined, {})
       },
       styleOverrides: {
         root: {
@@ -528,4 +513,4 @@ export {
   useOphTheme,
   OphThemeProvider
 };
-//# sourceMappingURL=chunk-CL32TMTX.js.map
+//# sourceMappingURL=chunk-ID5B7MAL.js.map
