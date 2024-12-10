@@ -20,7 +20,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.0",
     "@mui/material-nextjs": "^6.1.0",
-    "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-0.1.5.tgz",
+    "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-0.1.6.tgz",
     "next": "14.2.10",
     "next-intl": "^3.19.1",
     "react": "^18",
