@@ -1,6 +1,6 @@
 import {
   ophColors
-} from "./chunk-T2QMLCJ4.js";
+} from "./chunk-LVP2BKUK.js";
 
 // src/theme/theme-utils.tsx
 import { enUS, fiFI, svSE } from "@mui/material/locale";
@@ -29,4 +29,4 @@ export {
   getLocale,
   focusOutlineStyle
 };
-//# sourceMappingURL=chunk-OLXJFWUE.js.map
+//# sourceMappingURL=chunk-Z3OLQMEP.js.map

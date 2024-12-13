@@ -42,6 +42,7 @@ const colors = {
 
   pink1: '#FF66CC',
   pink2: '#FFCCFF',
+  pink3: '#FDF2F2',
 
   purple1: '#660066',
   purple2: '#660099',

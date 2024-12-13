@@ -39,6 +39,7 @@ declare const ophColors: {
     readonly yellow3: "#FFFF33";
     readonly pink1: "#FF66CC";
     readonly pink2: "#FFCCFF";
+    readonly pink3: "#FDF2F2";
     readonly purple1: "#660066";
     readonly purple2: "#660099";
     readonly purple3: "#C227B9";
