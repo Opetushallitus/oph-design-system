@@ -1,7 +1,11 @@
 'use client';
 import { Box, Alert } from '@mui/material';
 import { useTranslations } from 'next-intl';
-import { OphTypography, OphButton } from '@opetushallitus/oph-design-system';
+import {
+  OphTypography,
+  OphButton,
+  OphInput,
+} from '@opetushallitus/oph-design-system';
 
 export default function Home() {
   const t = useTranslations();
@@ -10,7 +14,10 @@ export default function Home() {
     <main>
       <Box margin={4}>
         <OphTypography variant="h1">{t('title')}</OphTypography>
-        <Box component="p">
+        <Box
+          sx={{ marginY: 2, display: 'flex', alignItems: 'flex-start', gap: 1 }}
+        >
+          <OphInput value="Tekstiä" />
           <OphButton variant="contained">{t('button')}</OphButton>
         </Box>
         <Alert severity="warning" onClose={() => {}}>

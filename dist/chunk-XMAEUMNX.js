@@ -17,16 +17,14 @@ function getLocale(lang) {
   }
 }
 var focusOutlineStyle = (overrides = {}) => ({
-  "&.Mui-focusVisible": {
-    outline: `2px solid ${ophColors.black}`,
-    outlineOffset: "1px",
-    zIndex: 9999,
-    ...overrides
-  }
+  outline: `2px solid ${ophColors.black}`,
+  outlineOffset: "1px",
+  zIndex: 9999,
+  ...overrides
 });
 
 export {
   getLocale,
   focusOutlineStyle
 };
-//# sourceMappingURL=chunk-Z3OLQMEP.js.map
+//# sourceMappingURL=chunk-XMAEUMNX.js.map

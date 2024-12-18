@@ -17,10 +17,8 @@ export function getLocale(lang?: OphLanguage) {
 }
 
 export const focusOutlineStyle = (overrides: CSSProperties = {}) => ({
-  '&.Mui-focusVisible': {
-    outline: `2px solid ${ophColors.black}`,
-    outlineOffset: '1px',
-    zIndex: 9999,
-    ...overrides,
-  },
+  outline: `2px solid ${ophColors.black}`,
+  outlineOffset: '1px',
+  zIndex: 9999,
+  ...overrides,
 });

@@ -53,7 +53,8 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: '2px',
-          padding: '4px 16px',
+          padding: '6px 16px',
+          lineHeight: '24px',
           '&.Mui-disabled': {
             cursor: 'not-allowed',
           },
@@ -61,7 +62,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             width: '24px',
             height: '24px',
           },
-          ...focusOutlineStyle(),
+          '&.Mui-focusVisible': focusOutlineStyle(),
           variants: [
             {
               props: { variant: 'contained', color: 'primary' },
@@ -183,7 +184,10 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '& .MuiSvgIcon-root': {
             zIndex: 1,
           },
-          ...focusOutlineStyle({ outlineOffset: '-2px', borderRadius: '5px' }),
+          '&.Mui-focusVisible': focusOutlineStyle({
+            outlineOffset: '-2px',
+            borderRadius: '5px',
+          }),
           variants: [
             {
               props: { color: 'primary' },
@@ -242,7 +246,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '&:hover, &:active': {
             textDecoration: 'underline',
           },
-          ...focusOutlineStyle({
+          '&.Mui-focusVisible': focusOutlineStyle({
             textDecoration: 'underline',
             borderRadius: '1px',
           }),
@@ -274,20 +278,77 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          borderColor: ophColors.grey800,
+          borderRadius: '2px',
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: ({ theme }) => {
-          return {
-            backgroundColor: ophColors.white,
-            '.MuiOutlinedInput-notchedOutline': {
-              borderRadius: '2px',
-              borderWidth: '1px',
+        input: ({ theme }) => ({
+          padding: theme.spacing(1, 1.5),
+          lineHeight: '24px',
+          height: 'auto',
+        }),
+        root: {
+          variants: [
+            {
+              props: () => true,
+              style: ({ theme }) => ({
+                '& .MuiInputAdornment-root': {
+                  margin: theme.spacing(1, 1, 1, 0),
+                },
+                padding: 0,
+                backgroundColor: ophColors.white,
+                borderRadius: '2px',
+                '&:has(input:focus-visible)': focusOutlineStyle({
+                  borderRadius: '2px',
+                }),
+                '& .MuiSvgIcon-root': {
+                  color: ophColors.grey800,
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  // Fix: nothcedOutline touches focus outline on firefox when fullscreen
+                  top: '-4.5px',
+                  borderColor: ophColors.grey800,
+                  borderRadius: '2px',
+                  borderWidth: '1px',
+                },
+              }),
             },
-            '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
-              borderWidth: '2px',
-              borderColor: theme.palette.primary.main,
+            {
+              props: { error: true },
+              style: ({ theme }) => ({
+                color: theme.palette.error.main,
+                '& .MuiSvgIcon-root': {
+                  color: theme.palette.error.main,
+                },
+              }),
             },
-          };
+            {
+              props: (props) => props.color === 'primary' && !props.disabled,
+              style: ({ theme }) => ({
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderWidth: '2px',
+                  borderColor: theme.palette.primary.main,
+                },
+              }),
+            },
+            {
+              props: { disabled: true },
+              style: {
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: ophColors.grey400,
+                },
+                '& .MuiSvgIcon-root': {
+                  color: ophColors.grey400,
+                },
+              },
+            },
+          ],
         },
       },
     },
@@ -307,7 +368,9 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     MuiSelect: {
       styleOverrides: {
         select: {
-          padding: '12px',
+          '&:focus-visible': focusOutlineStyle({
+            borderRadius: '2px',
+          }),
         },
       },
     },
@@ -326,8 +389,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
       styleOverrides: {
         root: ({ theme }: { theme: Theme }) => ({
-          paddingTop: 0,
-          paddingBottom: 0,
           color: ophColors.grey900,
           borderColor: theme.palette.primary.main,
           borderWidth: '2px',
@@ -348,7 +409,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             borderColor: theme.palette.primary.light,
             color: theme.palette.primary.main,
           },
-          '&.Mui-disabled': {},
         }),
       },
     },
