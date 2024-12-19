@@ -1,6 +1,6 @@
 import {
   ophColors
-} from "./chunk-T2QMLCJ4.js";
+} from "./chunk-LVP2BKUK.js";
 export {
   ophColors
 };

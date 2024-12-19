@@ -53,6 +53,20 @@ export const DefaultOpen: Story = {
   },
 };
 
+export const DefaultDisabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const DefaultError: Story = {
+  args: {
+    ...Default.args,
+    error: true,
+  },
+};
+
 export const Clearable: Story = {
   args: {
     ...Default.args,
@@ -65,12 +79,5 @@ export const ClearableOpen: Story = {
   args: {
     ...Default.args,
     clearable: true,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    ...Default.args,
-    disabled: true,
   },
 };

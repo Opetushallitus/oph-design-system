@@ -5,6 +5,9 @@ import {
   OphCheckbox
 } from "./chunk-5ST33H5N.js";
 import {
+  OphInput
+} from "./chunk-OY7DSKP6.js";
+import {
   OphLink
 } from "./chunk-5WMMVTJX.js";
 import {
@@ -15,11 +18,12 @@ import {
 } from "./chunk-ITYBTMBH.js";
 import {
   ophColors
-} from "./chunk-T2QMLCJ4.js";
+} from "./chunk-LVP2BKUK.js";
 import "./chunk-5VLNADN3.js";
 export {
   OphButton,
   OphCheckbox,
+  OphInput,
   OphLink,
   OphSelect,
   OphTypography,

@@ -36,6 +36,7 @@ var colors = {
   yellow3: "#FFFF33",
   pink1: "#FF66CC",
   pink2: "#FFCCFF",
+  pink3: "#FDF2F2",
   purple1: "#660066",
   purple2: "#660099",
   purple3: "#C227B9",
@@ -53,4 +54,4 @@ var ophColors = {
 export {
   ophColors
 };
-//# sourceMappingURL=chunk-T2QMLCJ4.js.map
+//# sourceMappingURL=chunk-LVP2BKUK.js.map
