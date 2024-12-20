@@ -3,6 +3,7 @@ export { OphCheckbox } from './OphCheckbox.js';
 export { OphSelect } from './OphSelect.js';
 export { OphTypography } from './OphTypography.js';
 export { OphLink } from './OphLink.js';
+export { OphInput } from './OphInput.js';
 export { ophColors } from './colors.js';
 export { OphLanguage, OphThemeParams, OphThemeVariant } from './types.js';
 import '@mui/material';

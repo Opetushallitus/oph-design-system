@@ -1,6 +1,6 @@
 import {
   ophColors
-} from "./chunk-T2QMLCJ4.js";
+} from "./chunk-LVP2BKUK.js";
 
 // src/theme/theme-utils.tsx
 import { enUS, fiFI, svSE } from "@mui/material/locale";
@@ -17,16 +17,14 @@ function getLocale(lang) {
   }
 }
 var focusOutlineStyle = (overrides = {}) => ({
-  "&.Mui-focusVisible": {
-    outline: `2px solid ${ophColors.black}`,
-    outlineOffset: "1px",
-    zIndex: 9999,
-    ...overrides
-  }
+  outline: `2px solid ${ophColors.black}`,
+  outlineOffset: "1px",
+  zIndex: 9999,
+  ...overrides
 });
 
 export {
   getLocale,
   focusOutlineStyle
 };
-//# sourceMappingURL=chunk-OLXJFWUE.js.map
+//# sourceMappingURL=chunk-XMAEUMNX.js.map
