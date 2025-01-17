@@ -240,14 +240,12 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
     },
     MuiLink: {
+      defaultProps: {
+        underline: 'hover',
+      },
       styleOverrides: {
         root: {
-          textDecoration: 'none',
-          '&:hover, &:active': {
-            textDecoration: 'underline',
-          },
           '&.Mui-focusVisible': focusOutlineStyle({
-            textDecoration: 'underline',
             borderRadius: '1px',
           }),
           '& svg.OphLink-OpenInNewIcon': {
@@ -256,6 +254,17 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             verticalAlign: 'middle',
             marginTop: '-0.15em',
           },
+          variants: [
+            {
+              props: { underline: 'hover' },
+              style: {
+                textDecoration: 'none',
+                '&:hover, &:active, &.Mui-focusVisible': {
+                  textDecoration: 'underline',
+                },
+              },
+            },
+          ],
         },
       },
     },
