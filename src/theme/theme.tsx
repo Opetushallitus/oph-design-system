@@ -49,6 +49,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       defaultProps: {
         disableRipple: true,
         disableElevation: true,
+        loadingPosition: 'start',
       },
       styleOverrides: {
         root: {
