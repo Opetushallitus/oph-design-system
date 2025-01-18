@@ -399,10 +399,12 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
       styleOverrides: {
         root: ({ theme }: { theme: Theme }) => ({
+          borderRadius: '2px',
+          padding: '6px 16px',
+          lineHeight: '24px',
+          borderWidth: '2px',
           color: ophColors.grey900,
           borderColor: theme.palette.primary.main,
-          borderWidth: '2px',
-          borderRadius: '2px',
           '&.Mui-selected': {
             backgroundColor: theme.palette.primary.main,
             color: ophColors.white,
