@@ -219,6 +219,14 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         size: 'small',
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          ...theme.typography.body2,
+          color: ophColors.black,
+        }),
+      },
+    },
     MuiFormLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
