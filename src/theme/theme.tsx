@@ -321,8 +321,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                   color: ophColors.grey800,
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
-                  // Fix: nothcedOutline touches focus outline on firefox when fullscreen
-                  top: '-4.5px',
                   borderColor: ophColors.grey800,
                   borderRadius: '2px',
                   borderWidth: '1px',
