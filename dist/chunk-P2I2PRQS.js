@@ -1,5 +1,9 @@
 'use client';
 
+import {
+  OphFormFieldWrapper
+} from "./chunk-LQSENQUB.js";
+
 // src/OphSelect.tsx
 import { Select, MenuItem } from "@mui/material";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -16,8 +20,27 @@ var OphSelect = ({
     })
   ] });
 };
+var OphSelectFormField = ({
+  required,
+  label,
+  helperText,
+  errorMessage,
+  ...props
+}) => {
+  return /* @__PURE__ */ jsx(
+    OphFormFieldWrapper,
+    {
+      required,
+      label,
+      helperText,
+      errorMessage,
+      renderInput: ({ labelId }) => /* @__PURE__ */ jsx(OphSelect, { ...props, labelId })
+    }
+  );
+};
 
 export {
-  OphSelect
+  OphSelect,
+  OphSelectFormField
 };
-//# sourceMappingURL=chunk-MYA5KYMI.js.map
+//# sourceMappingURL=chunk-P2I2PRQS.js.map

@@ -1,10 +1,11 @@
 export { OphButton } from './OphButton.js';
 export { OphCheckbox } from './OphCheckbox.js';
-export { OphSelect } from './OphSelect.js';
+export { OphSelect, OphSelectFormField } from './OphSelect.js';
 export { OphTypography } from './OphTypography.js';
 export { OphLink } from './OphLink.js';
-export { OphInput } from './OphInput.js';
+export { OphInput, OphInputFormField } from './OphInput.js';
 export { ophColors } from './colors.js';
+export { OphFormFieldWrapper } from './OphFormFieldWrapper.js';
 export { OphLanguage, OphThemeParams, OphThemeVariant } from './types.js';
 import '@mui/material';
 import 'react';

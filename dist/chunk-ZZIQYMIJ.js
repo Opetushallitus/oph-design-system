@@ -5,7 +5,7 @@ import {
 } from "./chunk-YQYVPFFR.js";
 import {
   OphThemeProvider
-} from "./chunk-2Y6NCBS3.js";
+} from "./chunk-DKNYXGN3.js";
 
 // src/next/theme/theme-nextjs.tsx
 import { useMemo } from "react";
@@ -57,4 +57,4 @@ export {
   MUI_NEXTJS_OVERRIDES,
   OphNextJsThemeProvider
 };
-//# sourceMappingURL=chunk-PAFPTH2E.js.map
+//# sourceMappingURL=chunk-ZZIQYMIJ.js.map

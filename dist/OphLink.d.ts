@@ -2,7 +2,7 @@ import { LinkOwnProps, Theme } from '@mui/material';
 import { SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
-type OmittedPropNames = keyof SystemProps<Theme> | 'paragraph' | 'TypographyClasses' | 'variantMapping' | 'align' | 'gutterBottom' | 'underline';
+type OmittedPropNames = keyof SystemProps<Theme> | 'paragraph' | 'TypographyClasses' | 'variantMapping' | 'align' | 'gutterBottom';
 interface OphAdditionalLinkProps {
     /** Icon visibility override. If not given, icon visibility is deduced from href (relative links without icon) */
     iconVisible?: boolean;
