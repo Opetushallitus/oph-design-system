@@ -21,7 +21,7 @@
     "@mui/material": "^6.1.0",
     "@mui/material-nextjs": "^6.1.0",
     "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-0.1.9.tgz",
-    "next": "14.2.10",
+    "next": "14.2.23",
     "next-intl": "^3.19.1",
     "react": "^18",
     "react-dom": "^18"
