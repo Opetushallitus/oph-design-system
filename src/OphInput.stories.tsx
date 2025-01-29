@@ -1,23 +1,25 @@
 import { Search } from '@mui/icons-material';
-import { OphInput } from './OphInput';
+import { OphInputFormField } from './OphInput';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/test';
 import { InputAdornment } from '@mui/material';
 
 const meta = {
-  component: OphInput,
-} satisfies Meta<typeof OphInput>;
+  component: OphInputFormField,
+} satisfies Meta<typeof OphInputFormField>;
 
 export default meta;
 
-type Story = StoryObj<typeof OphInput>;
+type Story = StoryObj<typeof OphInputFormField>;
+
+const LABEL = 'Label';
 
 export const Default: Story = {
   args: {
     value:
       'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     inputProps: {
-      'aria-label': 'Otsikko',
+      'aria-label': LABEL,
     },
   },
 };
@@ -64,5 +66,33 @@ export const WithEndAdornment: Story = {
         <Search />
       </InputAdornment>
     ),
+  },
+};
+
+export const Labeled: Story = {
+  args: {
+    label: LABEL,
+    ...Default.args,
+  },
+};
+
+export const LabeledRequired: Story = {
+  args: {
+    ...Labeled.args,
+    required: true,
+  },
+};
+
+export const LabeledWithError: Story = {
+  args: {
+    ...Labeled.args,
+    errorMessage: 'Input is invalid!',
+  },
+};
+
+export const LabeledWithHelperText: Story = {
+  args: {
+    ...Labeled.args,
+    helperText: 'Please enter a number',
   },
 };

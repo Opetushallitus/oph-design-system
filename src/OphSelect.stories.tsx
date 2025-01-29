@@ -1,15 +1,15 @@
-import { OphSelect } from './OphSelect';
+import { OphSelectFormField } from './OphSelect';
 import { userEvent, within } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  component: OphSelect,
+  component: OphSelectFormField,
   parameters: {
     viewport: {
       defaultViewport: 'desktop1',
     },
   },
-} satisfies Meta<typeof OphSelect>;
+} satisfies Meta<typeof OphSelectFormField>;
 
 export default meta;
 
@@ -18,7 +18,7 @@ const OPTIONS = [
   { value: '2', label: 'toinen vaihtoehto' },
 ];
 
-type Story = StoryObj<typeof OphSelect>;
+type Story = StoryObj<typeof OphSelectFormField>;
 
 export const Default: Story = {
   args: {
@@ -79,5 +79,38 @@ export const ClearableOpen: Story = {
   args: {
     ...Default.args,
     clearable: true,
+  },
+};
+
+export const Labeled: Story = {
+  ...Default,
+  args: {
+    label: 'Otsikko',
+    ...Default.args,
+  },
+};
+
+export const LabeledRequired: Story = {
+  ...Labeled,
+  args: {
+    ...Labeled.args,
+    required: true,
+  },
+};
+
+export const LabeledHelperText: Story = {
+  ...Labeled,
+  args: {
+    ...Labeled.args,
+    helperText: 'Aputeksti',
+  },
+};
+
+export const LabeledWithError: Story = {
+  ...Labeled,
+  args: {
+    ...Labeled.args,
+    label: 'Otsikko',
+    errorMessage: 'Virheviesti',
   },
 };

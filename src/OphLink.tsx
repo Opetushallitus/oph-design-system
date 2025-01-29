@@ -14,8 +14,7 @@ type OmittedPropNames =
   | 'TypographyClasses'
   | 'variantMapping'
   | 'align'
-  | 'gutterBottom'
-  | 'underline';
+  | 'gutterBottom';
 
 interface OphAdditionalLinkProps {
   /** Icon visibility override. If not given, icon visibility is deduced from href (relative links without icon) */

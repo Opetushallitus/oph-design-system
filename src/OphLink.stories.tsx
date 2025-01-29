@@ -19,6 +19,7 @@ export const External: Story = {
   args: {
     href: 'https://opintopolku.fi',
     children: 'Opintopolku',
+    underline: 'hover',
   },
 };
 
@@ -72,4 +73,13 @@ export const InternalHovered: Story = {
 export const InternalFocused: Story = {
   ...ExternalFocused,
   ...Internal,
+};
+
+export const UnderlineAlways: Story = {
+  ...Internal,
+  args: {
+    href: '#',
+    children: 'Linkki',
+    underline: 'always',
+  },
 };

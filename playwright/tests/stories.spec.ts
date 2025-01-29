@@ -19,14 +19,12 @@ for (const theme of THEMES) {
     const themeStoryId = `${theme}--${story.id}`;
     test(themeStoryId, async ({ page }) => {
       await gotoStory(page, theme, story.id);
-      await Promise.all([
-        expectAccessibilityOk(page, STORYBOOK_ROOT_SELECTOR),
-        expect(page).toHaveScreenshot(`${themeStoryId}.png`, {
-          animations: 'disabled',
-          maxDiffPixels: 0,
-          threshold: 0.1,
-        }),
-      ]);
+      await expectAccessibilityOk(page, STORYBOOK_ROOT_SELECTOR);
+      await expect(page).toHaveScreenshot(`${themeStoryId}.png`, {
+        animations: 'disabled',
+        maxDiffPixels: 0,
+        threshold: 0.1,
+      });
     });
   }
 }

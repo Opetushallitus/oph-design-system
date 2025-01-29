@@ -51,7 +51,8 @@ var COMMON_THEME_OPTIONS = {
     MuiButton: {
       defaultProps: {
         disableRipple: true,
-        disableElevation: true
+        disableElevation: true,
+        loadingPosition: "start"
       },
       styleOverrides: {
         root: {
@@ -221,6 +222,14 @@ var COMMON_THEME_OPTIONS = {
         size: "small"
       }
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          ...theme.typography.body2,
+          color: ophColors.black
+        })
+      }
+    },
     MuiFormLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
@@ -243,14 +252,12 @@ var COMMON_THEME_OPTIONS = {
       }
     },
     MuiLink: {
+      defaultProps: {
+        underline: "hover"
+      },
       styleOverrides: {
         root: {
-          textDecoration: "none",
-          "&:hover, &:active": {
-            textDecoration: "underline"
-          },
           "&.Mui-focusVisible": focusOutlineStyle({
-            textDecoration: "underline",
             borderRadius: "1px"
           }),
           "& svg.OphLink-OpenInNewIcon": {
@@ -258,7 +265,18 @@ var COMMON_THEME_OPTIONS = {
             marginLeft: "0.15em",
             verticalAlign: "middle",
             marginTop: "-0.15em"
-          }
+          },
+          variants: [
+            {
+              props: { underline: "hover" },
+              style: {
+                textDecoration: "none",
+                "&:hover, &:active, &.Mui-focusVisible": {
+                  textDecoration: "underline"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -314,8 +332,6 @@ var COMMON_THEME_OPTIONS = {
                   color: ophColors.grey800
                 },
                 "& .MuiOutlinedInput-notchedOutline": {
-                  // Fix: nothcedOutline touches focus outline on firefox when fullscreen
-                  top: "-4.5px",
                   borderColor: ophColors.grey800,
                   borderRadius: "2px",
                   borderWidth: "1px"
@@ -392,10 +408,12 @@ var COMMON_THEME_OPTIONS = {
       },
       styleOverrides: {
         root: ({ theme }) => ({
+          borderRadius: "2px",
+          padding: "6px 16px",
+          lineHeight: "24px",
+          borderWidth: "2px",
           color: ophColors.grey900,
           borderColor: theme.palette.primary.main,
-          borderWidth: "2px",
-          borderRadius: "2px",
           "&.Mui-selected": {
             backgroundColor: theme.palette.primary.main,
             color: ophColors.white,
@@ -573,4 +591,4 @@ export {
   useOphTheme,
   OphThemeProvider
 };
-//# sourceMappingURL=chunk-2Y6NCBS3.js.map
+//# sourceMappingURL=chunk-DKNYXGN3.js.map
