@@ -15,21 +15,21 @@
     "start-and-test": "start-server-and-test deps-and-dev 3000 test"
   },
   "dependencies": {
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.1.0",
-    "@mui/material-nextjs": "^6.1.0",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.2",
+    "@mui/material-nextjs": "^6.4.2",
     "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-0.2.0.tgz",
-    "next": "14.2.10",
-    "next-intl": "^3.19.1",
+    "next": "15.1.6",
+    "next-intl": "^3.26.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/node": "^20.16.5",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.17.16",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "typescript": "^5"
   }
 }

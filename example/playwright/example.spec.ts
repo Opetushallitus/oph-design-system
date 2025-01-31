@@ -7,7 +7,7 @@ import en from '../messages/en.json';
 const setLang = async (
   context: BrowserContext,
   baseURL: string | undefined,
-  lang: Language,
+  lang: OphLanguage,
 ) => {
   await context.addCookies([{ url: baseURL, name: 'lang', value: lang }]);
 };
