@@ -1,8 +1,7 @@
-[![Build](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml/badge.svg)](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml)
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Opetushallitus_oph-design-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Opetushallitus_oph-design-system)
-
 # OPH Design System
+
+[![Build](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml/badge.svg)](https://github.com/Opetushallitus/oph-design-system/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Opetushallitus_oph-design-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Opetushallitus_oph-design-system)
 
 OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä.
 Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-komponenttikirjaston.
@@ -16,12 +15,30 @@ Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-ko
 - [Next.js](https://nextjs.org/) v14 (App router)
 - [Storybook](https://storybook.js.org/) v8
 
-## Komponenttikirjaston käyttöönotto
+## Asentaminen
 
-Asenna komponenttikirjasto riippuvuutena suoraan Githubista:
+Versiosta 0.2.0 lähtien komponenttikirjasto on julkaistu Github Packagesiin.
+
+Asentamista varten tarvitaan todennustoken, jonka luontiohjeet löytyvät [täältä](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
+
+Kun token on luotu, se täytyy ottaa vielä käyttöön npm-paketeille. Lisää kotihakemistoosi `.npmrc`-tiedostoon seuraavanlainen rivi:
 
 ```
-npm i "github:opetushallitus/oph-design-system"
+//npm.pkg.github.com/:_authToken=todennustoken
+```
+
+Korvaa "todennustoken" luomasi tokenin merkkijonolla.
+
+Tämän jälkeen täytyy vielä konfiguroida npm käyttämään Github Packagesin pakettivarastoa `@opetushallitus`-skoopin paketeille. Lisää projektisi `.npmrc`-tiedostoon rivi:
+
+```
+@opetushallitus:registry=https://npm.pkg.github.com
+```
+
+Asenna komponenttikirjasto samaan tapaan kuin mikä tahansa riippuvuus:
+
+```
+npm i "@opetushallitus/oph-design-system"
 ```
 
 Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
@@ -35,6 +52,8 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
   }
 }
 ```
+
+## Komponenttikirjaston käyttöönotto
 
 Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
 Next.js:ää käytettäessä voit ottaa teeman käyttöön juuritason layoutissa seuraavasti:
