@@ -8,3 +8,4 @@ __snapshots__/__diff_output__
 .last-run.json
 pkg
 test-results
+dist
