@@ -3,6 +3,13 @@
   "version": "0.1.9",
   "description": "",
   "type": "module",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Opetushallitus/oph-design-system.git"
+  },
   "exports": {
     ".": "./dist/index.js",
     "./theme": "./dist/theme/index.js",

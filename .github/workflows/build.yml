@@ -49,12 +49,19 @@ jobs:
           retention-days: 10
           if-no-files-found: ignore
 
-  build:
+  publish:
     needs: [check-and-test, test-playwright]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/build-storybook
         if: github.ref == 'refs/heads/main'
       - uses: ./.github/actions/deploy-storybook
         if: github.ref == 'refs/heads/main'
+      - uses: ./.github/actions/publish-package
+        if: github.ref == 'refs/heads/main'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
