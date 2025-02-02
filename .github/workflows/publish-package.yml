@@ -1,7 +1,6 @@
 name: Publish package
 on:
   workflow_dispatch:
-
 jobs:
   publish:
     runs-on: ubuntu-latest
