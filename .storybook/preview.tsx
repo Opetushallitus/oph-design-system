@@ -6,6 +6,11 @@ import { ophColors } from '@/src';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        method: 'alphabetical',
+      },
+    },
     backgrounds: {
       values: [
         { name: 'default', value: ophColors.grey50 },
@@ -34,7 +39,7 @@ const preview: Preview = {
         // The label to show for this toolbar item
         title: 'Theme',
         icon: 'circlehollow',
-        // Array of plain string values or MenuItem shape (see below)
+        // Array of plain string values e below)
         items: [
           { value: 'oph', title: 'OPH' },
           { value: 'opintopolku', title: 'Opintopolku' },
