@@ -1,6 +1,6 @@
 import OpenInNew from '@mui/icons-material/OpenInNew';
 import { Link, type LinkOwnProps, type Theme } from '@mui/material';
-import { EXTERNAL_LINK_REGEX } from './common';
+import { EXTERNAL_LINK_REGEX } from '../common';
 import { type SystemProps } from '@mui/system';
 import { forwardRef } from 'react';
 import type {

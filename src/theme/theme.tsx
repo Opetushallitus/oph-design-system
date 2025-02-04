@@ -1,6 +1,5 @@
 'use client';
 
-import { ophColors } from '../colors';
 import { CssBaseline } from '@mui/material';
 import {
   type Theme,
@@ -14,6 +13,7 @@ import type { OphThemeParams } from '../types';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import { focusOutlineStyle, getLocale } from './theme-utils';
+import { ophColors } from '../ophColors';
 
 const themeBase = createTheme({
   breakpoints: {

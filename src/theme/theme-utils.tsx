@@ -1,6 +1,6 @@
 import { enUS, fiFI, svSE } from '@mui/material/locale';
 import type { OphLanguage } from '../types';
-import { ophColors } from '../colors';
+import { ophColors } from '../ophColors';
 import type { CSSProperties } from 'react';
 
 export function getLocale(lang?: OphLanguage) {
