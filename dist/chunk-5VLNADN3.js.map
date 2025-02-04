@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/common.ts"],"names":[],"mappings":";AAAO,IAAM,sBAAsB","sourcesContent":["export const EXTERNAL_LINK_REGEX = /^https?:\\/\\//;\n"]}

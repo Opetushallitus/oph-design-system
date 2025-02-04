@@ -1,0 +1,19 @@
+name: Build and publish
+description: Build and publish package to GitHub Packages
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@opetushallitus'
+    - name: Install dependencies
+      shell: bash
+      run: npm ci --no-audit
+    - name: Build package
+      shell: bash
+      run: npm run build
+    - name: Publish to GitHub Packages
+      shell: bash
+      run: npm publish

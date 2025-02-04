@@ -8,12 +8,12 @@ export default tsEslint.config(
   {
     ignores: [
       '**/.next',
-      '**/*.mjs',
       'coverage',
       'dist',
       'example',
       'lcov',
       'storybook-static',
+      '.husky',
     ],
   },
   js.configs.recommended,
@@ -30,7 +30,9 @@ export default tsEslint.config(
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['*.config.mjs', '.lintstagedrc.mjs'],
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },

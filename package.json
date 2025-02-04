@@ -1,14 +1,22 @@
 {
   "name": "@opetushallitus/oph-design-system",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "",
   "type": "module",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Opetushallitus/oph-design-system.git"
+  },
   "exports": {
     ".": "./dist/index.js",
     "./theme": "./dist/theme/index.js",
     "./next/theme": "./dist/next/theme/index.js"
   },
   "scripts": {
+    "prepare": "husky || true",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "start-built-storybook": "npx http-server ./storybook-static -p 6006 --silent",
@@ -58,7 +66,9 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-storybook": "^0.11.2",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^15.4.3",
     "prettier": "^3.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
