@@ -17,8 +17,12 @@ type OmittedPropNames =
   | 'gutterBottom';
 
 interface OphAdditionalLinkProps {
-  /** Icon visibility override. If not given, icon visibility is deduced from href (relative links without icon) */
+  /**
+   * Icon visibility override. If not given, icon visibility is deduced from href (relative links without icon)
+   */
   iconVisible?: boolean;
+  underline?: 'hover' | 'always';
+  variant?: 'inherit' | 'body1' | 'body2';
 }
 
 interface OphLinkTypeMap<
@@ -48,6 +52,9 @@ export type OphLinkProps<
   component?: C;
 } & Omit<MuiOphLinkProps<D, OphAdditionalLinkProps>, 'component'>;
 
+/**
+ * A Link component based on [MUI Link](https://mui.com/material-ui/api/link/).
+ */
 // https://github.com/mui/material-ui/issues/32420
 export const OphLink: OverridableComponent<OphLinkTypeMap<OphLinkProps>> =
   forwardRef(function renderLink<C extends React.ElementType>(

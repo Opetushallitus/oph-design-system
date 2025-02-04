@@ -1,27 +1,3 @@
-/**
- * `OphFieldWrapper` is a React component that wraps form fields with additional
- * functionality such as labels, helper text, and error messages.
- * Form fields components in ODS should already be wrapped and have props for adding label etc.
- * Only use this component if you need to show a form field with additional info and it's not already wrapped with OphFieldWrapper.
- *
- * @param {string} [label] - The label text for the form field.
- * @param {string} [helperText] - The helper text displayed below the input field.
- * @param {string} [errorMessage] - The error message displayed below the input field.
- * @param {Function} renderInput - A function that renders the input component. It receives an object with a `labelId` property.
- * @param {Omit<FormControlProps, 'children'>} props - Additional props to be passed to the `FormControl` component.
- *
- * @returns {JSX.Element} The rendered form field wrapper component.
- *
- * @example
- * ```tsx
- * <OphFieldWrapper
- *   label="Username"
- *   helperText="Enter your username"
- *   errorMessage="Username is required"
- *   renderInput={({ labelId }) => <OphInput inputProps={{ 'aria-labelledby': labelId }} />}
- * />
- * ```
- */
 'use client';
 import {
   FormControl,
@@ -36,24 +12,57 @@ const StyledFormHelperText = styled(FormHelperText)(({ theme }) => ({
   margin: theme.spacing(0.5, 0),
 }));
 
-export interface OphFieldWrapperCommonProps {
+export interface OphFormFieldWrapperCommonProps {
+  /**
+   * If true, the label will indicate that the input is required.
+   */
   required?: boolean;
+  /**
+   * The label text show above the input
+   */
   label?: string;
+  /**
+   * The helper text shown below the input
+   */
   helperText?: string;
+  /**
+   * An error message shown after the input. If defined also sets the field and label in error state (red).
+   */
   errorMessage?: string;
 }
 
-export interface OphFieldWrapperOwnProps extends OphFieldWrapperCommonProps {
+export interface OphFormFieldWrapperOwnProps
+  extends OphFormFieldWrapperCommonProps {
+  /**
+   * Function that renders the input. LabelId is the ID of the label element and can be passed to "aria-labelledby"-attribute.
+   */
   renderInput: (props: { labelId?: string }) => React.ReactNode;
 }
 
+export type OphFormFieldWrapperProps = OphFormFieldWrapperOwnProps &
+  Omit<
+    FormControlProps,
+    | 'children'
+    | 'color'
+    | 'hiddenLabel'
+    | 'size'
+    | 'variant'
+    | 'margin'
+    | 'component'
+  >;
+
+/**
+ * A React component that wraps an input field with additional functionality such as labels, helper text, and error messages.
+ * Form field components in ODS should already be wrapped and have props for adding label etc.
+ * Only use this component if you need to show a form field with additional info and it's not already wrapped with OphFormFieldWrapper.
+ */
 export const OphFormFieldWrapper = ({
   label,
   renderInput,
   helperText,
   errorMessage,
   ...props
-}: Omit<FormControlProps, 'children'> & OphFieldWrapperOwnProps) => {
+}: OphFormFieldWrapperProps) => {
   const id = useId();
   const labelId = label ? `OphFormFieldWrapper-${id}-label` : undefined;
   return (

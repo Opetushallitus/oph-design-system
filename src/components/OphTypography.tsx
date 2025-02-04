@@ -20,6 +20,9 @@ export type OphTypographyProps = Omit<
   OmittedSystemPropNames | 'paragraph' | 'variantMapping'
 >;
 
+/**
+ * A Typography component based on [MUI Typography](https://mui.com/material-ui/api/typography/).
+ */
 export const OphTypography = forwardRef<HTMLElement, OphTypographyProps>(
   function renderTypography(props, ref) {
     return <Typography {...props} ref={ref} />;

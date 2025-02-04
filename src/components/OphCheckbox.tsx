@@ -23,6 +23,9 @@ export type OphCheckboxProps = Omit<
   error?: boolean;
 };
 
+/**
+ * A Checkbox component based on [MUI Checkbox](https://mui.com/material-ui/api/checkbox/).
+ */
 export const OphCheckbox = forwardRef<HTMLButtonElement, OphCheckboxProps>(
   function renderCheckbox(
     { label, error, formControlLabelProps, ...props },

@@ -1,10 +1,6 @@
 'use client';
 
 import { Select, MenuItem, type SelectProps } from '@mui/material';
-import {
-  OphFormFieldWrapper,
-  type OphFieldWrapperCommonProps,
-} from './OphFormFieldWrapper';
 
 export type OphSelectValue<T> = SelectProps<T>['value'];
 
@@ -14,20 +10,32 @@ export interface OphSelectOption<T> {
 }
 
 export interface OphSelectProps<T>
-  extends Omit<SelectProps<T>, 'children' | 'label' | 'variant'> {
+  extends Omit<
+    SelectProps<T>,
+    | 'children'
+    | 'label'
+    | 'variant'
+    | 'components'
+    | 'componentsProps'
+    | 'disableUnderline'
+  > {
+  /**
+   * Selectable options for the select component.
+   */
   options: Array<OphSelectOption<T>>;
+  /**
+   * Can the value be cleared from the select component.
+   */
   clearable?: boolean;
+  /**
+   * Placeholder text shown when no value is selected.
+   */
   placeholder?: string;
 }
 
-export interface OphSelectFormFieldProps<T>
-  extends OphFieldWrapperCommonProps,
-    OphSelectProps<T> {
-  options: Array<OphSelectOption<T>>;
-  clearable?: boolean;
-  placeholder?: string;
-}
-
+/**
+ * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
+ */
 export const OphSelect = <T extends string>({
   placeholder,
   clearable,
@@ -47,23 +55,5 @@ export const OphSelect = <T extends string>({
         );
       })}
     </Select>
-  );
-};
-
-export const OphSelectFormField = <T extends string>({
-  required,
-  label,
-  helperText,
-  errorMessage,
-  ...props
-}: OphSelectFormFieldProps<T | ''>) => {
-  return (
-    <OphFormFieldWrapper
-      required={required}
-      label={label}
-      helperText={helperText}
-      errorMessage={errorMessage}
-      renderInput={({ labelId }) => <OphSelect {...props} labelId={labelId} />}
-    />
   );
 };
