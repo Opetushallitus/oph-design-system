@@ -53,8 +53,13 @@ async function getStoryContext(
   );
 }
 
-export const filterStories = (stories: Array<IndexEntry>): Array<IndexEntry> =>
-  stories.filter((story) => !story.id.includes('docs'));
+export const filterStories = (
+  stories: Array<IndexEntry>,
+): Array<IndexEntry> => {
+  return stories.filter(
+    (story) => !story.id.endsWith('--docs') && story.tags?.includes('test'),
+  );
+};
 
 export function getStoryUrl(theme: OphThemeVariant, id: string): string {
   const params = new URLSearchParams({

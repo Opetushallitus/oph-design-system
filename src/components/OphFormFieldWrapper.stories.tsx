@@ -5,9 +5,6 @@ import { OphInput } from './OphInput';
 const meta = {
   title: 'utils/OphFormFieldWrapper',
   component: OphFormFieldWrapper,
-  parameters: {
-    docs: { source: { type: 'dynamic' } },
-  },
 } satisfies Meta<typeof OphFormFieldWrapper>;
 
 export default meta;
@@ -15,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof OphFormFieldWrapper>;
 
 export const Default: Story = {
-  tags: ['!dev'],
+  tags: ['!dev', '!test'],
   args: {
     label: 'Label',
     required: true,

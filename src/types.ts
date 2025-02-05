@@ -1,12 +1,24 @@
 import type { ThemeOptions } from '@mui/material';
 
+/**
+ * Supported language codes.
+ */
 export type OphLanguage = 'fi' | 'sv' | 'en';
 
 export type OphThemeVariant = 'oph' | 'opintopolku';
 
 export interface OphThemeParams {
+  /**
+   * The theme variant to use. Affects colors.
+   */
   variant: OphThemeVariant;
+  /**
+   * Language used for internal translations of components.
+   */
   lang?: OphLanguage;
+  /**
+   * Overrides for theme options.
+   */
   overrides?: ThemeOptions;
 }
 

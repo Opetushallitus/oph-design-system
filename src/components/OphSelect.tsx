@@ -35,6 +35,7 @@ export interface OphSelectProps<T>
 
 /**
  * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
+ * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
  */
 export const OphSelect = <T extends string>({
   placeholder,

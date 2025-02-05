@@ -18,7 +18,8 @@ type OmittedPropNames =
 
 interface OphAdditionalLinkProps {
   /**
-   * Icon visibility override. If not given, icon visibility is deduced from href (relative links without icon)
+   * Icon visibility override. If not given, icon visibility is deduced from href.
+   * If href is an URL with protocol, then the link is shown by default.
    */
   iconVisible?: boolean;
   underline?: 'hover' | 'always';

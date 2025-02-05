@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof OphSelect>;
 
 export const Default: Story = {
-  tags: ['!dev'],
+  tags: ['!dev', '!test'],
   args: {
     options: OPTIONS,
     placeholder: 'Select',

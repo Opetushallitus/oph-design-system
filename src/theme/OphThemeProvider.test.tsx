@@ -1,5 +1,5 @@
 import { Alert } from '@mui/material';
-import { OphThemeProvider } from './theme';
+import { OphThemeProvider } from './OphThemeProvider';
 import { render, screen } from '@testing-library/react';
 import { expect, test, describe } from 'vitest';
 import type { OphLanguage } from '../types';

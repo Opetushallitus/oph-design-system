@@ -12,7 +12,7 @@ type Story = StoryObj<typeof OphInput>;
 const LABEL = 'Label';
 
 export const Default: Story = {
-  tags: ['!dev'],
+  tags: ['!dev', '!test'],
   args: {
     value:
       'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',

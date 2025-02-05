@@ -1,10 +1,10 @@
-import { LinkBehavior } from './LinkBehavior';
+import { OphNextJsLinkBehavior } from './OphNextJsLinkBehavior';
 import { render } from '@testing-library/react';
 import { vi, expect, test, describe, afterEach } from 'vitest';
 
 vi.mock('next/link', () => ({ default: vi.fn() }));
 
-describe('LinkBehavior', () => {
+describe('OphNextJsLinkBehavior', () => {
   afterEach(() => {
     vi.resetAllMocks();
   });
@@ -18,7 +18,7 @@ describe('LinkBehavior', () => {
     ],
   ])('%s', async (_msg, href, times) => {
     const NextLink = (await import('next/link')).default;
-    render(<LinkBehavior href={href} />);
+    render(<OphNextJsLinkBehavior href={href} />);
     expect(NextLink).toHaveBeenCalledTimes(times);
   });
 });

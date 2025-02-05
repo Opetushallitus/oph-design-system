@@ -8,5 +8,3 @@ export { OphInput } from './components/OphInput';
 export { OphInputFormField } from './components/OphInputFormField';
 export { ophColors } from './ophColors';
 export { OphFormFieldWrapper } from './components/OphFormFieldWrapper';
-
-export type { OphThemeParams, OphThemeVariant, OphLanguage } from './types';

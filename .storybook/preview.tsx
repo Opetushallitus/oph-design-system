@@ -8,7 +8,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        method: 'alphabetical',
+        order: ['Getting started', 'Components', 'Colors', 'Utils'],
       },
     },
     backgrounds: {
