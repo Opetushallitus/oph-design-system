@@ -59,7 +59,7 @@ export const ExternalFocusedSmall: Story = {
 export const Internal: Story = {
   args: {
     href: '#',
-    children: 'Linkki',
+    children: 'Link',
   },
 };
 
@@ -79,7 +79,7 @@ export const UnderlineAlways: Story = {
   ...Internal,
   args: {
     href: '#',
-    children: 'Linkki',
+    children: 'Link',
     underline: 'always',
   },
 };

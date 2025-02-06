@@ -17,10 +17,10 @@ test.each([
   (href, iconVisible, expectedIconVisibility) => {
     const { container } = renderWithOphTheme(
       <OphLink href={href} iconVisible={iconVisible}>
-        Linkki
+        Link
       </OphLink>,
     );
-    const link = screen.getByRole('link', { name: 'Linkki' });
+    const link = screen.getByRole('link', { name: 'Link' });
     const icon = container.querySelector('svg');
     expect(link).toBeVisible();
     if (expectedIconVisibility) {
@@ -31,13 +31,13 @@ test.each([
   },
 );
 
-test('Can pass nextjs Link as component prop', () => {
+test('Can pass next.js Link as component prop', () => {
   renderWithOphTheme(
     <OphLink href="/internal" component={Link} prefetch={false}>
-      Linkki
+      Link
     </OphLink>,
   );
 
-  const link = screen.getByRole('link', { name: 'Linkki' });
+  const link = screen.getByRole('link', { name: 'Link' });
   expect(link).toBeVisible();
 });

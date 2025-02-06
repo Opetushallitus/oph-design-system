@@ -14,12 +14,12 @@ type Story = StoryObj<typeof OphButton>;
 export const Filled: Story = {
   args: {
     variant: 'contained',
-    children: 'Painike',
+    children: 'Button',
   },
   render({ variant, children, startIcon, disabled }) {
     return (
       <OphButton
-        aria-label="Painike"
+        aria-label="Button"
         variant={variant}
         disabled={disabled}
         startIcon={startIcon}
