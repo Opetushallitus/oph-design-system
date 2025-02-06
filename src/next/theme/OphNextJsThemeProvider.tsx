@@ -12,6 +12,8 @@ import { MUI_NEXTJS_OVERRIDES } from './theme-nextjs';
  * Compared to [OphThemeProvider](/docs/theme-ophthemeprovider--docs) this overrides some theme options with Next.js specific ones:
  * - Links automatically try to detect if it's an internal or external link and use Next.js Link-component or normal a-tag
  * - Open Sans font is automatically loaded using next/font/google
+ *
+ * For details check MUI documentation about [how to use with Next.js](https://mui.com/material-ui/integrations/nextjs/)
  */
 export const OphNextJsThemeProvider = ({
   lang,

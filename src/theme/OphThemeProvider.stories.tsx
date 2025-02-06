@@ -1,6 +1,12 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { OphThemeProvider } from './OphThemeProvider';
-import { OphLink } from '@/src/components/OphLink';
+import {
+  Controls,
+  Description,
+  Source,
+  Subtitle,
+  Title,
+} from '@storybook/blocks';
 
 const meta = {
   title: 'theme/OphThemeProvider',
@@ -11,11 +17,32 @@ export default meta;
 
 type Story = StoryObj<typeof OphThemeProvider>;
 
+const example = `import React from 'react';
+import { OphThemeProvider } from '@opetushallitus/oph-design-system/theme';
+import { OphButton } from '@opetushallitus/oph-design-system';
+
+export const App = () => {
+  return (
+    <OphThemeProvider lang="fi" variant="oph">
+      <OphButton variant="contained">Button</OphButton>
+    </Theme>
+  );
+};
+`;
+
 export const Default: Story = {
   tags: ['!dev', '!test'],
-  args: {
-    variant: 'oph',
-    lang: 'fi',
-    children: <OphLink href="https://opintopolku.fi">Themed Link</OphLink>,
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Source code={example} />
+          <Controls />
+        </>
+      ),
+    },
   },
 };
