@@ -1,7 +1,7 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { OphThemeProvider } from './OphThemeProvider';
 import {
-  Controls,
+  ArgTypes,
   Description,
   Source,
   Subtitle,
@@ -40,7 +40,7 @@ export const Default: Story = {
           <Subtitle />
           <Description />
           <Source code={example} />
-          <Controls />
+          <ArgTypes />
         </>
       ),
     },

@@ -1,7 +1,7 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { OphNextJsThemeProvider } from './OphNextJsThemeProvider';
 import {
-  Controls,
+  ArgTypes,
   Description,
   Source,
   Subtitle,
@@ -48,7 +48,7 @@ export const Default: Story = {
           <Subtitle />
           <Description />
           <Source code={example} />
-          <Controls />
+          <ArgTypes />
         </>
       ),
     },
