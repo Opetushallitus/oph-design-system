@@ -8,7 +8,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Getting started', 'Components', 'Colors', 'Utils'],
+        order: ['Getting started', 'Colors', 'Theme', 'components', 'Utils'],
       },
     },
     backgrounds: {
@@ -39,7 +39,6 @@ const preview: Preview = {
         // The label to show for this toolbar item
         title: 'Theme',
         icon: 'circlehollow',
-        // Array of plain string values e below)
         items: [
           { value: 'oph', title: 'OPH' },
           { value: 'opintopolku', title: 'Opintopolku' },

@@ -9,7 +9,7 @@ import {
 } from '@storybook/blocks';
 
 const meta = {
-  title: 'theme/OphThemeProvider',
+  title: 'Theme/OphThemeProvider',
   component: OphThemeProvider,
 } satisfies Meta<typeof OphThemeProvider>;
 

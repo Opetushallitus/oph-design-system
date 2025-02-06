@@ -9,7 +9,7 @@ import {
 } from '@storybook/blocks';
 
 const meta = {
-  title: 'theme/OphNextJsThemeProvider',
+  title: 'Theme/OphNextJsThemeProvider',
   component: OphNextJsThemeProvider,
 } satisfies Meta<typeof OphNextJsThemeProvider>;
 

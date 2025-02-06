@@ -9,7 +9,7 @@ import {
 } from '@storybook/blocks';
 
 const meta = {
-  title: 'utils/OphFormFieldWrapper',
+  title: 'Utils/OphFormFieldWrapper',
   component: OphFormFieldWrapper,
 } satisfies Meta<typeof OphFormFieldWrapper>;
 
