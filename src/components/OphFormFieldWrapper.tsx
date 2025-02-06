@@ -52,9 +52,10 @@ export type OphFormFieldWrapperProps = OphFormFieldWrapperOwnProps &
   >;
 
 /**
- * A React component that wraps an input field with additional functionality such as labels, helper text, and error messages.
- * Form field components in ODS should already be wrapped and have props for adding label etc.
- * Only use this component if you need to show a form field with additional info and it's not already wrapped with OphFormFieldWrapper.
+ * A React component that wraps an input field with additional functionality such as labels, helper text and error messages.
+ * Components which have a name ending with "FormField" in ODS are already wrapped in OphFormFieldWrapper internally.
+ *
+ * **Only use this component when you need to add form field UI fragments for your input and it is not already wrapped in OphFormFieldWrapper.**
  */
 export const OphFormFieldWrapper = ({
   label,
