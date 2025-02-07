@@ -26,6 +26,7 @@ const preview: Preview = {
       default: 'default',
     },
     controls: {
+      disableSaveFromUI: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -49,7 +50,7 @@ const preview: Preview = {
         items: [
           { value: 'oph', title: 'OPH' },
           { value: 'opintopolku', title: 'Opintopolku' },
-          { value: 'both', title: 'Molemmat' },
+          { value: 'both', title: 'Both themes' },
         ],
         // Change title based on selected value
         dynamicTitle: true,
