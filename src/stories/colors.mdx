@@ -11,6 +11,7 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 import { ophColors } from '@opetushallitus/oph-design-system';
 
 const BORDER_COLOR = ophColors.grey600;
+const ERROR_COLOR = ophColors.alias.error;
 ```
 
 <ColorPalette>
@@ -89,8 +90,8 @@ const BORDER_COLOR = ophColors.grey600;
   <ColorItem
     title="Semantic"
     colors={{
-      success: ophColors.alias.success,
-      error: ophColors.alias.error,
+      'alias.success': ophColors.alias.success,
+      'alias.error': ophColors.alias.error,
     }}
   />
 </ColorPalette>
