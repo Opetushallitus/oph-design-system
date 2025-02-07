@@ -1,1 +1,3 @@
-export { createOphTheme, useOphTheme, OphThemeProvider } from './theme';
+export { OphThemeProvider } from './OphThemeProvider';
+export { useOphTheme } from './useOphTheme';
+export { createOphTheme } from './createOphTheme';

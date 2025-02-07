@@ -1,19 +1,15 @@
 'use client';
 
-import { ophColors } from '../colors';
-import { CssBaseline } from '@mui/material';
 import {
   type Theme,
   type ThemeOptions,
   createTheme,
-  ThemeProvider,
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
-import { useMemo, type ReactNode } from 'react';
-import type { OphThemeParams } from '../types';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
-import { focusOutlineStyle, getLocale } from './theme-utils';
+import { focusOutlineStyle } from './theme-utils';
+import { ophColors } from '../ophColors';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -511,7 +507,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
   },
 };
 
-const OPH_THEME_OPTIONS = Object.freeze(
+export const OPH_THEME_OPTIONS = Object.freeze(
   deepmerge(
     COMMON_THEME_OPTIONS,
     {
@@ -531,7 +527,7 @@ const OPH_THEME_OPTIONS = Object.freeze(
   ),
 );
 
-const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
+export const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
   deepmerge(
     COMMON_THEME_OPTIONS,
     {
@@ -547,47 +543,3 @@ const OPINTOPOLKU_THEME_OPTIONS = Object.freeze(
     { clone: true },
   ),
 );
-
-const EMPTY_OBJECT = {} as const;
-
-export function createOphTheme({
-  variant,
-  lang,
-  overrides = EMPTY_OBJECT,
-}: OphThemeParams) {
-  switch (variant) {
-    case 'oph':
-      return createTheme(
-        deepmerge(OPH_THEME_OPTIONS, overrides, { clone: true }),
-        getLocale(lang),
-      );
-    case 'opintopolku':
-      return createTheme(
-        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides, { clone: true }),
-        getLocale(lang),
-      );
-    default:
-      throw Error('Theme variant must be "oph" or "opintopolku"!');
-  }
-}
-
-export const useOphTheme = ({ variant, lang, overrides }: OphThemeParams) =>
-  useMemo(
-    () => createOphTheme({ variant, lang, overrides }),
-    [variant, lang, overrides],
-  );
-
-export const OphThemeProvider = ({
-  variant,
-  lang,
-  overrides,
-  children,
-}: OphThemeParams & { children: ReactNode }) => {
-  const theme = useOphTheme({ variant, lang, overrides });
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
-  );
-};
