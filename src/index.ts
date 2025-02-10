@@ -1,10 +1,10 @@
-export { OphButton } from './OphButton';
-export { OphCheckbox } from './OphCheckbox';
-export { OphSelect, OphSelectFormField } from './OphSelect';
-export { OphTypography } from './OphTypography';
-export { OphLink } from './OphLink';
-export { OphInput, OphInputFormField } from './OphInput';
-export { ophColors } from './colors';
-export { OphFormFieldWrapper } from './OphFormFieldWrapper';
-
-export type { OphThemeParams, OphThemeVariant, OphLanguage } from './types';
+export { OphButton } from './components/OphButton';
+export { OphCheckbox } from './components/OphCheckbox';
+export { OphSelect } from './components/OphSelect';
+export { OphSelectFormField } from './components/OphSelectFormField';
+export { OphTypography } from './components/OphTypography';
+export { OphLink } from './components/OphLink';
+export { OphInput } from './components/OphInput';
+export { OphInputFormField } from './components/OphInputFormField';
+export { ophColors } from './ophColors';
+export { OphFormFieldWrapper } from './components/OphFormFieldWrapper';

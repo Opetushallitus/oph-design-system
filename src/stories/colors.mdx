@@ -1,0 +1,97 @@
+import { ophColors } from '../ophColors';
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="Colors" />
+
+# Colors
+
+## Example
+
+```js
+import { ophColors } from '@opetushallitus/oph-design-system';
+
+const BORDER_COLOR = ophColors.grey600;
+const ERROR_COLOR = ophColors.alias.error;
+```
+
+<ColorPalette>
+  <ColorItem
+    title="Grey"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('grey'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Neutral"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.match(/black|white/),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Blue"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.match(/blue|cyan/i),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Green"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('green'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Red"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('red'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Orange"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('orange'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Yellow"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('yellow'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Pink"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('pink'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Purple"
+    colors={Object.fromEntries(
+      Object.entries(ophColors).filter(([name, color]) =>
+        name.startsWith('purple'),
+      ),
+    )}
+  />
+  <ColorItem
+    title="Semantic"
+    colors={{
+      'alias.success': ophColors.alias.success,
+      'alias.error': ophColors.alias.error,
+    }}
+  />
+</ColorPalette>

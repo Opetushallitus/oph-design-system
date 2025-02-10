@@ -192,8 +192,7 @@ Komponenttikirjaston jakeluversio muodostetaan komennolla:
 npm run build
 ```
 
-Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa.
-Jakeluversion tiedostot on lisätty myös Git-säilöön `/dist`-hakemistoon, jotta komentoa ei tarvitse ajaa kirjaston asennuksen yhteydessä.
+Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa. Jakeluversiot julkaistaan [Opetushallituksen Github Packages -pakettivarastoon](https://github.com/orgs/Opetushallitus/packages). Versioimisessa käytetään [semanttista versiointia](https://semver.org/).
 
 ## Esimerkkiprojekti
 

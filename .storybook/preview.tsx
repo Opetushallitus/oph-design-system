@@ -6,6 +6,18 @@ import { ophColors } from '@/src';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Getting started',
+          'Colors',
+          'Theme',
+          'components',
+          'Utils',
+        ],
+      },
+    },
     backgrounds: {
       values: [
         { name: 'default', value: ophColors.grey50 },
@@ -14,6 +26,7 @@ const preview: Preview = {
       default: 'default',
     },
     controls: {
+      disableSaveFromUI: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -34,11 +47,10 @@ const preview: Preview = {
         // The label to show for this toolbar item
         title: 'Theme',
         icon: 'circlehollow',
-        // Array of plain string values or MenuItem shape (see below)
         items: [
           { value: 'oph', title: 'OPH' },
           { value: 'opintopolku', title: 'Opintopolku' },
-          { value: 'both', title: 'Molemmat' },
+          { value: 'both', title: 'Both themes' },
         ],
         // Change title based on selected value
         dynamicTitle: true,
