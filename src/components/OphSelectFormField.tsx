@@ -16,10 +16,12 @@ export const OphSelectFormField = <T extends string>({
   label,
   helperText,
   errorMessage,
+  sx,
   ...props
 }: OphSelectFormFieldProps<T | ''>) => {
   return (
     <OphFormFieldWrapper
+      sx={sx}
       required={required}
       label={label}
       helperText={helperText}

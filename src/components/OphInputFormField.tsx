@@ -19,11 +19,12 @@ export const OphInputFormField = forwardRef<
   HTMLInputElement,
   OphInputFormFieldProps
 >(function renderInputFormField(
-  { required, inputProps, label, helperText, errorMessage, ...rest },
+  { sx, required, inputProps, label, helperText, errorMessage, ...rest },
   ref,
 ) {
   return (
     <OphFormFieldWrapper
+      sx={sx}
       required={required}
       label={label}
       helperText={helperText}
