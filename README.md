@@ -6,8 +6,6 @@
 OPH Design System (ODS) on Opetushallituksen verkkopalveluiden käyttöön tarkoitettu muotoilujärjestelmä.
 Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-komponenttikirjaston.
 
-**Huom! Tällä hetkellä komponenttikirjasto on vielä varhaisella kehitysasteella. Käyttöönottoa ei suositella ennen versiota 1.0.0!**
-
 ## Käytetyt teknologiat
 
 - [React](https://react.dev/) v18
