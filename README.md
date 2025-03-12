@@ -51,6 +51,29 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 }
 ```
 
+### Asentaminen ci-workflowssa
+
+Lisää build workflowssa aws:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin: 
+
+```
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Määrittele paketteja asentaviin jobeihin npm registry:
+
+```
+  registry-url: 'https://npm.pkg.github.com'
+  scope: '@opetushallitus'
+```
+
+Anna deploy-zip-jobille tarvittavat permissiot:
+
+```
+permissions:
+  contents: read
+  packages: read
+```
+
 ## Komponenttikirjaston käyttöönotto
 
 Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
