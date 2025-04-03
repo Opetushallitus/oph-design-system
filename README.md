@@ -51,22 +51,25 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 }
 ```
 
-### Asentaminen ci-workflowssa
+### Asentaminen Github Actions -workflowssa
 
-Lisää build workflowssa aws:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin: 
+Lisää build workflowssa AWS:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin: 
 
 ```
+env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-Määrittele paketteja asentaviin jobeihin npm registry:
+Määrittele `setup-node`-actionille tarvittavat asetukset:
 
 ```
-  registry-url: 'https://npm.pkg.github.com'
-  scope: '@opetushallitus'
+  - uses: actions/setup-node@v4
+    with:
+      registry-url: 'https://npm.pkg.github.com'
+      scope: '@opetushallitus'
 ```
 
-Anna deploy-zip-jobille tarvittavat permissiot:
+Jos toteutat Github Actionsilla esimerkiksi paketin lähettämisen S3-buckettiin ja olet määrittänyt sitä varten lisäoikeuksia, täytyy sinun lisätä myös tarvittavat lukuoikeudet permissions-osioon:
 
 ```
 permissions:
