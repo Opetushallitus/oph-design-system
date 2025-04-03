@@ -51,6 +51,32 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 }
 ```
 
+### Asentaminen Github Actions -workflowssa
+
+Lisää build workflowssa AWS:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin: 
+
+```
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Määrittele `setup-node`-actionille tarvittavat asetukset:
+
+```
+  - uses: actions/setup-node@v4
+    with:
+      registry-url: 'https://npm.pkg.github.com'
+      scope: '@opetushallitus'
+```
+
+Jos toteutat Github Actionsilla esimerkiksi paketin lähettämisen S3-buckettiin ja olet määrittänyt sitä varten lisäoikeuksia, täytyy sinun lisätä myös tarvittavat lukuoikeudet permissions-osioon:
+
+```
+permissions:
+  contents: read
+  packages: read
+```
+
 ## Komponenttikirjaston käyttöönotto
 
 Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
