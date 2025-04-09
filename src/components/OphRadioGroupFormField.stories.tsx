@@ -14,7 +14,7 @@ type Story = StoryObj<typeof OphRadioGroupFormField>;
 export const Default: Story = {
   args: {
     options: OPTIONS,
-    label: 'Otsikko',
+    label: 'Label',
   },
 };
 
@@ -29,6 +29,14 @@ export const DefaultRow: Story = {
   args: { ...Default.args, row: true },
 };
 
+export const DefaultHovered: Story = {
+  ...Default,
+  args: Default.args,
+  parameters: {
+    pseudo: { hover: true }, // both options will be hovered, but it's ok, this is just to verify the hover style
+  },
+};
+
 export const DefaultFocused: Story = {
   ...Default,
   play: async ({ canvasElement }) => {
@@ -38,14 +46,14 @@ export const DefaultFocused: Story = {
   },
 };
 
+export const DefaultRowFocused: Story = {
+  ...DefaultFocused,
+  args: { ...DefaultFocused.args, row: true },
+};
+
 export const DefaultValue: Story = {
   ...Default,
   args: { ...Default.args, defaultValue: '1' },
-};
-
-export const DefaultSelected: Story = {
-  ...Default,
-  args: { ...Default.args, value: '2' },
 };
 
 export const DefaultError: Story = {
@@ -58,6 +66,11 @@ export const DefaultDisabled: Story = {
   args: { ...Default.args, disabled: true },
 };
 
+export const DefaultErrorDisabled: Story = {
+  ...DefaultError,
+  args: { ...DefaultError.args, disabled: true },
+};
+
 export const DefaultHelperText: Story = {
   ...Default,
   args: {
@@ -66,11 +79,40 @@ export const DefaultHelperText: Story = {
   },
 };
 
-export const DefaultWithError: Story = {
+export const DefaultErrorMessage: Story = {
   ...Default,
   args: {
     ...Default.args,
     error: true,
     errorMessage: 'Virheviesti',
   },
+};
+
+export const Checked: Story = {
+  ...Default,
+  args: { ...Default.args, value: '2' },
+};
+
+export const CheckedError: Story = {
+  ...Checked,
+  args: { ...Checked.args, error: true },
+};
+
+export const CheckedDisabled: Story = {
+  ...Checked,
+  args: { ...Checked.args, disabled: true },
+};
+
+export const CheckedHovered: Story = {
+  ...DefaultHovered,
+  args: { ...DefaultHovered.args, value: '2' }, // both options will be hovered, but it's ok, this is just to verify the hover style
+};
+
+export const CheckedFocused: Story = {
+  ...DefaultFocused,
+  args: { ...DefaultFocused.args, value: '1' },
+};
+export const CheckedErrorDisabled: Story = {
+  ...Checked,
+  args: { ...Checked.args, error: true, disabled: true },
 };

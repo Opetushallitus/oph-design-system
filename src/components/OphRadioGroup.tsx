@@ -23,6 +23,7 @@ export interface OphRadioGroupProps<T> extends RadioGroupProps {
   options: Array<OphRadioOption<T>>;
   labelId: string | undefined;
   formControlLabelProps?: Omit<FormControlLabelProps, 'label' | 'control'>;
+  disabled?: boolean;
   error?: boolean;
 }
 
@@ -70,15 +71,20 @@ const StyledRadioGroup = styled(RadioGroup)(() => ({
 
 /**
  * A Radio Group component based on [MUI Radio Group](https://mui.com/material-ui/api/radio-group/).
- * If you need label, helper text etc. use this inside OphFormFieldWrapper.
+ * If you need label, helper text etc. use [OphRadioGroupFormField](/docs/components-ophradiogroupformfield--docs) instead.
  */
 export const OphRadioGroup = <T extends string>({
   options,
   labelId,
   formControlLabelProps,
+  disabled,
   error,
   ...props
 }: OphRadioGroupProps<T | ''>) => {
+  const radioFormControlLabelProps = {
+    ...formControlLabelProps,
+    disabled: disabled,
+  };
   return (
     <StyledRadioGroup
       sx={{ width: '100%' }}
@@ -90,7 +96,7 @@ export const OphRadioGroup = <T extends string>({
       {options.map((o) => {
         return (
           <OphRadio
-            formControlLabelProps={formControlLabelProps}
+            formControlLabelProps={radioFormControlLabelProps}
             error={error}
             key={String(o.value)}
             value={o.value}
