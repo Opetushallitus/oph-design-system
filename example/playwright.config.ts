@@ -7,7 +7,7 @@ export default defineConfig({
   fullyParallel: true,
   workers: 2,
   use: {
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: `http://${process.env.DOCKER ? 'host.docker.internal' : '127.0.0.1'}:3000`,
     trace: 'on-first-retry',
   },
   projects: [
