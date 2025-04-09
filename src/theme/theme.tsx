@@ -181,7 +181,11 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '& .MuiSvgIcon-root': {
             zIndex: 1,
           },
-          '&.Mui-focusVisible': focusOutlineStyle({
+          '&.Mui-focusVisible': {
+            outline: 'none',
+            boxShadow: 'none',
+          },
+          '&.no-label.Mui-focusVisible': focusOutlineStyle({
             outlineOffset: '-2px',
             borderRadius: '5px',
           }),
@@ -374,6 +378,82 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: '2px',
+        },
+      },
+    },
+    MuiRadio: {
+      defaultProps: {
+        disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: '2px',
+          padding: 0,
+          zIndex: 0,
+          color: ophColors.grey800,
+          // white background that doesn't overflow
+          '&:before': {
+            position: 'absolute',
+            top: '4px',
+            left: '4px',
+            backgroundColor: ophColors.white,
+            content: '""',
+            width: 'calc(100% - 8px)',
+            height: 'calc(100% - 8px)',
+            zIndex: 1,
+          },
+          '&.Mui-disabled': {
+            color: ophColors.grey400,
+            '&:before': {
+              backgroundColor: ophColors.grey100,
+            },
+          },
+          '& input': {
+            zIndex: 2,
+          },
+          '& .MuiSvgIcon-root': {
+            zIndex: 1,
+          },
+          '&.Mui-focusVisible': {
+            outline: 'none',
+            boxShadow: 'none',
+          },
+          variants: [
+            {
+              props: { color: 'primary' },
+              style: ({ theme }) => ({
+                '&.Mui-focusVisible:not(.Mui-disabled)': {
+                  color: theme.palette.primary.light,
+                },
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                },
+              }),
+            },
+            {
+              props: { color: 'error' },
+              style: ({ theme }) => ({
+                color: theme.palette.error.main,
+                '&.Mui-focusVisible:not(.Mui-disabled), &:hover': {
+                  color: theme.palette.error.main,
+                },
+              }),
+            },
+          ],
+        },
+      },
+    },
+    MuiRadioGroup: {
+      styleOverrides: {
+        root: {
+          '& .MuiFormControlLabel-root': {
+            marginBottom: '12px', // For vertical layout
+          },
+          // row layout
+          '&.MuiRadioGroup-row .MuiFormControlLabel-root': {
+            marginRight: '24px',
+            marginBottom: 0,
+          },
         },
       },
     },

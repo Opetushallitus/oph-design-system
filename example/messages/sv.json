@@ -1,5 +1,9 @@
 {
   "title": "Titel",
   "button": "Knapp",
-  "warning": "Varning"
+  "warning": "Varning",
+  "radio-label": "Radiogrupp",
+  "radio-helper": "Hjälptext",
+  "radio-error": "Felmeddelande",
+  "checkbox-label": "Kryssruta"
 }
