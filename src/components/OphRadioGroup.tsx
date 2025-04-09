@@ -61,7 +61,7 @@ export const OphRadio = forwardRef<HTMLButtonElement, OphRadioProps>(
 
 const StyledRadioGroup = styled(RadioGroup)(() => ({
   '& .MuiFormControlLabel-root:not(:last-of-type)': {
-    marginBottom: '5px',
+    marginBottom: '9px',
   },
   '&.MuiRadioGroup-row .MuiFormControlLabel-root:not(:last-of-type)': {
     marginBottom: 0,

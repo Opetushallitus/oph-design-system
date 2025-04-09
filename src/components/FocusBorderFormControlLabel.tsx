@@ -11,11 +11,10 @@ import { focusOutlineStyle } from '../theme/theme-utils';
 export const FocusBorderFormControlLabel = styled(FormControlLabel)(() => ({
   position: 'relative',
   borderRadius: 5,
-  padding: 4,
 
   '&:focus-within': {
     ...focusOutlineStyle({
-      outlineOffset: '-4px',
+      outlineOffset: '-1px',
       borderRadius: '5px',
     }),
     paddingRight: 8,
