@@ -29,6 +29,7 @@ export const OphRadioGroupFormField = <T extends string>({
       label={label}
       helperText={helperText}
       errorMessage={errorMessage}
+      disabled={props.disabled}
       renderInput={({ labelId }) => (
         <OphRadioGroup {...props} labelId={labelId} />
       )}
