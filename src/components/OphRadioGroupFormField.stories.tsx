@@ -39,10 +39,12 @@ export const DefaultHovered: Story = {
 
 export const DefaultFocused: Story = {
   ...Default,
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const radiobutton = canvas.findByLabelText('First option');
-    (await radiobutton).focus();
+    const radios = canvas.getAllByRole('radio');
+    for (const radio of radios) {
+      radio.focus();
+    }
   },
 };
 
@@ -110,7 +112,7 @@ export const CheckedHovered: Story = {
 
 export const CheckedFocused: Story = {
   ...DefaultFocused,
-  args: { ...DefaultFocused.args, value: '1' },
+  args: { ...DefaultFocused.args, value: '2' },
 };
 export const CheckedErrorDisabled: Story = {
   ...Checked,

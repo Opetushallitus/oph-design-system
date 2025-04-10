@@ -5,5 +5,7 @@
   "radio-label": "Radiogrupp",
   "radio-helper": "Hjälptext",
   "radio-error": "Felmeddelande",
-  "checkbox-label": "Kryssruta"
+  "checkbox-label": "Kryssruta",
+  "select-label": "Lista",
+  "placeholder": "Välja"
 }

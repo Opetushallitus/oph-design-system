@@ -5,5 +5,7 @@
   "radio-label": "Radio group",
   "radio-helper": "Helper",
   "radio-error": "Error",
-  "checkbox-label": "Check box"
+  "checkbox-label": "Check box",
+  "select-label": "Select list",
+  "placeholder": "Select"
 }

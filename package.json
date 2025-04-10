@@ -1,6 +1,6 @@
 {
   "name": "@opetushallitus/oph-design-system",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-dev",
   "description": "",
   "type": "module",
   "publishConfig": {

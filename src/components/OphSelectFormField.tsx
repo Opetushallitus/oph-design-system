@@ -25,6 +25,7 @@ export const OphSelectFormField = <T extends string>({
       required={required}
       label={label}
       helperText={helperText}
+      disabled={props.disabled}
       errorMessage={errorMessage}
       renderInput={({ labelId }) => <OphSelect {...props} labelId={labelId} />}
     />

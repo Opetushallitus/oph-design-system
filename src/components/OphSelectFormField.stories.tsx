@@ -94,6 +94,14 @@ export const LabeledRequired: Story = {
   },
 };
 
+export const LabeledDisabled: Story = {
+  ...Labeled,
+  args: {
+    ...Labeled.args,
+    disabled: true,
+  },
+};
+
 export const LabeledHelperText: Story = {
   ...Labeled,
   args: {

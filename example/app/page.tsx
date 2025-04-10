@@ -7,6 +7,7 @@ import {
   OphInput,
   OphCheckbox,
   OphRadioGroupFormField,
+  OphSelectFormField,
 } from '@opetushallitus/oph-design-system';
 
 export default function Home() {
@@ -23,7 +24,15 @@ export default function Home() {
           <OphRadioGroupFormField
             required={true}
             label={t('radio-label')}
-            helperText={t('radio-helper')}
+            options={[
+              { value: '1', label: 'option 1' },
+              { value: '2', label: 'option 2' },
+            ]}
+          />
+          <OphSelectFormField
+            required={true}
+            label={t('select-label')}
+            placeholder={t('placeholder')}
             options={[
               { value: '1', label: 'option 1' },
               { value: '2', label: 'option 2' },

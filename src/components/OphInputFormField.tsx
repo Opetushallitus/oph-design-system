@@ -29,6 +29,7 @@ export const OphInputFormField = forwardRef<
       label={label}
       helperText={helperText}
       errorMessage={errorMessage}
+      disabled={rest.disabled}
       renderInput={({ labelId }) => (
         <OutlinedInput
           {...rest}
