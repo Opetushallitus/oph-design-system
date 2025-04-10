@@ -16,7 +16,8 @@ export interface OphRadioOption<T> {
   label: string;
 }
 
-export interface OphRadioGroupProps<T> extends RadioGroupProps {
+export interface OphRadioGroupProps<T>
+  extends Omit<RadioGroupProps, 'children'> {
   /**
    * Options for the RadioGroup component.
    */

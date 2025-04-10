@@ -186,12 +186,6 @@ Storybookin visualiset ja saavutettavuustestit on toteutettu [Playwright:lla](ht
 - **Saavutettavuusongelmat** [@axe-core/playwright](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md)-työkalulla.
 - **Visuaalinen testaus** eli kuvakaappausten vertailu, jolla varmistutaan että komponenttien visuaalinen ilme säilyy.
 
-Jotta testit voi suorittaa, täytyy Storybook-palvelimen olla käynnissä osoitteessa http://localhost:6006.
-
-```
-npm run storybook
-```
-
 ### Testien ajaminen kehityspalvelinta vasten
 
 Helpoin tapa ajaa testit on käynnistää Storybookin kehityspalvelin. Tässä on myös se etu, että koodimuutokset ladataan automaattisesti (hot reload).

@@ -43,7 +43,7 @@ export const OphCheckbox = forwardRef<HTMLButtonElement, OphCheckboxProps>(
         control={<Checkbox {...checkboxProps} />}
       />
     ) : (
-      <Checkbox {...checkboxProps} className={'no-label'} />
+      <Checkbox {...checkboxProps} />
     );
   },
 );

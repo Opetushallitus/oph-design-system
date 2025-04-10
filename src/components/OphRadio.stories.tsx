@@ -11,5 +11,5 @@ type Story = StoryObj<typeof OphRadio>;
 
 export const Default: Story = {
   tags: ['!dev', '!test'],
-  args: { label: 'Otsake', value: '1' },
+  args: { label: 'Label', value: '1' },
 };

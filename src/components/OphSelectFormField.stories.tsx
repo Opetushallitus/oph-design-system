@@ -19,9 +19,9 @@ type Story = StoryObj<typeof OphSelectFormField>;
 export const Default: Story = {
   args: {
     options: OPTIONS,
-    placeholder: 'Valitse',
+    placeholder: 'Select',
     inputProps: {
-      'aria-label': 'valitse',
+      'aria-label': 'select',
     },
   },
 };
@@ -81,7 +81,7 @@ export const ClearableOpen: Story = {
 export const Labeled: Story = {
   ...Default,
   args: {
-    label: 'Otsikko',
+    label: 'Label',
     ...Default.args,
   },
 };
@@ -106,7 +106,7 @@ export const LabeledHelperText: Story = {
   ...Labeled,
   args: {
     ...Labeled.args,
-    helperText: 'Aputeksti',
+    helperText: 'Helper text',
   },
 };
 
@@ -114,7 +114,7 @@ export const LabeledWithError: Story = {
   ...Labeled,
   args: {
     ...Labeled.args,
-    label: 'Otsikko',
-    errorMessage: 'Virheviesti',
+    label: 'Label',
+    errorMessage: 'Error message',
   },
 };

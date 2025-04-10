@@ -181,11 +181,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '& .MuiSvgIcon-root': {
             zIndex: 1,
           },
-          '&.Mui-focusVisible': {
-            outline: 'none',
-            boxShadow: 'none',
-          },
-          '&.no-label.Mui-focusVisible': focusOutlineStyle({
+          '&.Mui-focusVisible': focusOutlineStyle({
             outlineOffset: '-2px',
             borderRadius: '5px',
           }),
@@ -387,19 +383,19 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
       },
       styleOverrides: {
         root: {
-          borderRadius: '2px',
           padding: 0,
           zIndex: 0,
           color: ophColors.grey800,
           // white background that doesn't overflow
           '&:before': {
+            borderRadius: '50%',
             position: 'absolute',
-            top: '4px',
-            left: '4px',
+            top: '3px',
+            left: '3px',
             backgroundColor: ophColors.white,
             content: '""',
-            width: 'calc(100% - 8px)',
-            height: 'calc(100% - 8px)',
+            width: 'calc(100% - 6px)',
+            height: 'calc(100% - 6px)',
             zIndex: 1,
           },
           '&.Mui-disabled': {
@@ -413,10 +409,6 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           },
           '& .MuiSvgIcon-root': {
             zIndex: 1,
-          },
-          '&.Mui-focusVisible': {
-            outline: 'none',
-            boxShadow: 'none',
           },
           variants: [
             {

@@ -77,7 +77,7 @@ export const DefaultHelperText: Story = {
   ...Default,
   args: {
     ...Default.args,
-    helperText: 'Aputeksti',
+    helperText: 'Helper text',
   },
 };
 
@@ -86,7 +86,7 @@ export const DefaultErrorMessage: Story = {
   args: {
     ...Default.args,
     error: true,
-    errorMessage: 'Virheviesti',
+    errorMessage: 'Error message',
   },
 };
 

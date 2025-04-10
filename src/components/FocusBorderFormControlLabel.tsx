@@ -10,13 +10,17 @@ import { focusOutlineStyle } from '../theme/theme-utils';
  */
 export const FocusBorderFormControlLabel = styled(FormControlLabel)(() => ({
   position: 'relative',
-  borderRadius: 5,
+  borderRadius: '5px',
 
   '&:focus-within': {
     ...focusOutlineStyle({
       outlineOffset: '-1px',
       borderRadius: '5px',
     }),
-    paddingRight: 8,
+    paddingRight: '8px',
+  },
+  '& .MuiCheckbox-root.Mui-focusVisible, & .MuiRadio-root.Mui-focusVisible': {
+    outline: 'none',
+    boxShadow: 'none',
   },
 }));
