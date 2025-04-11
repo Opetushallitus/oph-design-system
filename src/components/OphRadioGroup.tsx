@@ -30,7 +30,6 @@ export interface OphRadioGroupProps<T>
 }
 
 const StyledRadioGroup = styled(RadioGroup)(() => ({
-  width: '100%',
   rowGap: '9px',
   '&.MuiRadioGroup-row': {
     marginBottom: 0,
