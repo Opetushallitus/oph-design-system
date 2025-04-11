@@ -1,15 +1,12 @@
 'use client';
 
 import {
-  Radio,
   RadioGroup,
   styled,
   type FormControlLabelProps,
   type RadioGroupProps,
-  type RadioProps,
 } from '@mui/material';
-import React, { forwardRef } from 'react';
-import { FocusBorderFormControlLabel } from './FocusBorderFormControlLabel';
+import { OphRadio } from './OphRadio';
 
 export interface OphRadioOption<T> {
   value: T;
@@ -22,51 +19,22 @@ export interface OphRadioGroupProps<T>
    * Options for the RadioGroup component.
    */
   options: Array<OphRadioOption<T>>;
+  /** the ID of the label element that is passed to "aria-labelledby"-attribute. */
   labelId: string | undefined;
+  /** props that are passed to option labels, see [MUI FormControlLabel](https://mui.com/material-ui/api/form-control-label/) */
   formControlLabelProps?: Omit<FormControlLabelProps, 'label' | 'control'>;
+  /** is the component disabled */
   disabled?: boolean;
+  /** is the component in error state */
   error?: boolean;
 }
 
-export type OphRadioProps = Omit<
-  RadioProps,
-  'checkedIcon' | 'disableRipple' | 'icon' | 'size'
-> & {
-  label: string;
-  error?: boolean;
-  formControlLabelProps?: Omit<FormControlLabelProps, 'label' | 'control'>;
-};
-
-/**
- * A Radio component based on [MUI Radio](https://mui.com/material-ui/api/radio/).
- */
-export const OphRadio = forwardRef<HTMLButtonElement, OphRadioProps>(
-  function renderRadioButton(
-    { label, error, formControlLabelProps, ...props },
-    ref,
-  ) {
-    const radioProps = {
-      ...props,
-      color: error ? 'error' : props.color,
-      ref,
-    };
-    return (
-      <FocusBorderFormControlLabel
-        {...formControlLabelProps}
-        control={<Radio {...radioProps} />}
-        label={label}
-      />
-    );
-  },
-);
-
 const StyledRadioGroup = styled(RadioGroup)(() => ({
-  '& .MuiFormControlLabel-root:not(:last-of-type)': {
-    marginBottom: '9px',
-  },
-  '&.MuiRadioGroup-row .MuiFormControlLabel-root:not(:last-of-type)': {
+  width: '100%',
+  rowGap: '9px',
+  '&.MuiRadioGroup-row': {
     marginBottom: 0,
-    marginRight: 27,
+    columnGap: '27px',
   },
 }));
 
@@ -88,7 +56,6 @@ export const OphRadioGroup = <T extends string>({
   };
   return (
     <StyledRadioGroup
-      sx={{ width: '100%' }}
       name={labelId}
       aria-invalid={error ? 'true' : undefined}
       aria-labelledby={labelId}
