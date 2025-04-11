@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { OphRadio } from './OphRadioGroup';
+import { OphRadio } from './OphRadio';
 
 const meta = {
   component: OphRadio,
