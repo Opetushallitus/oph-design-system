@@ -69,7 +69,7 @@ export const OphFormFieldWrapper = ({
   return (
     <FormControl {...props} error={Boolean(errorMessage) || props.error}>
       {label && (
-        <FormLabel id={labelId} error={false}>
+        <FormLabel id={labelId} error={false} aria-disabled={props.disabled}>
           {label}
         </FormLabel>
       )}

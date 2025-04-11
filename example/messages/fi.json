@@ -1,5 +1,11 @@
 {
   "title": "Otsikko",
   "button": "Painike",
-  "warning": "Varoitus"
+  "warning": "Varoitus",
+  "radio-label": "Valintanappi",
+  "radio-helper": "Ohje",
+  "radio-error": "Virhe",
+  "checkbox-label": "Valintaruutu",
+  "select-label": "Valintalista",
+  "placeholder": "Valitse"
 }

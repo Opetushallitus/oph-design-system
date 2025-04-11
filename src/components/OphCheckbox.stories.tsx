@@ -12,7 +12,7 @@ type Story = StoryObj<typeof OphCheckbox>;
 
 export const Default: Story = {
   args: {
-    label: 'Otsake',
+    label: 'Label',
   },
 };
 
@@ -112,7 +112,7 @@ export const WithoutLabel: Story = {
   args: {
     ...Default.args,
     label: undefined,
-    inputProps: { 'aria-label': 'Otsake' },
+    inputProps: { 'aria-label': 'Label' },
   },
 };
 

@@ -83,6 +83,13 @@ export const LabeledRequired: Story = {
   },
 };
 
+export const LabeledDisabled: Story = {
+  args: {
+    ...Labeled.args,
+    disabled: true,
+  },
+};
+
 export const LabeledWithError: Story = {
   args: {
     ...Labeled.args,

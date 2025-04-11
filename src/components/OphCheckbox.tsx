@@ -2,11 +2,11 @@
 
 import {
   Checkbox,
-  FormControlLabel,
   type CheckboxProps,
   type FormControlLabelProps,
 } from '@mui/material';
 import React, { forwardRef } from 'react';
+import { FocusBorderFormControlLabel } from './FocusBorderFormControlLabel';
 
 export type OphCheckboxProps = Omit<
   CheckboxProps,
@@ -37,7 +37,7 @@ export const OphCheckbox = forwardRef<HTMLButtonElement, OphCheckboxProps>(
       ref,
     };
     return label ? (
-      <FormControlLabel
+      <FocusBorderFormControlLabel
         {...formControlLabelProps}
         label={label}
         control={<Checkbox {...checkboxProps} />}

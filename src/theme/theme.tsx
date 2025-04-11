@@ -377,6 +377,78 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         },
       },
     },
+    MuiRadio: {
+      defaultProps: {
+        disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          padding: 0,
+          zIndex: 0,
+          color: ophColors.grey800,
+          // white background that doesn't overflow
+          '&:before': {
+            borderRadius: '50%',
+            position: 'absolute',
+            top: '3px',
+            left: '3px',
+            backgroundColor: ophColors.white,
+            content: '""',
+            width: 'calc(100% - 6px)',
+            height: 'calc(100% - 6px)',
+            zIndex: 1,
+          },
+          '&.Mui-disabled': {
+            color: ophColors.grey400,
+            '&:before': {
+              backgroundColor: ophColors.grey100,
+            },
+          },
+          '& input': {
+            zIndex: 2,
+          },
+          '& .MuiSvgIcon-root': {
+            zIndex: 1,
+          },
+          variants: [
+            {
+              props: { color: 'primary' },
+              style: ({ theme }) => ({
+                '&.Mui-focusVisible:not(.Mui-disabled)': {
+                  color: theme.palette.primary.light,
+                },
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                },
+              }),
+            },
+            {
+              props: { color: 'error' },
+              style: ({ theme }) => ({
+                color: theme.palette.error.main,
+                '&.Mui-focusVisible:not(.Mui-disabled), &:hover': {
+                  color: theme.palette.error.main,
+                },
+              }),
+            },
+          ],
+        },
+      },
+    },
+    MuiRadioGroup: {
+      styleOverrides: {
+        root: {
+          '& .MuiFormControlLabel-root': {
+            marginBottom: '12px', // For vertical layout
+          },
+          // row layout
+          '&.MuiRadioGroup-row .MuiFormControlLabel-root': {
+            marginRight: '24px',
+            marginBottom: 0,
+          },
+        },
+      },
+    },
     MuiSelect: {
       styleOverrides: {
         select: {

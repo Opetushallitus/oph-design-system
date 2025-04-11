@@ -53,7 +53,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 
 ### Asentaminen Github Actions -workflowssa
 
-Lisää build workflowssa AWS:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin: 
+Lisää build workflowssa AWS:n salaisuuksista valmiiksi löytyvä todennustoken ympäristömuuttujiin:
 
 ```
 env:
@@ -185,8 +185,6 @@ Storybookin visualiset ja saavutettavuustestit on toteutettu [Playwright:lla](ht
 
 - **Saavutettavuusongelmat** [@axe-core/playwright](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md)-työkalulla.
 - **Visuaalinen testaus** eli kuvakaappausten vertailu, jolla varmistutaan että komponenttien visuaalinen ilme säilyy.
-
-Jotta testit voi suorittaa, täytyy Storybook-palvelimen olla käynnissä osoitteessa http://localhost:6006.
 
 ### Testien ajaminen kehityspalvelinta vasten
 

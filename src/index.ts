@@ -1,5 +1,8 @@
 export { OphButton } from './components/OphButton';
 export { OphCheckbox } from './components/OphCheckbox';
+export { OphRadio } from './components/OphRadio';
+export { OphRadioGroup } from './components/OphRadioGroup';
+export { OphRadioGroupFormField } from './components/OphRadioGroupFormField';
 export { OphSelect } from './components/OphSelect';
 export { OphSelectFormField } from './components/OphSelectFormField';
 export { OphTypography } from './components/OphTypography';

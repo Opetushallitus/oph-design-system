@@ -11,11 +11,9 @@ export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   snapshotPathTemplate:
     '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
-  expect: {
-    timeout: 10 * 1000,
-  },
+  expect: { timeout: 10 * 1000 },
   use: {
-    baseURL: 'http://127.0.0.1:6006',
+    baseURL: `http://${process.env.DOCKER ? 'host.docker.internal' : '127.0.0.1'}:6006`,
     trace: 'on-first-retry',
   },
   projects: [
