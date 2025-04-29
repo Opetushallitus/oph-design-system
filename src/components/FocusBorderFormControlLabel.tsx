@@ -12,7 +12,7 @@ export const FocusBorderFormControlLabel = styled(FormControlLabel)(() => ({
   position: 'relative',
   borderRadius: '5px',
 
-  '&:focus-within': {
+  '&:has(:focus-visible)': {
     ...focusOutlineStyle({
       outlineOffset: '-1px',
       borderRadius: '5px',
