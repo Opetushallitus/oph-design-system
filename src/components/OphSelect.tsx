@@ -1,6 +1,12 @@
 'use client';
 
-import { Select, MenuItem, type SelectProps } from '@mui/material';
+import {
+  Select,
+  MenuItem,
+  type SelectProps,
+  InputAdornment,
+} from '@mui/material';
+import { Clear } from '@mui/icons-material';
 
 export type OphSelectValue<T> = SelectProps<T>['value'];
 
@@ -44,7 +50,29 @@ export const OphSelect = <T extends string>({
   ...props
 }: OphSelectProps<T | ''>) => {
   return (
-    <Select defaultValue="" displayEmpty {...props} label={null}>
+    <Select
+      defaultValue=""
+      displayEmpty
+      {...props}
+      label={null}
+      endAdornment={
+        clearable ? (
+          <InputAdornment
+            position={'end'}
+            sx={{ position: 'absolute', right: '24' }}
+          >
+            <Clear
+              onMouseDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() => {}}
+            ></Clear>
+          </InputAdornment>
+        ) : (
+          <></>
+        )
+      }
+    >
       <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
         {placeholder}
       </MenuItem>
