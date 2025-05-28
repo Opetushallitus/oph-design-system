@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  Select,
-  MenuItem,
-  type SelectProps,
-  InputAdornment,
-} from '@mui/material';
+import { Select, MenuItem, type SelectProps, Box } from '@mui/material';
 import { Clear } from '@mui/icons-material';
 
 export type OphSelectValue<T> = SelectProps<T>['value'];
@@ -34,6 +29,10 @@ export interface OphSelectProps<T>
    */
   clearable?: boolean;
   /**
+   * Function called when clear icon is clicked
+   */
+  onClear?: () => void;
+  /**
    * Placeholder text shown when no value is selected.
    */
   placeholder?: string;
@@ -47,6 +46,7 @@ export const OphSelect = <T extends string>({
   placeholder,
   clearable,
   options,
+  onClear,
   ...props
 }: OphSelectProps<T | ''>) => {
   return (
@@ -55,23 +55,21 @@ export const OphSelect = <T extends string>({
       displayEmpty
       {...props}
       label={null}
-      endAdornment={
-        clearable ? (
-          <InputAdornment
-            position={'end'}
-            sx={{ position: 'absolute', right: '24' }}
-          >
+      renderValue={(value) => (
+        <Box sx={{ display: 'flex' }}>
+          {options.find((option) => option.value === value)?.label ??
+            placeholder}
+          {clearable && (
             <Clear
+              sx={{ marginLeft: '4px' }}
+              onClick={onClear}
               onMouseDown={(event) => {
                 event.stopPropagation();
               }}
-              onClick={() => {}}
             ></Clear>
-          </InputAdornment>
-        ) : (
-          <></>
-        )
-      }
+          )}
+        </Box>
+      )}
     >
       <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
         {placeholder}
