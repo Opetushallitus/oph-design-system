@@ -328,6 +328,18 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                   borderColor: ophColors.grey800,
                   borderRadius: '2px',
                   borderWidth: '1px',
+                  /* Label (legend) always takes vertical space according to "line-height". Because
+                  of this MUI uses negative top-position trickery to correctly align the outline 
+                  even when there is no label. This causes visible variation in focus outline 
+                  rendering depending on browser and surrounding elements. Sometimes the focus 
+                  outline gap is narrower above the input. 
+                  Label should always be shown separately in ODS, so we can safely reset top
+                  and legend line-height to zero.
+                  */
+                  top: 0,
+                  legend: {
+                    lineHeight: 0,
+                  },
                 },
               }),
             },
