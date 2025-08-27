@@ -19,19 +19,20 @@ export interface OphSelectProps<T>
     | 'components'
     | 'componentsProps'
     | 'disableUnderline'
+    | 'onChange'
   > {
   /**
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
   /**
+   * Function called when the selected value changes.
+   */
+  onChange: (value: T) => void;
+  /**
    * Can the value be cleared from the select component.
    */
   clearable?: boolean;
-  /**
-   * Function called when clear icon is clicked
-   */
-  onClear?: () => void;
   /**
    * Placeholder text shown when no value is selected.
    */
@@ -44,9 +45,9 @@ export interface OphSelectProps<T>
  */
 export const OphSelect = <T extends string>({
   placeholder,
-  clearable,
   options,
-  onClear,
+  onChange,
+  clearable,
   ...props
 }: OphSelectProps<T | ''>) => {
   return (
@@ -55,6 +56,9 @@ export const OphSelect = <T extends string>({
       displayEmpty
       {...props}
       label={null}
+      onChange={(event) => {
+        onChange(event.target.value as T);
+      }}
       renderValue={(value) => (
         <Box sx={{ display: 'flex' }}>
           {options.find((option) => option.value === value)?.label ??
@@ -62,7 +66,9 @@ export const OphSelect = <T extends string>({
           {clearable && (
             <Clear
               sx={{ marginLeft: '4px' }}
-              onClick={onClear}
+              onClick={() => {
+                onChange('');
+              }}
               onMouseDown={(event) => {
                 event.stopPropagation();
               }}

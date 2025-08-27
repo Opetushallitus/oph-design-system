@@ -16,14 +16,14 @@ export interface OphSelectMultipleProps<T>
 }
 
 /**
- * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
+ * A Multi Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
  * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
  */
 export const OphSelectMultiple = <T extends string>({
   placeholder,
-  clearable,
   options,
-  onClear,
+  clearable,
+  onChange,
   ...props
 }: OphSelectMultipleProps<T>) => {
   return (
@@ -32,6 +32,9 @@ export const OphSelectMultiple = <T extends string>({
       multiple
       {...props}
       label={null}
+      onChange={(event) => {
+        onChange(event.target.value as Array<T>);
+      }}
       renderValue={(value) => (
         <Box sx={{ display: 'flex' }}>
           {value.length === 0
@@ -44,7 +47,9 @@ export const OphSelectMultiple = <T extends string>({
                       key={val}
                       label={option.label}
                       sx={{ borderRadius: '0px' }}
-                      onDelete={() => {}}
+                      onDelete={() => {
+                        onChange(value.filter((v) => val !== v));
+                      }}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -55,7 +60,9 @@ export const OphSelectMultiple = <T extends string>({
           {clearable && (
             <Clear
               sx={{ marginLeft: '4px' }}
-              onClick={onClear}
+              onClick={() => {
+                onChange([]);
+              }}
               onMouseDown={(event) => {
                 event.stopPropagation();
               }}
