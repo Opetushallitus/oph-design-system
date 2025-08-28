@@ -39,6 +39,43 @@ export interface OphSelectProps<T>
   placeholder?: string;
 }
 
+export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <Clear
+      sx={{ marginLeft: '4px' }}
+      onClick={onClick}
+      onMouseDown={(event) => {
+        event.stopPropagation();
+      }}
+    ></Clear>
+  );
+};
+
+export const SelectOptions = <T extends string>({
+  options,
+  clearable,
+  placeholder,
+}: {
+  options: Array<OphSelectOption<T>>;
+  clearable?: boolean;
+  placeholder?: string;
+}) => {
+  return (
+    <>
+      <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
+        {placeholder}
+      </MenuItem>
+      {options.map(({ value, label }) => {
+        return (
+          <MenuItem value={value} key={value}>
+            {label}
+          </MenuItem>
+        );
+      })}
+    </>
+  );
+};
+
 /**
  * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
  * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
@@ -64,29 +101,20 @@ export const OphSelect = <T extends string>({
           {options.find((option) => option.value === value)?.label ??
             placeholder}
           {clearable && (
-            <Clear
-              sx={{ marginLeft: '4px' }}
+            <ClearSelect
               onClick={() => {
                 onChange('');
               }}
-              onMouseDown={(event) => {
-                event.stopPropagation();
-              }}
-            ></Clear>
+            />
           )}
         </Box>
       )}
     >
-      <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
-        {placeholder}
-      </MenuItem>
-      {options.map(({ value, label }) => {
-        return (
-          <MenuItem value={value} key={value}>
-            {label}
-          </MenuItem>
-        );
-      })}
+      <SelectOptions
+        options={options}
+        placeholder={placeholder}
+        clearable={clearable}
+      />
     </Select>
   );
 };

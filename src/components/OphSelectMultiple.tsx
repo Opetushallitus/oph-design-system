@@ -1,10 +1,11 @@
 'use client';
 
-import { Select, MenuItem, Box, Chip } from '@mui/material';
-import { Clear } from '@mui/icons-material';
-import type {
-  OphSelectOption,
-  OphSelectProps,
+import { Select, Box, Chip } from '@mui/material';
+import {
+  ClearSelect,
+  type OphSelectOption,
+  type OphSelectProps,
+  SelectOptions,
 } from '@/src/components/OphSelect';
 
 export interface OphSelectMultipleProps<T>
@@ -58,29 +59,20 @@ export const OphSelectMultiple = <T extends string>({
                 );
               })}
           {clearable && (
-            <Clear
-              sx={{ marginLeft: '4px' }}
+            <ClearSelect
               onClick={() => {
                 onChange([]);
               }}
-              onMouseDown={(event) => {
-                event.stopPropagation();
-              }}
-            ></Clear>
+            />
           )}
         </Box>
       )}
     >
-      <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
-        {placeholder}
-      </MenuItem>
-      {options.map(({ value, label }) => {
-        return (
-          <MenuItem value={value} key={value}>
-            {label}
-          </MenuItem>
-        );
-      })}
+      <SelectOptions
+        options={options}
+        placeholder={placeholder}
+        clearable={clearable}
+      />
     </Select>
   );
 };
