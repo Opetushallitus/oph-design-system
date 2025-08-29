@@ -19,20 +19,15 @@ export interface OphSelectProps<T>
     | 'components'
     | 'componentsProps'
     | 'disableUnderline'
-    | 'onChange'
   > {
   /**
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
   /**
-   * Function called when the selected value changes.
+   * Function called when the clear icon is clicked. If set, the clear icon will be shown.
    */
-  onChange: (value: T) => void;
-  /**
-   * Can the value be cleared from the select component.
-   */
-  clearable?: boolean;
+  onClear?: () => void;
   /**
    * Placeholder text shown when no value is selected.
    */
@@ -83,8 +78,7 @@ export const SelectOptions = <T extends string>({
 export const OphSelect = <T extends string>({
   placeholder,
   options,
-  onChange,
-  clearable,
+  onClear,
   ...props
 }: OphSelectProps<T | ''>) => {
   return (
@@ -93,27 +87,17 @@ export const OphSelect = <T extends string>({
       displayEmpty
       {...props}
       label={null}
-      onChange={(event) => {
-        onChange(event.target.value as T);
-      }}
-      renderValue={(value) => (
+      renderValue={(val) => (
         <Box sx={{ display: 'flex' }}>
-          {options.find((option) => option.value === value)?.label ??
-            placeholder}
-          {clearable && (
-            <ClearSelect
-              onClick={() => {
-                onChange('');
-              }}
-            />
-          )}
+          {options.find((option) => option.value === val)?.label ?? placeholder}
+          {onClear && <ClearSelect onClick={onClear} />}
         </Box>
       )}
     >
       <SelectOptions
         options={options}
         placeholder={placeholder}
-        clearable={clearable}
+        clearable={Boolean(onClear)}
       />
     </Select>
   );

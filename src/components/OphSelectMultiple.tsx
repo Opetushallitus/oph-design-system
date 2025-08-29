@@ -14,6 +14,10 @@ export interface OphSelectMultipleProps<T>
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
+  /**
+   * FUnction called when the delete icon on a chip is clicked. If set, the delete icon will be shown.
+   */
+  onChipDelete?: (value: T) => void;
 }
 
 /**
@@ -23,21 +27,25 @@ export interface OphSelectMultipleProps<T>
 export const OphSelectMultiple = <T extends string>({
   placeholder,
   options,
-  clearable,
-  onChange,
+  onClear,
+  onChipDelete,
   ...props
 }: OphSelectMultipleProps<T>) => {
   return (
     <Select
       displayEmpty
+      defaultValue={[]}
       multiple
       {...props}
       label={null}
-      onChange={(event) => {
-        onChange(event.target.value as Array<T>);
+      sx={{
+        '& .MuiSelect-select': {
+          paddingTop: '7px',
+          paddingBottom: '7px',
+        },
       }}
       renderValue={(value) => (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', gap: '5px' }}>
           {value.length === 0
             ? placeholder
             : value.map((val) => {
@@ -47,10 +55,14 @@ export const OphSelectMultiple = <T extends string>({
                     <Chip
                       key={val}
                       label={option.label}
-                      sx={{ borderRadius: '0px' }}
-                      onDelete={() => {
-                        onChange(value.filter((v) => val !== v));
-                      }}
+                      sx={{ borderRadius: '0px', height: '26px' }}
+                      onDelete={
+                        onChipDelete
+                          ? () => {
+                              onChipDelete(val);
+                            }
+                          : undefined
+                      }
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -58,20 +70,14 @@ export const OphSelectMultiple = <T extends string>({
                   )
                 );
               })}
-          {clearable && (
-            <ClearSelect
-              onClick={() => {
-                onChange([]);
-              }}
-            />
-          )}
+          {onClear && <ClearSelect onClick={onClear} />}
         </Box>
       )}
     >
       <SelectOptions
         options={options}
         placeholder={placeholder}
-        clearable={clearable}
+        clearable={Boolean(onClear)}
       />
     </Select>
   );

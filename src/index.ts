@@ -5,6 +5,8 @@ export { OphRadioGroup } from './components/OphRadioGroup';
 export { OphRadioGroupFormField } from './components/OphRadioGroupFormField';
 export { OphSelect } from './components/OphSelect';
 export { OphSelectFormField } from './components/OphSelectFormField';
+export { OphSelectMultiple } from './components/OphSelectMultiple';
+export { OphSelectMultipleFormField } from './components/OphSelectMultipleFormField';
 export { OphTypography } from './components/OphTypography';
 export { OphLink } from './components/OphLink';
 export { OphInput } from './components/OphInput';
