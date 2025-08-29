@@ -29,6 +29,7 @@ export const ValuesSelected: Story = {
   ...Default,
   args: {
     value: ['1', '2'],
+    clearable: true,
     ...Default.args,
   },
 };

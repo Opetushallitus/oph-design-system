@@ -66,7 +66,7 @@ export const DefaultError: Story = {
 export const Clearable: Story = {
   args: {
     ...Default.args,
-    onClear: () => {},
+    clearable: true,
   },
 };
 
@@ -74,7 +74,7 @@ export const ClearableOpen: Story = {
   ...DefaultOpen,
   args: {
     ...Default.args,
-    onClear: () => {},
+    clearable: true,
   },
 };
 

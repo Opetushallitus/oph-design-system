@@ -1,13 +1,20 @@
 'use client';
 
-import { Select, MenuItem, type SelectProps, Box } from '@mui/material';
+import {
+  Select,
+  MenuItem,
+  type SelectProps,
+  Box,
+  type SelectChangeEvent,
+} from '@mui/material';
 import { Clear } from '@mui/icons-material';
+import { useCallback, useState } from 'react';
 
 export type OphSelectValue<T> = SelectProps<T>['value'];
 
 export interface OphSelectOption<T> {
   label: string;
-  value: OphSelectValue<T>;
+  value: T;
 }
 
 export interface OphSelectProps<T>
@@ -19,15 +26,17 @@ export interface OphSelectProps<T>
     | 'components'
     | 'componentsProps'
     | 'disableUnderline'
+    | 'value'
   > {
+  value?: T;
   /**
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
   /**
-   * Function called when the clear icon is clicked. If set, the clear icon will be shown.
+   * Can the value be cleared from the select component.
    */
-  onClear?: () => void;
+  clearable?: boolean;
   /**
    * Placeholder text shown when no value is selected.
    */
@@ -78,26 +87,46 @@ export const SelectOptions = <T extends string>({
 export const OphSelect = <T extends string>({
   placeholder,
   options,
-  onClear,
+  onChange,
+  value: valueProp,
+  defaultValue,
+  clearable,
   ...props
-}: OphSelectProps<T | ''>) => {
+}: OphSelectProps<T>) => {
+  const [selectedValue, setSelectedValue] = useState<T>(
+    valueProp ?? defaultValue ?? ('' as T),
+  );
+  const handleChange = useCallback(
+    (event: SelectChangeEvent<T>, child: React.ReactNode) => {
+      setSelectedValue(event.target.value as T);
+      onChange?.(event, child);
+    },
+    [onChange, setSelectedValue],
+  );
   return (
     <Select
-      defaultValue=""
       displayEmpty
       {...props}
       label={null}
+      value={selectedValue}
+      onChange={handleChange}
       renderValue={(val) => (
         <Box sx={{ display: 'flex' }}>
           {options.find((option) => option.value === val)?.label ?? placeholder}
-          {onClear && <ClearSelect onClick={onClear} />}
+          {clearable && (
+            <ClearSelect
+              onClick={() => {
+                setSelectedValue('' as T);
+              }}
+            />
+          )}
         </Box>
       )}
     >
       <SelectOptions
         options={options}
         placeholder={placeholder}
-        clearable={Boolean(onClear)}
+        clearable={clearable}
       />
     </Select>
   );

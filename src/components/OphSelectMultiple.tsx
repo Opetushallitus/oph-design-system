@@ -1,12 +1,13 @@
 'use client';
 
-import { Select, Box, Chip } from '@mui/material';
+import { Select, Box, Chip, type SelectChangeEvent } from '@mui/material';
 import {
   ClearSelect,
   type OphSelectOption,
   type OphSelectProps,
   SelectOptions,
 } from '@/src/components/OphSelect';
+import { useCallback, useState } from 'react';
 
 export interface OphSelectMultipleProps<T>
   extends Omit<OphSelectProps<Array<T>>, 'options'> {
@@ -14,12 +15,9 @@ export interface OphSelectMultipleProps<T>
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
-  /**
-   * FUnction called when the delete icon on a chip is clicked. If set, the delete icon will be shown.
-   */
-  onChipDelete?: (value: T) => void;
 }
 
+const EMPTY_ARRAY: Array<unknown> = [];
 /**
  * A Multi Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
  * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
@@ -27,16 +25,29 @@ export interface OphSelectMultipleProps<T>
 export const OphSelectMultiple = <T extends string>({
   placeholder,
   options,
-  onClear,
-  onChipDelete,
+  onChange,
+  value: valueProp,
+  defaultValue,
+  clearable,
   ...props
 }: OphSelectMultipleProps<T>) => {
+  const [selectedValues, setSelectedValues] = useState<Array<T>>(
+    valueProp ?? defaultValue ?? (EMPTY_ARRAY as Array<T>),
+  );
+  const handleChange = useCallback(
+    (event: SelectChangeEvent<Array<T>>, child: React.ReactNode) => {
+      setSelectedValues(event.target.value as Array<T>);
+      onChange?.(event, child);
+    },
+    [onChange, setSelectedValues],
+  );
   return (
     <Select
       displayEmpty
-      defaultValue={[]}
+      value={selectedValues}
       multiple
       {...props}
+      onChange={handleChange}
       label={null}
       sx={{
         '& .MuiSelect-select': {
@@ -56,13 +67,11 @@ export const OphSelectMultiple = <T extends string>({
                       key={val}
                       label={option.label}
                       sx={{ borderRadius: '0px', height: '26px' }}
-                      onDelete={
-                        onChipDelete
-                          ? () => {
-                              onChipDelete(val);
-                            }
-                          : undefined
-                      }
+                      onDelete={() => {
+                        setSelectedValues((prev) =>
+                          prev.filter((v) => val !== v),
+                        );
+                      }}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -70,14 +79,20 @@ export const OphSelectMultiple = <T extends string>({
                   )
                 );
               })}
-          {onClear && <ClearSelect onClick={onClear} />}
+          {clearable && (
+            <ClearSelect
+              onClick={() => {
+                setSelectedValues(EMPTY_ARRAY as Array<T>);
+              }}
+            />
+          )}
         </Box>
       )}
     >
       <SelectOptions
         options={options}
         placeholder={placeholder}
-        clearable={Boolean(onClear)}
+        clearable={clearable}
       />
     </Select>
   );
