@@ -28,23 +28,21 @@ export const OphSelectMultiple = <T extends string>({
   clearable,
   ...props
 }: OphSelectMultipleProps<T>) => {
-  const onClear = () =>
-    onChange
-      ? () => {
-          onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
-        }
-      : undefined;
+  const onClear = onChange
+    ? () => {
+        onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
+      }
+    : undefined;
 
-  const onChipDelete = (oldValue: Array<T>, chipValue: T) =>
-    onChange
-      ? () => {
-          onChange({
-            target: {
-              value: oldValue.filter((v) => chipValue !== v),
-            },
-          });
-        }
-      : undefined;
+  const onChipDelete = (oldValue: Array<T>, chipValue: T) => {
+    if (onChange) {
+      onChange({
+        target: {
+          value: oldValue.filter((v) => chipValue !== v),
+        },
+      });
+    }
+  };
 
   return (
     <Select

@@ -73,12 +73,11 @@ export const OphSelect = <T extends string>({
   clearable,
   ...props
 }: OphSelectProps<T>) => {
-  const onClear = () =>
-    onChange
-      ? () => {
-          onChange({ target: { value: '' as T } });
-        }
-      : undefined;
+  const onClear = onChange
+    ? () => {
+        onChange({ target: { value: '' as T } });
+      }
+    : undefined;
 
   return (
     <Select
