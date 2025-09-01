@@ -52,7 +52,13 @@ export const OphSelectMultiple = <T extends string>({
                     <Chip
                       key={val}
                       label={option.label}
-                      sx={{ borderRadius: '0px', height: '26px' }}
+                      sx={{
+                        borderRadius: '0px',
+                        height: '26px',
+                        '& span': {
+                          paddingLeft: '5px',
+                        },
+                      }}
                       onDelete={
                         onChange
                           ? () => {
