@@ -7,6 +7,8 @@ import {
   type OphSelectProps,
 } from '@/src/components/OphSelect';
 import * as React from 'react';
+import { Close } from '@mui/icons-material';
+import { ophColors } from '@/src';
 
 export interface OphSelectMultipleProps<T>
   extends Omit<OphSelectProps<Array<T>>, 'options'> {
@@ -81,6 +83,7 @@ export const OphSelectMultiple = <T extends string>({
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
+                      deleteIcon={<Close style={{ color: ophColors.black }} />}
                     />
                   )
                 );

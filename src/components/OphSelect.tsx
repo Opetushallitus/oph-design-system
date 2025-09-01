@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Clear } from '@mui/icons-material';
 import * as React from 'react';
+import { ophColors } from '@/src';
 
 export type OphSelectChangeEvent<T> =
   | { target: { value: T } }
@@ -53,7 +54,7 @@ export interface OphSelectProps<T>
 export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
   return (
     <Clear
-      sx={{ marginLeft: '4px' }}
+      sx={{ marginLeft: '4px', color: ophColors.grey900 }}
       onClick={onClick}
       onMouseDown={(event) => {
         event.stopPropagation();
