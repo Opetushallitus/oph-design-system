@@ -1,13 +1,12 @@
 'use client';
 
-import { Select, Box, Chip, type SelectChangeEvent } from '@mui/material';
+import { Select, Box, Chip, MenuItem } from '@mui/material';
 import {
   ClearSelect,
   type OphSelectOption,
   type OphSelectProps,
-  SelectOptions,
 } from '@/src/components/OphSelect';
-import { useCallback, useState } from 'react';
+import * as React from 'react';
 
 export interface OphSelectMultipleProps<T>
   extends Omit<OphSelectProps<Array<T>>, 'options'> {
@@ -26,28 +25,21 @@ export const OphSelectMultiple = <T extends string>({
   placeholder,
   options,
   onChange,
-  value: valueProp,
-  defaultValue,
   clearable,
   ...props
 }: OphSelectMultipleProps<T>) => {
-  const [selectedValues, setSelectedValues] = useState<Array<T>>(
-    valueProp ?? defaultValue ?? (EMPTY_ARRAY as Array<T>),
-  );
-  const handleChange = useCallback(
-    (event: SelectChangeEvent<Array<T>>, child: React.ReactNode) => {
-      setSelectedValues(event.target.value as Array<T>);
-      onChange?.(event, child);
-    },
-    [onChange, setSelectedValues],
-  );
   return (
     <Select
       displayEmpty
-      value={selectedValues}
       multiple
+      onChange={
+        onChange
+          ? (event, child) => {
+              onChange(event, child);
+            }
+          : undefined
+      }
       {...props}
-      onChange={handleChange}
       label={null}
       sx={{
         '& .MuiSelect-select': {
@@ -67,11 +59,17 @@ export const OphSelectMultiple = <T extends string>({
                       key={val}
                       label={option.label}
                       sx={{ borderRadius: '0px', height: '26px' }}
-                      onDelete={() => {
-                        setSelectedValues((prev) =>
-                          prev.filter((v) => val !== v),
-                        );
-                      }}
+                      onDelete={
+                        onChange
+                          ? () => {
+                              onChange({
+                                target: {
+                                  value: value.filter((v) => val !== v),
+                                },
+                              });
+                            }
+                          : undefined
+                      }
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -81,19 +79,28 @@ export const OphSelectMultiple = <T extends string>({
               })}
           {clearable && (
             <ClearSelect
-              onClick={() => {
-                setSelectedValues(EMPTY_ARRAY as Array<T>);
-              }}
+              onClick={
+                onChange
+                  ? () => {
+                      onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
+                    }
+                  : undefined
+              }
             />
           )}
         </Box>
       )}
     >
-      <SelectOptions
-        options={options}
-        placeholder={placeholder}
-        clearable={clearable}
-      />
+      <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
+        {placeholder}
+      </MenuItem>
+      {options.map(({ value, label }) => {
+        return (
+          <MenuItem value={value} key={value}>
+            {label}
+          </MenuItem>
+        );
+      })}
     </Select>
   );
 };

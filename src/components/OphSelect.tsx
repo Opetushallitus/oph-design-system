@@ -8,9 +8,11 @@ import {
   type SelectChangeEvent,
 } from '@mui/material';
 import { Clear } from '@mui/icons-material';
-import { useCallback, useState } from 'react';
+import * as React from 'react';
 
-export type OphSelectValue<T> = SelectProps<T>['value'];
+export type OphSelectChangeEvent<T> =
+  | { target: { value: T } }
+  | SelectChangeEvent;
 
 export interface OphSelectOption<T> {
   label: string;
@@ -27,6 +29,7 @@ export interface OphSelectProps<T>
     | 'componentsProps'
     | 'disableUnderline'
     | 'value'
+    | 'onChange'
   > {
   value?: T;
   /**
@@ -41,9 +44,13 @@ export interface OphSelectProps<T>
    * Placeholder text shown when no value is selected.
    */
   placeholder?: string;
+  /**
+   * Function called when value is changed. Clearing and deleting chips on multiselect component call the function with { target: { value: T } }
+   */
+  onChange?: (event: OphSelectChangeEvent<T>, child?: React.ReactNode) => void;
 }
 
-export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
+export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
   return (
     <Clear
       sx={{ marginLeft: '4px' }}
@@ -55,17 +62,40 @@ export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-export const SelectOptions = <T extends string>({
-  options,
-  clearable,
+/**
+ * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
+ * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
+ */
+export const OphSelect = <T extends string>({
   placeholder,
-}: {
-  options: Array<OphSelectOption<T>>;
-  clearable?: boolean;
-  placeholder?: string;
-}) => {
+  options,
+  onChange,
+  clearable,
+  ...props
+}: OphSelectProps<T>) => {
   return (
-    <>
+    <Select
+      displayEmpty
+      {...props}
+      onChange={onChange}
+      label={null}
+      renderValue={(val) => (
+        <Box sx={{ display: 'flex' }}>
+          {options.find((option) => option.value === val)?.label ?? placeholder}
+          {clearable && (
+            <ClearSelect
+              onClick={
+                onChange
+                  ? () => {
+                      onChange({ target: { value: '' as T } });
+                    }
+                  : undefined
+              }
+            />
+          )}
+        </Box>
+      )}
+    >
       <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
         {placeholder}
       </MenuItem>
@@ -76,58 +106,6 @@ export const SelectOptions = <T extends string>({
           </MenuItem>
         );
       })}
-    </>
-  );
-};
-
-/**
- * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
- * If you need label, helper text etc. use [OphSelectFormField](/docs/components-ophselectformfield--docs) instead.
- */
-export const OphSelect = <T extends string>({
-  placeholder,
-  options,
-  onChange,
-  value: valueProp,
-  defaultValue,
-  clearable,
-  ...props
-}: OphSelectProps<T>) => {
-  const [selectedValue, setSelectedValue] = useState<T>(
-    valueProp ?? defaultValue ?? ('' as T),
-  );
-  const handleChange = useCallback(
-    (event: SelectChangeEvent<T>, child: React.ReactNode) => {
-      setSelectedValue(event.target.value as T);
-      onChange?.(event, child);
-    },
-    [onChange, setSelectedValue],
-  );
-  return (
-    <Select
-      displayEmpty
-      {...props}
-      label={null}
-      value={selectedValue}
-      onChange={handleChange}
-      renderValue={(val) => (
-        <Box sx={{ display: 'flex' }}>
-          {options.find((option) => option.value === val)?.label ?? placeholder}
-          {clearable && (
-            <ClearSelect
-              onClick={() => {
-                setSelectedValue('' as T);
-              }}
-            />
-          )}
-        </Box>
-      )}
-    >
-      <SelectOptions
-        options={options}
-        placeholder={placeholder}
-        clearable={clearable}
-      />
     </Select>
   );
 };
