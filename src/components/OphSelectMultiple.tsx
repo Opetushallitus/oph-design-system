@@ -32,13 +32,7 @@ export const OphSelectMultiple = <T extends string>({
     <Select
       displayEmpty
       multiple
-      onChange={
-        onChange
-          ? (event, child) => {
-              onChange(event, child);
-            }
-          : undefined
-      }
+      onChange={onChange}
       {...props}
       label={null}
       sx={{
