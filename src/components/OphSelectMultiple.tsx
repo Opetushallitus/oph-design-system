@@ -28,6 +28,24 @@ export const OphSelectMultiple = <T extends string>({
   clearable,
   ...props
 }: OphSelectMultipleProps<T>) => {
+  const onClear = () =>
+    onChange
+      ? () => {
+          onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
+        }
+      : undefined;
+
+  const onChipDelete = (oldValue: Array<T>, chipValue: T) =>
+    onChange
+      ? () => {
+          onChange({
+            target: {
+              value: oldValue.filter((v) => chipValue !== v),
+            },
+          });
+        }
+      : undefined;
+
   return (
     <Select
       displayEmpty
@@ -59,17 +77,9 @@ export const OphSelectMultiple = <T extends string>({
                           paddingLeft: '5px',
                         },
                       }}
-                      onDelete={
-                        onChange
-                          ? () => {
-                              onChange({
-                                target: {
-                                  value: value.filter((v) => val !== v),
-                                },
-                              });
-                            }
-                          : undefined
-                      }
+                      onDelete={() => {
+                        onChipDelete(value, val);
+                      }}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -77,17 +87,7 @@ export const OphSelectMultiple = <T extends string>({
                   )
                 );
               })}
-          {clearable && (
-            <ClearSelect
-              onClick={
-                onChange
-                  ? () => {
-                      onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
-                    }
-                  : undefined
-              }
-            />
-          )}
+          {clearable && <ClearSelect onClick={onClear} />}
         </Box>
       )}
     >

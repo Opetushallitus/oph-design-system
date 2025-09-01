@@ -73,6 +73,13 @@ export const OphSelect = <T extends string>({
   clearable,
   ...props
 }: OphSelectProps<T>) => {
+  const onClear = () =>
+    onChange
+      ? () => {
+          onChange({ target: { value: '' as T } });
+        }
+      : undefined;
+
   return (
     <Select
       displayEmpty
@@ -82,17 +89,7 @@ export const OphSelect = <T extends string>({
       renderValue={(val) => (
         <Box sx={{ display: 'flex' }}>
           {options.find((option) => option.value === val)?.label ?? placeholder}
-          {clearable && (
-            <ClearSelect
-              onClick={
-                onChange
-                  ? () => {
-                      onChange({ target: { value: '' as T } });
-                    }
-                  : undefined
-              }
-            />
-          )}
+          {clearable && <ClearSelect onClick={onClear} />}
         </Box>
       )}
     >
