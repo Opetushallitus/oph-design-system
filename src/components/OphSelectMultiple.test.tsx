@@ -49,10 +49,12 @@ test('State changes correctly inside and outside the select component', () => {
   fireEvent.click(screen.getByText('toka'));
   fireEvent.click(screen.getByText('viides'));
 
-  expect(screen.getAllByTestId('CancelIcon').length).toBe(3);
   expect(testValue).toHaveTextContent('3');
 
-  fireEvent.click(screen.getAllByTestId('CancelIcon')[0]);
+  expect(screen.getByTestId('delete-chip-2')).toBeVisible();
+  expect(screen.getByTestId('delete-chip-5')).toBeVisible();
+
+  fireEvent.click(screen.getByTestId('delete-chip-1'));
   expect(testValue).toHaveTextContent('2');
 
   fireEvent.click(screen.getByTestId('ClearIcon'));

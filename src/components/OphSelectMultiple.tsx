@@ -83,7 +83,12 @@ export const OphSelectMultiple = <T extends string>({
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
-                      deleteIcon={<Close style={{ color: ophColors.black }} />}
+                      deleteIcon={
+                        <Close
+                          style={{ color: ophColors.black }}
+                          data-testid={`delete-chip-${val}`}
+                        />
+                      }
                     />
                   )
                 );
