@@ -216,6 +216,12 @@ npm run build
 
 Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa. Jakeluversiot julkaistaan [Opetushallituksen Github Packages -pakettivarastoon](https://github.com/orgs/Opetushallitus/packages). Versioimisessa käytetään [semanttista versiointia](https://semver.org/).
 
+Kun haluat julkaista uuden version, nosta ensin versionumeroa komennolla
+
+`npm run bump-version <versionumero>`
+
+Jos versionumeron jättää tyhjäksi, oletuksena nostetaan patch-versiota yhdellä. Lisää muuttuneet tiedostot Git:iin. Kun muutokset lisätään main-haaraan, julkaistaan paketista automaattisesti uusi versio.
+
 ## Esimerkkiprojekti
 
 Hakemistosta `example` löytyy lisäksi Next.js-esimerkkiprojekti, josta voi katsoa mallia komponenttikirjaston käyttöönottoon omassa projektissaan. Esimerkkiprojektilla voi myös testata että komponenttikirjaston jakeluversion käyttöönotto toimii.
