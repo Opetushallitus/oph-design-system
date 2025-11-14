@@ -44,7 +44,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 ```json
 {
   "peerDependencies": {
-    "@mui/material": "^6",
+    "@mui/material": "^6 || ^7",
     "next": "^14 || ^15", // Pakollinen vain, jos käytät Next.js:ää
     "react": "^18 || ^19"
   }
