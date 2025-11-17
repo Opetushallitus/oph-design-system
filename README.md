@@ -44,7 +44,7 @@ Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 ```json
 {
   "peerDependencies": {
-    "@mui/material": "^6",
+    "@mui/material": "^6 || ^7",
     "next": "^14 || ^15", // Pakollinen vain, jos käytät Next.js:ää
     "react": "^18 || ^19"
   }
@@ -215,6 +215,12 @@ npm run build
 ```
 
 Komento muodostaa EcmaScript-moduulit `/dist`-hakemistoon käyttäen [tsup-työkalua](https://tsup.egoist.dev/). [Package.json-tiedoston](./package.json) export-kentässä on määritelty moduulit, jotka jakeluversio tarjoaa. Jakeluversiot julkaistaan [Opetushallituksen Github Packages -pakettivarastoon](https://github.com/orgs/Opetushallitus/packages). Versioimisessa käytetään [semanttista versiointia](https://semver.org/).
+
+Kun haluat julkaista uuden version, nosta ensin versionumeroa komennolla
+
+`npm run bump-version <versionumero>`
+
+Jos versionumeron jättää tyhjäksi, oletuksena nostetaan patch-versiota yhdellä. Lisää muuttuneet tiedostot Git:iin. Kun muutokset lisätään main-haaraan, julkaistaan paketista automaattisesti uusi versio.
 
 ## Esimerkkiprojekti
 

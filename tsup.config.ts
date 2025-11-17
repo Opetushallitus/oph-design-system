@@ -3,7 +3,11 @@ import { preserveDirectivesPlugin } from 'esbuild-plugin-preserve-directives';
 
 export default defineConfig([
   {
-    entry: ['src/**/*@(ts|tsx)', '!src/**/*.@(test|stories).*'],
+    entry: [
+      'src/**/*@(ts|tsx)',
+      '!src/**/*.@(test|stories).*',
+      '!src/story-common.ts',
+    ],
     clean: true,
     dts: true,
     format: ['esm'],

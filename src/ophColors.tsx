@@ -27,6 +27,7 @@ const colors = {
   green3: '#5BCA13',
   green4: '#9CFF5A',
   green5: '#CCFFCC',
+  green6: '#F4FFF4',
 
   red1: '#990066',
   red2: '#E60895',
