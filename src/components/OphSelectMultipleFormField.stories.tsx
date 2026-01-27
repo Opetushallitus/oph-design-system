@@ -32,6 +32,14 @@ function StoryRender(props: OphSelectMultipleFormFieldProps<string>) {
   );
 }
 
+function StoryRenderUncontrolled(
+  props: OphSelectMultipleFormFieldProps<string>,
+) {
+  return (
+    <OphSelectMultipleFormField {...props} label={'OPH Select Multiple'} />
+  );
+}
+
 export const Default: Story = {
   args: {
     options: OPTIONS,
@@ -53,5 +61,12 @@ export const ValuesSelected: Story = {
   },
   render: (args) => {
     return <StoryRender {...args} />;
+  },
+};
+
+export const Uncontrolled: Story = {
+  ...ValuesSelected,
+  render: (args) => {
+    return <StoryRenderUncontrolled {...args} />;
   },
 };

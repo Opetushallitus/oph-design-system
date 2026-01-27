@@ -21,7 +21,8 @@ export type OphSelectChangeEvent<T> =
   | SelectChangeEvent;
 
 export interface OphSelectMultipleProps<T>
-  extends Omit<OphSelectProps<Array<T>>, 'options'> {
+  extends Omit<OphSelectProps<Array<T>>, 'options' | 'value'> {
+  value?: Array<T>;
   /**
    * Selectable options for the select component.
    */
@@ -38,6 +39,7 @@ export interface OphSelectMultipleProps<T>
 export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
   return (
     <OphButton
+      sx={{ height: '26px', alignSelf: 'center' }}
       startIcon={<Clear />}
       onClick={onClick}
       onMouseDown={(event) => {
@@ -63,7 +65,7 @@ export const OphSelectMultiple = <T extends string>({
 }: OphSelectMultipleProps<T>) => {
   const [controlledValue, setControlledValueState] = useControlled({
     controlled: valueProp,
-    default: defaultValue,
+    default: defaultValue ?? (EMPTY_ARRAY as Array<T>),
     name: 'SelectMultiple',
   });
   const handleChange = (
@@ -92,7 +94,7 @@ export const OphSelectMultiple = <T extends string>({
     <Select
       displayEmpty
       multiple
-      onChange={onChange}
+      onChange={handleChange}
       {...props}
       value={controlledValue}
       label={null}
@@ -103,39 +105,41 @@ export const OphSelectMultiple = <T extends string>({
         },
       }}
       renderValue={(value) => (
-        <Box sx={{ display: 'flex', gap: '5px' }}>
-          {value.length === 0
-            ? placeholder
-            : value.map((val) => {
-                const option = options.find((o) => o.value === val);
-                return (
-                  option && (
-                    <Chip
-                      key={val}
-                      label={option.label}
-                      sx={{
-                        borderRadius: '0px',
-                        height: '26px',
-                        '& span': {
-                          paddingLeft: '5px',
-                        },
-                      }}
-                      onDelete={() => {
-                        onChipDelete(value, val);
-                      }}
-                      onMouseDown={(event) => {
-                        event.stopPropagation();
-                      }}
-                      deleteIcon={
-                        <Close
-                          style={{ color: ophColors.black }}
-                          data-testid={`delete-chip-${val}`}
-                        />
-                      }
-                    />
-                  )
-                );
-              })}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', gap: '5px' }}>
+            {value.length === 0
+              ? placeholder
+              : value.map((val) => {
+                  const option = options.find((o) => o.value === val);
+                  return (
+                    option && (
+                      <Chip
+                        key={val}
+                        label={option.label}
+                        sx={{
+                          borderRadius: '0px',
+                          height: '26px',
+                          '& span': {
+                            paddingLeft: '5px',
+                          },
+                        }}
+                        onDelete={() => {
+                          onChipDelete(value, val);
+                        }}
+                        onMouseDown={(event) => {
+                          event.stopPropagation();
+                        }}
+                        deleteIcon={
+                          <Close
+                            style={{ color: ophColors.black }}
+                            data-testid={`delete-chip-${val}`}
+                          />
+                        }
+                      />
+                    )
+                  );
+                })}
+          </Box>
           {clearable && <ClearSelect onClick={onClear} />}
         </Box>
       )}

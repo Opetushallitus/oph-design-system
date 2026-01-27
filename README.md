@@ -87,7 +87,6 @@ import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/t
 import { getLocale } from 'next-intl/server';
 
 export async function RootLayout() {
-
   // Voit noutaa käyttäjän kielen millä tavalla haluat, esim. next-intl-kirjastolla
   const locale = await getLocale();
   return (
@@ -98,6 +97,7 @@ export async function RootLayout() {
         </OphNextJsThemeProvider>
       </body>
     </html>
+  );
 }
 ```
 
