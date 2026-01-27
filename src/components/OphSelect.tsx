@@ -1,23 +1,12 @@
 'use client';
 
-import {
-  Select,
-  MenuItem,
-  type SelectProps,
-  Box,
-  type SelectChangeEvent,
-} from '@mui/material';
-import { Clear } from '@mui/icons-material';
-import * as React from 'react';
-import { ophColors } from '@/src';
+import { Select, MenuItem, type SelectProps } from '@mui/material';
 
-export type OphSelectChangeEvent<T> =
-  | { target: { value: T } }
-  | SelectChangeEvent;
+export type OphSelectValue<T> = SelectProps<T>['value'];
 
 export interface OphSelectOption<T> {
   label: string;
-  value: T;
+  value: OphSelectValue<T>;
 }
 
 export interface OphSelectProps<T>
@@ -29,10 +18,7 @@ export interface OphSelectProps<T>
     | 'components'
     | 'componentsProps'
     | 'disableUnderline'
-    | 'value'
-    | 'onChange'
   > {
-  value?: T;
   /**
    * Selectable options for the select component.
    */
@@ -45,23 +31,7 @@ export interface OphSelectProps<T>
    * Placeholder text shown when no value is selected.
    */
   placeholder?: string;
-  /**
-   * Function called when value is changed. Clearing and deleting chips on multiselect component call the function with { target: { value: T } }
-   */
-  onChange?: (event: OphSelectChangeEvent<T>, child?: React.ReactNode) => void;
 }
-
-export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
-  return (
-    <Clear
-      sx={{ marginLeft: '4px', color: ophColors.grey900 }}
-      onClick={onClick}
-      onMouseDown={(event) => {
-        event.stopPropagation();
-      }}
-    ></Clear>
-  );
-};
 
 /**
  * A Select component based on [MUI Select](https://mui.com/material-ui/api/select/).
@@ -69,30 +39,12 @@ export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
  */
 export const OphSelect = <T extends string>({
   placeholder,
-  options,
-  onChange,
   clearable,
+  options,
   ...props
-}: OphSelectProps<T>) => {
-  const onClear = onChange
-    ? () => {
-        onChange({ target: { value: '' as T } });
-      }
-    : undefined;
-
+}: OphSelectProps<T | ''>) => {
   return (
-    <Select
-      displayEmpty
-      {...props}
-      onChange={onChange}
-      label={null}
-      renderValue={(val) => (
-        <Box sx={{ display: 'flex' }}>
-          {options.find((option) => option.value === val)?.label ?? placeholder}
-          {clearable && <ClearSelect onClick={onClear} />}
-        </Box>
-      )}
-    >
+    <Select defaultValue="" displayEmpty {...props} label={null}>
       <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
         {placeholder}
       </MenuItem>

@@ -1,14 +1,24 @@
 'use client';
 
-import { Select, Box, Chip, MenuItem } from '@mui/material';
 import {
-  ClearSelect,
+  Select,
+  Box,
+  Chip,
+  MenuItem,
+  useControlled,
+  type SelectChangeEvent,
+} from '@mui/material';
+import {
   type OphSelectOption,
   type OphSelectProps,
 } from '@/src/components/OphSelect';
 import * as React from 'react';
-import { Close } from '@mui/icons-material';
-import { ophColors } from '@/src';
+import { Clear, Close } from '@mui/icons-material';
+import { OphButton, ophColors } from '@/src';
+
+export type OphSelectChangeEvent<T> =
+  | { target: { value: T } }
+  | SelectChangeEvent;
 
 export interface OphSelectMultipleProps<T>
   extends Omit<OphSelectProps<Array<T>>, 'options'> {
@@ -16,7 +26,26 @@ export interface OphSelectMultipleProps<T>
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
+  /**
+   * Function called when value is changed. Clearing and deleting chips on multiselect component call the function with { target: { value: T } }
+   */
+  onChange?: (
+    event: OphSelectChangeEvent<Array<T>>,
+    child?: React.ReactNode,
+  ) => void;
 }
+
+export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
+  return (
+    <OphButton
+      startIcon={<Clear />}
+      onClick={onClick}
+      onMouseDown={(event) => {
+        event.stopPropagation();
+      }}
+    ></OphButton>
+  );
+};
 
 const EMPTY_ARRAY: Array<unknown> = [];
 /**
@@ -28,22 +57,35 @@ export const OphSelectMultiple = <T extends string>({
   options,
   onChange,
   clearable,
+  value: valueProp,
+  defaultValue,
   ...props
 }: OphSelectMultipleProps<T>) => {
-  const onClear = onChange
-    ? () => {
-        onChange({ target: { value: EMPTY_ARRAY as Array<T> } });
-      }
-    : undefined;
+  const [controlledValue, setControlledValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'SelectMultiple',
+  });
+  const handleChange = (
+    event: OphSelectChangeEvent<Array<T>>,
+    child?: React.ReactNode,
+  ) => {
+    setControlledValueState(event.target.value as Array<T>);
+    if (onChange) {
+      onChange(event, child);
+    }
+  };
+
+  const onClear = () => {
+    handleChange({ target: { value: EMPTY_ARRAY as Array<T> } });
+  };
 
   const onChipDelete = (oldValue: Array<T>, chipValue: T) => {
-    if (onChange) {
-      onChange({
-        target: {
-          value: oldValue.filter((v) => chipValue !== v),
-        },
-      });
-    }
+    handleChange({
+      target: {
+        value: oldValue.filter((v) => chipValue !== v),
+      },
+    });
   };
 
   return (
@@ -52,6 +94,7 @@ export const OphSelectMultiple = <T extends string>({
       multiple
       onChange={onChange}
       {...props}
+      value={controlledValue}
       label={null}
       sx={{
         '& .MuiSelect-select': {
