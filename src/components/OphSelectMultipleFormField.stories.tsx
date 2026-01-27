@@ -36,7 +36,10 @@ function StoryRenderUncontrolled(
   props: OphSelectMultipleFormFieldProps<string>,
 ) {
   return (
-    <OphSelectMultipleFormField {...props} label={'OPH Select Multiple'} />
+    <OphSelectMultipleFormField
+      {...props}
+      label={'OPH Select Multiple Uncontrolled'}
+    />
   );
 }
 

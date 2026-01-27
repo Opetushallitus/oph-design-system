@@ -7,6 +7,7 @@ import {
   MenuItem,
   useControlled,
   type SelectChangeEvent,
+  useTheme,
 } from '@mui/material';
 import {
   type OphSelectOption,
@@ -36,7 +37,18 @@ export interface OphSelectMultipleProps<T>
   ) => void;
 }
 
-export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
+export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
+  const theme = useTheme();
+  const ariaLabel = () => {
+    switch (theme.lang) {
+      case 'en':
+        return 'Clear';
+      case 'sv':
+        return 'Rensa';
+      default:
+        return 'Tyhjennä';
+    }
+  };
   return (
     <OphButton
       sx={{ height: '26px', alignSelf: 'center' }}
@@ -45,6 +57,7 @@ export const ClearSelect = ({ onClick }: { onClick?: () => void }) => {
       onMouseDown={(event) => {
         event.stopPropagation();
       }}
+      aria-label={ariaLabel()}
     ></OphButton>
   );
 };
@@ -82,10 +95,10 @@ export const OphSelectMultiple = <T extends string>({
     handleChange({ target: { value: EMPTY_ARRAY as Array<T> } });
   };
 
-  const onChipDelete = (oldValue: Array<T>, chipValue: T) => {
+  const onChipDelete = (chipValue: T) => {
     handleChange({
       target: {
-        value: oldValue.filter((v) => chipValue !== v),
+        value: controlledValue.filter((v) => chipValue !== v),
       },
     });
   };
@@ -124,7 +137,7 @@ export const OphSelectMultiple = <T extends string>({
                           },
                         }}
                         onDelete={() => {
-                          onChipDelete(value, val);
+                          onChipDelete(val);
                         }}
                         onMouseDown={(event) => {
                           event.stopPropagation();

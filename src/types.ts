@@ -23,6 +23,12 @@ export interface OphThemeParams {
 }
 
 declare module '@mui/material/styles' {
+  interface Theme {
+    lang?: OphLanguage;
+  }
+}
+
+declare module '@mui/material/styles' {
   interface CustomTypographyVariants {
     label: React.CSSProperties;
   }
