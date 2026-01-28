@@ -147,6 +147,9 @@ export const OphSelectMultiple = <T extends string>({
                         <Close
                           style={{
                             color: ophColors.black,
+                            padding: '2px',
+                            height: '20px',
+                            width: '20px',
                           }}
                           data-testid={`delete-chip-${val}`}
                         />
