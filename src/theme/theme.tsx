@@ -478,6 +478,23 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               backgroundColor: ophColors.grey300,
             },
           },
+          '.MuiChip-root': {
+            backgroundColor: ophColors.grey200,
+            borderRadius: '0px',
+            height: '26px',
+            span: {
+              paddingLeft: '5px',
+            },
+            '.MuiChip-deleteIcon': {
+              color: ophColors.black,
+              padding: '2px',
+              height: '20px',
+              width: '20px',
+              '&:hover': {
+                color: ophColors.black,
+              },
+            },
+          },
         }),
       },
     },

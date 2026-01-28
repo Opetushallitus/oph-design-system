@@ -130,30 +130,13 @@ export const OphSelectMultiple = <T extends string>({
                     <Chip
                       key={val}
                       label={option.label}
-                      sx={{
-                        borderRadius: '0px',
-                        height: '26px',
-                        '& span': {
-                          paddingLeft: '5px',
-                        },
-                      }}
                       onDelete={() => {
                         onChipDelete(val);
                       }}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
-                      deleteIcon={
-                        <Close
-                          style={{
-                            color: ophColors.black,
-                            padding: '2px',
-                            height: '20px',
-                            width: '20px',
-                          }}
-                          data-testid={`delete-chip-${val}`}
-                        />
-                      }
+                      deleteIcon={<Close data-testid={`delete-chip-${val}`} />}
                     />
                   )
                 );
