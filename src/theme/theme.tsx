@@ -468,6 +468,17 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
             borderRadius: '2px',
           }),
         },
+        root: ({ theme }) => ({
+          '&:hover': {
+            '.MuiSvgIcon-root': {
+              color: theme.palette.primary.main,
+            },
+            '.MuiChip-deleteIcon': {
+              borderRadius: '50%',
+              backgroundColor: ophColors.grey300,
+            },
+          },
+        }),
       },
     },
     MuiTable: {

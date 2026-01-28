@@ -120,38 +120,42 @@ export const OphSelectMultiple = <T extends string>({
       renderValue={(value) => (
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', gap: '5px' }}>
-            {value.length === 0
-              ? placeholder
-              : value.map((val) => {
-                  const option = options.find((o) => o.value === val);
-                  return (
-                    option && (
-                      <Chip
-                        key={val}
-                        label={option.label}
-                        sx={{
-                          borderRadius: '0px',
-                          height: '26px',
-                          '& span': {
-                            paddingLeft: '5px',
-                          },
-                        }}
-                        onDelete={() => {
-                          onChipDelete(val);
-                        }}
-                        onMouseDown={(event) => {
-                          event.stopPropagation();
-                        }}
-                        deleteIcon={
-                          <Close
-                            style={{ color: ophColors.black }}
-                            data-testid={`delete-chip-${val}`}
-                          />
-                        }
-                      />
-                    )
-                  );
-                })}
+            {value.length === 0 ? (
+              <span style={{ color: ophColors.grey500 }}>{placeholder}</span>
+            ) : (
+              value.map((val) => {
+                const option = options.find((o) => o.value === val);
+                return (
+                  option && (
+                    <Chip
+                      key={val}
+                      label={option.label}
+                      sx={{
+                        borderRadius: '0px',
+                        height: '26px',
+                        '& span': {
+                          paddingLeft: '5px',
+                        },
+                      }}
+                      onDelete={() => {
+                        onChipDelete(val);
+                      }}
+                      onMouseDown={(event) => {
+                        event.stopPropagation();
+                      }}
+                      deleteIcon={
+                        <Close
+                          style={{
+                            color: ophColors.black,
+                          }}
+                          data-testid={`delete-chip-${val}`}
+                        />
+                      }
+                    />
+                  )
+                );
+              })
+            )}
           </Box>
           {clearable && <ClearSelect onClick={onClear} />}
         </Box>

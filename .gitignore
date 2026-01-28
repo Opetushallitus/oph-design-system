@@ -10,3 +10,4 @@ pkg
 test-results
 dist
 .idea
+.DS_Store
