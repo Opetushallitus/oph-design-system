@@ -9,7 +9,7 @@ import { deepmerge } from '@mui/utils';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import { focusOutlineStyle } from './theme-utils';
-import { ophColors } from '../ophColors';
+import { ophColors } from '@/src';
 
 const themeBase = createTheme({
   breakpoints: {
@@ -467,6 +467,11 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '&:focus-visible': focusOutlineStyle({
             borderRadius: '2px',
           }),
+          '&.MuiSelect-multiple': {
+            paddingTop: '7px',
+            paddingBottom: '7px',
+            maxWidth: '640px',
+          },
         },
         root: ({ theme }) => ({
           '&:hover': {
@@ -474,7 +479,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               color: theme.palette.primary.main,
             },
             '.MuiChip-deleteIcon': {
-              borderRadius: '50%',
+              borderRadius: '2px',
               backgroundColor: ophColors.grey300,
             },
           },

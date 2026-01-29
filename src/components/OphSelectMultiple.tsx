@@ -8,33 +8,42 @@ import {
   useControlled,
   type SelectChangeEvent,
   useTheme,
+  type SxProps,
 } from '@mui/material';
-import {
-  type OphSelectOption,
-  type OphSelectProps,
-} from '@/src/components/OphSelect';
+import { type OphSelectOption } from '@/src/components/OphSelect';
 import * as React from 'react';
 import { Clear, Close } from '@mui/icons-material';
 import { OphButton, ophColors } from '@/src';
+import type { Theme } from '@mui/material/styles';
 
 export type OphSelectChangeEvent<T> =
   | { target: { value: T } }
   | SelectChangeEvent;
 
-export interface OphSelectMultipleProps<T>
-  extends Omit<OphSelectProps<Array<T>>, 'options' | 'value'> {
+export interface OphSelectMultipleProps<T> {
   value?: Array<T>;
   /**
    * Selectable options for the select component.
    */
   options: Array<OphSelectOption<T>>;
   /**
-   * Function called when value is changed. Clearing and deleting chips on multiselect component call the function with { target: { value: T } }
+   * Function called when value is changed. Clearing and deleting chips on multiselect component call the function with { target: { value: Array<T> } }
    */
   onChange?: (
     event: OphSelectChangeEvent<Array<T>>,
     child?: React.ReactNode,
   ) => void;
+  /**
+   * Can the value be cleared from the select component.
+   */
+  clearable?: boolean;
+  /**
+   * Placeholder text shown when no value is selected.
+   */
+  placeholder?: string;
+  defaultValue?: Array<T>;
+  open?: boolean;
+  sx?: SxProps<Theme>;
 }
 
 export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
@@ -58,7 +67,7 @@ export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
         event.stopPropagation();
       }}
       aria-label={ariaLabel()}
-    ></OphButton>
+    />
   );
 };
 
@@ -74,12 +83,13 @@ export const OphSelectMultiple = <T extends string>({
   clearable,
   value: valueProp,
   defaultValue,
-  ...props
+  open,
+  sx,
 }: OphSelectMultipleProps<T>) => {
   const [controlledValue, setControlledValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue ?? (EMPTY_ARRAY as Array<T>),
-    name: 'SelectMultiple',
+    name: 'OphSelectMultiple',
   });
   const handleChange = (
     event: OphSelectChangeEvent<Array<T>>,
@@ -108,22 +118,17 @@ export const OphSelectMultiple = <T extends string>({
       displayEmpty
       multiple
       onChange={handleChange}
-      {...props}
       value={controlledValue}
       label={null}
-      sx={{
-        '& .MuiSelect-select': {
-          paddingTop: '7px',
-          paddingBottom: '7px',
-        },
-      }}
-      renderValue={(value) => (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', gap: '5px' }}>
-            {value.length === 0 ? (
-              <span style={{ color: ophColors.grey500 }}>{placeholder}</span>
-            ) : (
-              value.map((val) => {
+      open={open}
+      sx={sx}
+      renderValue={(value) => {
+        return value.length === 0 ? (
+          <span style={{ color: ophColors.grey500 }}>{placeholder}</span>
+        ) : (
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+              {value.map((val) => {
                 const option = options.find((o) => o.value === val);
                 return (
                   option && (
@@ -140,16 +145,13 @@ export const OphSelectMultiple = <T extends string>({
                     />
                   )
                 );
-              })
-            )}
+              })}
+            </Box>
+            {clearable && <ClearSelect onClick={onClear} />}
           </Box>
-          {clearable && <ClearSelect onClick={onClear} />}
-        </Box>
-      )}
+        );
+      }}
     >
-      <MenuItem sx={{ display: clearable ? 'block' : 'none' }} value="">
-        {placeholder}
-      </MenuItem>
       {options.map(({ value, label }) => {
         return (
           <MenuItem value={value} key={value}>
