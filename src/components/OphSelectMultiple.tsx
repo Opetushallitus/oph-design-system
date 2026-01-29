@@ -9,6 +9,7 @@ import {
   type SelectChangeEvent,
   useTheme,
   type SxProps,
+  type InputBaseComponentProps,
 } from '@mui/material';
 import { type OphSelectOption } from '@/src/components/OphSelect';
 import * as React from 'react';
@@ -44,6 +45,7 @@ export interface OphSelectMultipleProps<T> {
   defaultValue?: Array<T>;
   open?: boolean;
   sx?: SxProps<Theme>;
+  inputProps?: InputBaseComponentProps;
 }
 
 export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
@@ -85,6 +87,7 @@ export const OphSelectMultiple = <T extends string>({
   defaultValue,
   open,
   sx,
+  inputProps,
 }: OphSelectMultipleProps<T>) => {
   const [controlledValue, setControlledValueState] = useControlled({
     controlled: valueProp,
@@ -122,6 +125,7 @@ export const OphSelectMultiple = <T extends string>({
       label={null}
       open={open}
       sx={sx}
+      inputProps={inputProps}
       renderValue={(value) => {
         return value.length === 0 ? (
           <span style={{ color: ophColors.grey500 }}>{placeholder}</span>

@@ -470,23 +470,18 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           '&.MuiSelect-multiple': {
             paddingTop: '7px',
             paddingBottom: '7px',
-            maxWidth: '640px',
+            minHeight: '26px',
           },
         },
         root: ({ theme }) => ({
-          '&:hover': {
-            '.MuiSvgIcon-root': {
-              color: theme.palette.primary.main,
-            },
-            '.MuiChip-deleteIcon': {
-              borderRadius: '2px',
-              backgroundColor: ophColors.grey300,
-            },
+          '.MuiSvgIcon-root:hover': {
+            color: theme.palette.primary.main,
           },
           '.MuiChip-root': {
             backgroundColor: ophColors.grey200,
             borderRadius: '0px',
             height: '26px',
+            fontSize: '0.938rem',
             span: {
               paddingLeft: '5px',
             },
@@ -497,6 +492,8 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
               width: '20px',
               '&:hover': {
                 color: ophColors.black,
+                borderRadius: '2px',
+                backgroundColor: ophColors.grey300,
               },
             },
           },
