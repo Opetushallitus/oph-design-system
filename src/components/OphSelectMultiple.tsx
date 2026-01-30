@@ -48,7 +48,6 @@ export interface OphSelectMultipleProps<T> {
   inputProps?: InputBaseComponentProps;
   disabled?: boolean;
   labelId?: string;
-  'data-testid'?: string;
 }
 
 export const ClearSelect = ({ onClick }: { onClick: () => void }) => {
@@ -93,7 +92,6 @@ export const OphSelectMultiple = <T extends string>({
   inputProps,
   labelId,
   disabled,
-  'data-testid': testId = 'OphSelectMultiple',
 }: OphSelectMultipleProps<T>) => {
   const [controlledValue, setControlledValueState] = useControlled({
     controlled: valueProp,
@@ -134,7 +132,6 @@ export const OphSelectMultiple = <T extends string>({
       open={open}
       sx={sx}
       inputProps={inputProps}
-      data-testid={testId}
       renderValue={(value) => {
         return value.length === 0 ? (
           <span style={{ color: ophColors.grey500 }}>{placeholder}</span>

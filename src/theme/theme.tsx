@@ -479,6 +479,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           },
           '.MuiChip-root': {
             backgroundColor: ophColors.grey200,
+            cursor: 'default',
             borderRadius: '0px',
             height: '26px',
             fontSize: '0.938rem',

@@ -64,19 +64,20 @@ test('State changes correctly inside and outside the select component', () => {
 
 test('Value changes correctly with uncontrolled select component', () => {
   renderWithOphTheme(
-    <OphSelectMultiple
-      options={[
-        { value: '1', label: 'First' },
-        { value: '2', label: 'Second' },
-        { value: '3', label: 'Third' },
-        { value: '4', label: 'Fourth' },
-        { value: '5', label: 'Fifth' },
-      ]}
-      open={true}
-      clearable={true}
-      data-testid={'test-select'}
-      placeholder={'Placeholder'}
-    ></OphSelectMultiple>,
+    <div data-testid={'test-select'}>
+      <OphSelectMultiple
+        options={[
+          { value: '1', label: 'First' },
+          { value: '2', label: 'Second' },
+          { value: '3', label: 'Third' },
+          { value: '4', label: 'Fourth' },
+          { value: '5', label: 'Fifth' },
+        ]}
+        open={true}
+        clearable={true}
+        placeholder={'Placeholder'}
+      ></OphSelectMultiple>
+    </div>,
   );
 
   const select = screen.getByTestId('test-select');
