@@ -10,16 +10,23 @@ export function createOphTheme({
   lang,
   overrides = EMPTY_OBJECT,
 }: OphThemeParams) {
+  const locale = getLocale(lang);
   switch (variant) {
     case 'oph':
       return createTheme(
-        deepmerge(OPH_THEME_OPTIONS, overrides, { clone: true }),
-        getLocale(lang),
+        deepmerge(OPH_THEME_OPTIONS, overrides, {
+          clone: true,
+        }),
+        { lang },
+        locale,
       );
     case 'opintopolku':
       return createTheme(
-        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides, { clone: true }),
-        getLocale(lang),
+        deepmerge(OPINTOPOLKU_THEME_OPTIONS, overrides, {
+          clone: true,
+        }),
+        { lang },
+        locale,
       );
     default:
       throw Error('Theme variant must be "oph" or "opintopolku"!');

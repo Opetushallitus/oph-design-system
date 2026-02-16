@@ -9,3 +9,5 @@ __snapshots__/__diff_output__
 pkg
 test-results
 dist
+.idea
+.DS_Store
