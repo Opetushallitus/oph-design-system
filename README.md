@@ -226,3 +226,13 @@ Jos versionumeron jättää tyhjäksi, oletuksena nostetaan patch-versiota yhdel
 
 Hakemistosta `example` löytyy lisäksi Next.js-esimerkkiprojekti, josta voi katsoa mallia komponenttikirjaston käyttöönottoon omassa projektissaan. Esimerkkiprojektilla voi myös testata että komponenttikirjaston jakeluversion käyttöönotto toimii.
 Katso lisätietoja [Esimerkkiprojektin README:sta](./example/README.md).
+
+## Komponentin lisääminen komponenttikirjastoon 
+PÄIVITTYY 
+1.Tee komponentti
+2.Lisää komponentti esimerkkiprojektiin 
+3.Dokumentoi komponentti storybookiin
+4.Testaa komponentti (playwright) 
+5.Hyväksytä visuaalinen lopputulos palveluvastaavalla (Marcus) ja käyttöliittymäsuunnittelijalla oph-design-system slack-kanavalla.
+6.Julkaise uusi versio
+
