@@ -228,11 +228,13 @@ Hakemistosta `example` löytyy lisäksi Next.js-esimerkkiprojekti, josta voi kat
 Katso lisätietoja [Esimerkkiprojektin README:sta](./example/README.md).
 
 ## Komponentin lisääminen komponenttikirjastoon 
-PÄIVITTYY 
-1.Tee komponentti
-2.Lisää komponentti esimerkkiprojektiin 
-3.Dokumentoi komponentti storybookiin
-4.Testaa komponentti (playwright) 
-5.Hyväksytä visuaalinen lopputulos palveluvastaavalla (Marcus) ja käyttöliittymäsuunnittelijalla oph-design-system slack-kanavalla.
-6.Julkaise uusi versio
+PÄIVITTYY
+Ennen projenktin/käyttöliittymäuudistuksen alkua käyttöliittymäsuunnitelma katselmoidaan OPH:n design system- tiimin kanssa. Tällöin arvioidaan onko uudistuksessa mahdollista toteuttaa uusia komponentteja komponenttikirjastoon. Arvioinnin jälkeen edetään seuraavasti: 
+
+1. Tee komponentti
+2. Lisää komponentti esimerkkiprojektiin 
+3. Dokumentoi komponentti storybookiin
+4. Testaa komponentti (playwright) 
+5. Hyväksytä visuaalinen lopputulos palveluvastaavalla (Marcus) ja käyttöliittymäsuunnittelijalla oph-design-system slack-kanavalla. 
+6. Julkaise uusi versio
 
