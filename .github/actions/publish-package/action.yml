@@ -10,10 +10,23 @@ runs:
         scope: '@opetushallitus'
     - name: Install dependencies
       shell: bash
-      run: npm ci --no-audit
+      run: npm ci --no-audit --ignore-scripts
     - name: Build package
       shell: bash
       run: npm run build
+    - name: Check if version is already published
+      id: check-version
+      shell: bash
+      run: |
+        PACKAGE_NAME=$(node -p "require('./package.json').name")
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version >/dev/null 2>&1; then
+          echo "exists=true" >> "$GITHUB_OUTPUT"
+          echo "$PACKAGE_NAME@$PACKAGE_VERSION is already published, skipping publish"
+        else
+          echo "exists=false" >> "$GITHUB_OUTPUT"
+        fi
     - name: Publish to GitHub Packages
+      if: steps.check-version.outputs.exists == 'false'
       shell: bash
       run: npm publish
