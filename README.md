@@ -39,17 +39,18 @@ Asenna komponenttikirjasto samaan tapaan kuin mikä tahansa riippuvuus:
 npm i "@opetushallitus/oph-design-system"
 ```
 
-Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
+Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu: 
 
 ```json
 {
   "peerDependencies": {
     "@mui/material": "^6 || ^7",
-    "next": "^14 || ^15", // Pakollinen vain, jos käytät Next.js:ää
     "react": "^18 || ^19"
   }
 }
 ```
+
+HUOM: Nextjs olisi hyvä merkata kuiten. Tän voisi toteuttaa esim omana exporttina @opetushaliitus/oph-design-system-next
 
 ### Asentaminen Github Actions -workflowssa
 
