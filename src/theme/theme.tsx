@@ -25,6 +25,9 @@ const themeBase = createTheme({
 });
 
 const COMMON_THEME_OPTIONS: ThemeOptions = {
+  oph: {
+    borderRadius: '4px',
+  },
   palette: {
     error: {
       main: ophColors.alias.error,
@@ -48,10 +51,11 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
         loadingPosition: 'start',
       },
       styleOverrides: {
-        root: {
-          borderRadius: '2px',
+        root: ({ theme }) => ({
+          borderRadius: theme.oph.borderRadius,
           padding: '6px 16px',
           lineHeight: '24px',
+          fontWeight: 400,
           '&.Mui-disabled': {
             cursor: 'not-allowed',
           },
@@ -63,7 +67,7 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
           variants: [
             {
               props: { variant: 'contained', color: 'primary' },
-              style: ({ theme }) => {
+              style: ({ theme: variantTheme }) => {
                 return {
                   border: '2px solid transparent',
                   '&.Mui-disabled': {
@@ -71,64 +75,64 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                     color: ophColors.white,
                   },
                   '&:hover': {
-                    backgroundColor: theme.palette.primary.light,
+                    backgroundColor: variantTheme.palette.primary.light,
                   },
                   '&:active': {
-                    backgroundColor: theme.palette.primary.dark,
+                    backgroundColor: variantTheme.palette.primary.dark,
                   },
                 };
               },
             },
             {
               props: { variant: 'outlined', color: 'primary' },
-              style: ({ theme }) => {
+              style: ({ theme: variantTheme }) => {
                 return {
                   backgroundColor: ophColors.white,
-                  color: theme.palette.primary.main,
-                  borderWidth: '2px',
-                  borderColor: theme.palette.primary.main,
+                  color: variantTheme.palette.primary.main,
+                  borderWidth: '1px',
+                  borderColor: variantTheme.palette.primary.main,
                   '&.Mui-disabled': {
-                    borderWidth: '2px',
                     color: ophColors.grey400,
                     borderColor: ophColors.grey400,
                   },
                   '&:hover': {
-                    borderWidth: '2px',
                     backgroundColor: ophColors.white,
-                    color: theme.palette.primary.light,
-                    borderColor: theme.palette.primary.light,
+                    color: variantTheme.palette.primary.light,
+                    borderColor: variantTheme.palette.primary.light,
                   },
                   '&:active': {
-                    borderWidth: '2px',
                     backgroundColor: ophColors.white,
-                    color: theme.palette.primary.dark,
-                    borderColor: theme.palette.primary.dark,
+                    color: variantTheme.palette.primary.dark,
+                    borderColor: variantTheme.palette.primary.dark,
+                  },
+                  '&.Mui-focusVisible': {
+                    borderWidth: '2px',
                   },
                 };
               },
             },
             {
               props: { variant: 'text', color: 'primary' },
-              style: ({ theme }) => {
+              style: ({ theme: variantTheme }) => {
                 return {
                   border: '2px solid transparent',
-                  color: theme.palette.primary.main,
+                  color: variantTheme.palette.primary.main,
                   '&.Mui-disabled': {
                     color: ophColors.grey400,
                   },
                   '&:hover': {
-                    color: theme.palette.primary.light,
+                    color: variantTheme.palette.primary.light,
                     background: 'none',
                   },
                   '&:active': {
-                    color: theme.palette.primary.dark,
+                    color: variantTheme.palette.primary.dark,
                     background: 'none',
                   },
                 };
               },
             },
           ],
-        },
+        }),
       },
     },
     MuiButtonBase: {
@@ -294,10 +298,10 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
     MuiInputBase: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           borderColor: ophColors.grey800,
-          borderRadius: '2px',
-        },
+          borderRadius: theme.oph.borderRadius,
+        }),
       },
     },
     MuiOutlinedInput: {
@@ -317,16 +321,16 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                 },
                 padding: 0,
                 backgroundColor: ophColors.white,
-                borderRadius: '2px',
+                borderRadius: theme.oph.borderRadius,
                 '&:has(input:focus-visible)': focusOutlineStyle({
-                  borderRadius: '2px',
+                  borderRadius: theme.oph.borderRadius,
                 }),
                 '& .MuiSvgIcon-root': {
                   color: ophColors.grey800,
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
                   borderColor: ophColors.grey800,
-                  borderRadius: '2px',
+                  borderRadius: theme.oph.borderRadius,
                   borderWidth: '1px',
                   /* Label (legend) always takes vertical space according to "line-height". Because
                   of this MUI uses negative top-position trickery to correctly align the outline 
@@ -463,16 +467,16 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
     },
     MuiSelect: {
       styleOverrides: {
-        select: {
+        select: ({ theme }) => ({
           '&:focus-visible': focusOutlineStyle({
-            borderRadius: '2px',
+            borderRadius: theme.oph.borderRadius,
           }),
           '&.MuiSelect-multiple': {
             paddingTop: '7px',
             paddingBottom: '7px',
             minHeight: '26px',
           },
-        },
+        }),
         root: ({ theme }) => ({
           '.MuiSvgIcon-root:hover': {
             color: theme.palette.primary.main,
