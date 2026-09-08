@@ -17,7 +17,7 @@ export default defineConfig([
     target: 'es2022',
     treeshake: false,
     bundle: true,
-    external: ['@mui/utils', '@mui/icons-material'],
+    external: ['@mui/utils', '@mui/icons-material', 'next'],
     outDir: 'dist',
     esbuildPlugins: [
       preserveDirectivesPlugin({
