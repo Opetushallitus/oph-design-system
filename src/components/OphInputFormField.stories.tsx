@@ -33,11 +33,14 @@ export const DefaultHovered: Story = {
 
 export const DefaultFocused: Story = {
   args: Default.args,
-  play: ({ canvasElement }) => {
+  play: async ({ canvasElement }) => {
+    await canvasElement.ownerDocument.fonts.ready;
     const canvas = within(canvasElement);
-    const inputs = canvas.getAllByRole('textbox');
+    const inputs = canvas.getAllByRole<HTMLInputElement>('textbox');
     for (const input of inputs) {
       input.focus();
+      input.setSelectionRange(0, 0);
+      input.scrollLeft = 0;
     }
   },
 };
