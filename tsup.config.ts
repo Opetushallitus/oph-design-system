@@ -17,7 +17,7 @@ export default defineConfig([
     target: 'es2022',
     treeshake: false,
     bundle: true,
-    external: ['@mui/utils', '@mui/icons-material', 'next'],
+    external: ['@mui/utils', '@mui/icons-material'],
     outDir: 'dist',
     esbuildPlugins: [
       preserveDirectivesPlugin({
@@ -25,16 +25,6 @@ export default defineConfig([
         include: /\.(js|ts|jsx|tsx)$/,
         exclude: /node_modules/,
       }),
-    ],
-    plugins: [
-      {
-        name: 'fix-code',
-        renderChunk(_, chunk) {
-          //Fixes Next.js error "Font loaders must be called and assigned to a const in the module scope"
-          chunk.code = chunk.code.replace('var openSans', 'const openSans');
-          return chunk;
-        },
-      },
     ],
   },
 ]);

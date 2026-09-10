@@ -12,8 +12,7 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./theme": "./dist/theme/index.js",
-    "./next/theme": "./dist/next/theme/index.js"
+    "./theme": "./dist/theme/index.js"
   },
   "scripts": {
     "prepare": "husky || true",
@@ -44,6 +43,7 @@
     "@emotion/styled": "^11.14.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.24.0",
+    "@fontsource/open-sans": "^5.2.7",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
     "@playwright/test": "^1.51.1",
@@ -52,8 +52,8 @@
     "@storybook/addon-interactions": "^8.6.12",
     "@storybook/addon-links": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
-    "@storybook/nextjs": "^8.6.12",
     "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
     "@storybook/test": "^8.6.12",
     "@storybook/theming": "^8.6.12",
     "@testing-library/jest-dom": "^6.6.3",
@@ -79,16 +79,13 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1",
+    "vite": "^6.4.1",
     "vitest": "^3.1.1"
   },
   "peerDependencies": {
+    "@mui/icons-material": "^6 || ^7",
     "@mui/material": "^6 || ^7",
     "react": "^18 || ^19"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    }
   },
   "overrides": {
     "esbuild": "0.24.0"
