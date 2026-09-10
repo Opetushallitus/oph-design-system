@@ -7,7 +7,6 @@ const compat = new FlatCompat();
 export default tsEslint.config(
   {
     ignores: [
-      '**/.next',
       'coverage',
       'dist',
       'example',

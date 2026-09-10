@@ -10,7 +10,6 @@ Tämä Git-säilö sisältää muotoilujärjestelmän mukaan rakennetun React-ko
 
 - [React](https://react.dev/) v18
 - [Material-UI](https://mui.com/material-ui/getting-started/) v6
-- [Next.js](https://nextjs.org/) v14 (App router)
 - [Storybook](https://storybook.js.org/) v8
 
 ## Asentaminen
@@ -39,18 +38,19 @@ Asenna komponenttikirjasto samaan tapaan kuin mikä tahansa riippuvuus:
 npm i "@opetushallitus/oph-design-system"
 ```
 
-Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu: 
+Varmista myös, että vertaisriippuvuudet (peer dependency) on asennettu:
 
 ```json
 {
   "peerDependencies": {
+    "@mui/icons-material": "^6 || ^7",
     "@mui/material": "^6 || ^7",
     "react": "^18 || ^19"
   }
 }
 ```
 
-HUOM: Nextjs olisi hyvä merkata kuiten. Tän voisi toteuttaa esim omana exporttina @opetushaliitus/oph-design-system-next
+Käytä `@mui/material`- ja `@mui/icons-material`-paketeista samaa pääversiota.
 
 ### Asentaminen Github Actions -workflowssa
 
@@ -81,30 +81,7 @@ permissions:
 ## Komponenttikirjaston käyttöönotto
 
 Kirjasto sisältää kaksi teema-varianttia: "oph" (sininen) ja "opintopolku" (vihreä).
-Next.js:ää käytettäessä voit ottaa teeman käyttöön juuritason layoutissa seuraavasti:
-
-```js
-import { OphNextJsThemeProvider } from '@opetushallitus/oph-design-system/next/theme';
-import { getLocale } from 'next-intl/server';
-
-export async function RootLayout() {
-  // Voit noutaa käyttäjän kielen millä tavalla haluat, esim. next-intl-kirjastolla
-  const locale = await getLocale();
-  return (
-    <html lang={locale}>
-      <body>
-        <OphNextJsThemeProvider variant="oph" lang={locale}>
-          {children}
-        </OphNextJsThemeProvider>
-      </body>
-    </html>
-  );
-}
-```
-
-Voit noutaa kielen millä tavalla haluat, esimerkiksi [next-intl](https://next-intl-docs.vercel.app/docs/getting-started/app-router/without-i18n-routing)-kirjastolla, kunhan sen arvo on "fi", "sv" tai "en".
-
-Voit myös käyttää teemaa ilman NextJs:ää, pelkällä Reactilla:
+Ota teema käyttöön React-sovelluksessa seuraavasti:
 
 ```js
 import { OphThemeProvider } from '@opetushallitus/oph-design-system/theme';
@@ -123,8 +100,10 @@ export function App() {
 }
 ```
 
+Teema käyttää Open Sans -fonttia painoilla 400, 600 ja 700. Lataa fontti self-hosted tai Fontsource-paketista
+
 Jos haluat kustomoida teemaa, voit antaa ThemeProviderille Material-UI:n teeman konfiguraatio-objektin osan `overrides`-parametrina, joka ylikirjoittaa teeman asetuksia.
-Teeman initialisointia voi kustomoida luomalla teeman `createOphTheme`-funktiolla tai `useOphTheme`-hookilla, joka löytyvät moduulista `@opetushallitus/oph-design-system/theme` ([./src/next/theme/theme.tsx](./src/next/theme/theme.tsx)).
+Teeman initialisointia voi kustomoida luomalla teeman `createOphTheme`-funktiolla tai `useOphTheme`-hookilla, joka löytyvät moduulista `@opetushallitus/oph-design-system/theme` ([./src/theme/createOphTheme.ts](./src/theme/createOphTheme.ts)).
 
 Kun teema on otettu käyttöön, voit käyttää ODS:n komponentteja omassa koodissasi:
 
@@ -223,19 +202,13 @@ Kun haluat julkaista uuden version, nosta ensin versionumeroa komennolla
 
 Jos versionumeron jättää tyhjäksi, oletuksena nostetaan patch-versiota yhdellä. Lisää muuttuneet tiedostot Git:iin. Kun muutokset lisätään main-haaraan, julkaistaan paketista automaattisesti uusi versio.
 
-## Esimerkkiprojekti
-
-Hakemistosta `example` löytyy lisäksi Next.js-esimerkkiprojekti, josta voi katsoa mallia komponenttikirjaston käyttöönottoon omassa projektissaan. Esimerkkiprojektilla voi myös testata että komponenttikirjaston jakeluversion käyttöönotto toimii.
-Katso lisätietoja [Esimerkkiprojektin README:sta](./example/README.md).
-
-## Komponentin lisääminen komponenttikirjastoon 
+## Komponentin lisääminen komponenttikirjastoon
 PÄIVITTYY
-Ennen projenktin/käyttöliittymäuudistuksen alkua käyttöliittymäsuunnitelma katselmoidaan OPH:n design system- tiimin kanssa. Tällöin arvioidaan onko uudistuksessa mahdollista toteuttaa uusia komponentteja komponenttikirjastoon. Arvioinnin jälkeen edetään seuraavasti: 
+Ennen projenktin/käyttöliittymäuudistuksen alkua käyttöliittymäsuunnitelma katselmoidaan OPH:n design system- tiimin kanssa. Tällöin arvioidaan onko uudistuksessa mahdollista toteuttaa uusia komponentteja komponenttikirjastoon. Arvioinnin jälkeen edetään seuraavasti:
 
 1. Tee komponentti
-2. Lisää komponentti esimerkkiprojektiin 
+2. Lisää komponentti esimerkkiprojektiin
 3. Dokumentoi komponentti storybookiin
-4. Testaa komponentti (playwright) 
-5. Hyväksytä visuaalinen lopputulos palveluvastaavalla (Marcus) ja käyttöliittymäsuunnittelijalla oph-design-system slack-kanavalla. 
+4. Testaa komponentti (playwright)
+5. Hyväksytä visuaalinen lopputulos palveluvastaavalla (Marcus) ja käyttöliittymäsuunnittelijalla oph-design-system slack-kanavalla.
 6. Julkaise uusi versio
-
