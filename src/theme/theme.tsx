@@ -93,20 +93,20 @@ const COMMON_THEME_OPTIONS: ThemeOptions = {
                   borderColor: variantTheme.palette.primary.main,
                   '&.Mui-disabled': {
                     color: ophColors.grey400,
+                    borderWidth: '1px',
                     borderColor: ophColors.grey400,
                   },
                   '&:hover': {
                     backgroundColor: ophColors.white,
                     color: variantTheme.palette.primary.light,
+                    borderWidth: '1px',
                     borderColor: variantTheme.palette.primary.light,
                   },
                   '&:active': {
                     backgroundColor: ophColors.white,
                     color: variantTheme.palette.primary.dark,
+                    borderWidth: '1px',
                     borderColor: variantTheme.palette.primary.dark,
-                  },
-                  '&.Mui-focusVisible': {
-                    borderWidth: '2px',
                   },
                 };
               },
