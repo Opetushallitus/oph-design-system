@@ -1,13 +1,12 @@
 node_modules
-.next
 storybook-static
 lcov-report
 coverage
 __snapshots__/__diff_output__
-.swc
 .last-run.json
 pkg
 test-results
 dist
 .idea
 .DS_Store
+/IMPROVEMENTS.md

@@ -1,8 +1,8 @@
-import { test, expect, BrowserContext } from '@playwright/test';
+import { test, expect, type BrowserContext } from '@playwright/test';
 import { type OphLanguage } from '@opetushallitus/oph-design-system';
-import fi from '../messages/fi.json';
-import sv from '../messages/sv.json';
-import en from '../messages/en.json';
+import fi from '../messages/fi.json' with { type: 'json' };
+import sv from '../messages/sv.json' with { type: 'json' };
+import en from '../messages/en.json' with { type: 'json' };
 
 const setLang = async (
   context: BrowserContext,

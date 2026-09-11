@@ -1,4 +1,6 @@
-import type { StorybookConfig } from '@storybook/nextjs';
+import type { StorybookConfig } from '@storybook/react-vite';
+import { fileURLToPath } from 'node:url';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
@@ -12,9 +14,18 @@ const config: StorybookConfig = {
   ],
 
   framework: {
-    name: '@storybook/nextjs',
+    name: '@storybook/react-vite',
     options: {},
   },
+
+  viteFinal: (viteConfig) =>
+    mergeConfig(viteConfig, {
+      resolve: {
+        alias: {
+          '@': fileURLToPath(new URL('../', import.meta.url)),
+        },
+      },
+    }),
 
   typescript: {
     reactDocgen: 'react-docgen-typescript',
