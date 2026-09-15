@@ -20,7 +20,7 @@
     "@fontsource/open-sans": "^5.2.7",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.2",
-    "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-1.2.0.tgz",
+    "@opetushallitus/oph-design-system": "file:../pkg/opetushallitus-oph-design-system-2.0.0.tgz",
     "react": "^18",
     "react-dom": "^18"
   },
