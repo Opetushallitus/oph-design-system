@@ -25,7 +25,7 @@ export const App = () => {
   return (
     <OphThemeProvider lang="fi" variant="oph">
       <OphButton variant="contained">Button</OphButton>
-    </Theme>
+    </OphThemeProvider>
   );
 };
 `;

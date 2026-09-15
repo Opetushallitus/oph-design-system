@@ -36,20 +36,21 @@ Also make sure that you have the required peer dependencies installed:
 ```json
 {
   "peerDependencies": {
-    "@mui/material": "^6",
-    "@mui/icons-material": "^6",
-    "next": "^14 || ^15", // Mandatory only if you use Next.js
+    "@mui/icons-material": "^6 || ^7",
+    "@mui/material": "^6 || ^7",
     "react": "^18 || ^19"
   }
 }
 ```
 
+Use matching major versions of `@mui/material` and `@mui/icons-material`. For a MUI 6 project, install `@mui/icons-material@6` explicitly so npm does not select version 7 automatically.
+
 ## Usage
 
-To use ODS components in your project, you need to wrap your App with a Theme provider.
-There are two theme providers available:
+To use ODS components in your project, wrap your app with
+[OphThemeProvider](/docs/theme-ophthemeprovider--docs).
+See its documentation for setup instructions.
 
-1. [OphThemeProvider](/docs/theme-ophthemeprovider--docs) to be used in plain React apps
-2. [OphNextJsThemeProvider](/docs/theme-ophnextjsthemeprovider--docs) to be used in Next.js apps
-
-Check instructions how to wrap your app with theme provider in the above theme provider documentation pages.
+The theme uses Open Sans with weights 400, 600, and 700. Load the font in your
+application, for example using self-hosted files or Fontsource. The theme provider
+does not download font files.

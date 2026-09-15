@@ -1,1 +1,0 @@
-export { OphNextJsThemeProvider } from './OphNextJsThemeProvider';

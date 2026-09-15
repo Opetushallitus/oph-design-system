@@ -1,4 +1,7 @@
-import { OphNextJsThemeProvider } from '@/src/next/theme';
+import '@fontsource/open-sans/latin-400.css';
+import '@fontsource/open-sans/latin-600.css';
+import '@fontsource/open-sans/latin-700.css';
+import { OphThemeProvider } from '@/src/theme';
 import { Box, Stack } from '@mui/material';
 import type { Preview } from '@storybook/react';
 import { viewport } from './viewport';
@@ -66,22 +69,22 @@ const preview: Preview = {
           return (
             <Stack direction="row" gap={4} flexWrap="wrap">
               <Box>
-                <OphNextJsThemeProvider variant="oph" lang="fi">
+                <OphThemeProvider variant="oph" lang="fi">
                   <Story />
-                </OphNextJsThemeProvider>
+                </OphThemeProvider>
               </Box>
               <Box>
-                <OphNextJsThemeProvider variant="opintopolku" lang="fi">
+                <OphThemeProvider variant="opintopolku" lang="fi">
                   <Story />
-                </OphNextJsThemeProvider>
+                </OphThemeProvider>
               </Box>
             </Stack>
           );
         default:
           return (
-            <OphNextJsThemeProvider variant={theme as 'oph' | 'opintopolku'}>
+            <OphThemeProvider variant={theme as 'oph' | 'opintopolku'}>
               <Story />
-            </OphNextJsThemeProvider>
+            </OphThemeProvider>
           );
       }
     },

@@ -1,7 +1,6 @@
-# OPH Design System - Next.js esimerkkiprojekti
+# OPH Design System - React esimerkkiprojekti
 
-Yksinkertainen Next.js-esimerkkiprojekti, joka käyttää `@opetushallitus/oph-design-system`-komponenttikirjastoa.
-Luotu komennolla `npx create-next-app@latest` ja karsittu pois tarpeettomat tiedostot.
+Yksinkertainen React-esimerkkiprojekti, joka käyttää `@opetushallitus/oph-design-system`-komponenttikirjastoa.
 
 ## Esimerkkiprojektin käynnistäminen
 

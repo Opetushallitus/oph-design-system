@@ -1,12 +1,26 @@
-import { getRequestConfig } from 'next-intl/server';
-import { cookies } from 'next/headers';
+import type { OphLanguage } from '@opetushallitus/oph-design-system';
+import fi from '../messages/fi.json';
+import sv from '../messages/sv.json';
+import en from '../messages/en.json';
 
-export default getRequestConfig(async () => {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get('lang')?.value ?? 'fi';
+export type Messages = typeof fi;
 
-  return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
-  };
-});
+const messagesByLocale = { fi, sv, en };
+
+function getCookie(name: string): string | undefined {
+  const prefix = `${name}=`;
+  for (const cookie of document.cookie.split(';')) {
+    const entry = cookie.trim();
+    if (entry.startsWith(prefix)) return entry.slice(prefix.length);
+  }
+}
+
+export function getLocaleConfig() {
+  const requestedLocale = getCookie('lang');
+  const locale: OphLanguage =
+    requestedLocale === 'sv' || requestedLocale === 'en'
+      ? requestedLocale
+      : 'fi';
+
+  return { locale, messages: messagesByLocale[locale] };
+}

@@ -1,7 +1,7 @@
 import { afterEach, expect, test } from 'vitest';
 import { cleanup, renderWithOphTheme, screen } from '@/vitest-utils';
 import { OphLink } from './OphLink';
-import Link from 'next/link';
+import { forwardRef, type ComponentPropsWithoutRef } from 'react';
 
 afterEach(cleanup);
 
@@ -31,13 +31,22 @@ test.each([
   },
 );
 
-test('Can pass next.js Link as component prop', () => {
+test('Can pass a custom link component and its props', () => {
+  const CustomLink = forwardRef<
+    HTMLAnchorElement,
+    ComponentPropsWithoutRef<'a'> & { route: string }
+  >(({ route, ...props }, ref) => (
+    <a {...props} ref={ref} data-route={route} />
+  ));
+
   renderWithOphTheme(
-    <OphLink href="/internal" component={Link} prefetch={false}>
+    <OphLink href="/internal" component={CustomLink} route="internal">
       Link
     </OphLink>,
   );
 
   const link = screen.getByRole('link', { name: 'Link' });
   expect(link).toBeVisible();
+  expect(link).toHaveAttribute('href', '/internal');
+  expect(link).toHaveAttribute('data-route', 'internal');
 });

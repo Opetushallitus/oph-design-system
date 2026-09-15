@@ -1,4 +1,4 @@
-import type { ThemeOptions } from '@mui/material';
+import type { ThemeOptions as MuiThemeOptions } from '@mui/material';
 
 /**
  * Supported language codes.
@@ -19,12 +19,21 @@ export interface OphThemeParams {
   /**
    * Overrides for theme options.
    */
-  overrides?: ThemeOptions;
+  overrides?: MuiThemeOptions;
+}
+
+export interface OphThemeTokens {
+  borderRadius: string;
 }
 
 declare module '@mui/material/styles' {
   interface Theme {
     lang?: OphLanguage;
+    oph: OphThemeTokens;
+  }
+
+  interface ThemeOptions {
+    oph?: Partial<OphThemeTokens>;
   }
 }
 
